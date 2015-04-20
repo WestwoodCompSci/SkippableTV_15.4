@@ -6,13 +6,13 @@ $connection = mysqli_connect(config::$database["host"],config::$database["userna
 $db_prefix = config::$database['prefix'];
 $username = $_GET['user_id'];
 $query = "SELECT * FROM users where  $username=`id`";
-print $query;
-$return = mysqli_query($connection,$query) or die();
+$result = mysqli_query($connection,$query) or die();
+if(mysqli_num_rows($result)> 1)
+	die("Multuiple users");
 while($row = $result->fetch_array(MYSQL_ASSOC))
 {
-	 $myArray[] = $row;
+	 $myArray = $row;
 }
-echo json_encode($myArray);
-$result->close();
-$mysqli->close();
+mysqli_close($connection);
+exit(json_encode($myArray));
 ?>
