@@ -17,6 +17,6 @@ public class Encoder {
 	}
 	
 	public String decode(String s){
-		return encode(s);
+		return encrypt(s);
 	}
 }
