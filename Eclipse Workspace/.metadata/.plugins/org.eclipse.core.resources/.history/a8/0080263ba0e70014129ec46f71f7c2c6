@@ -32,8 +32,8 @@ public class EncodeS {
 		finally{
 			try {writer.close();}catch(Exception ex){}
 		}
+		
 	}
-	
 	public String encrypt(String o)
 	{
 		String s= "";
@@ -48,11 +48,6 @@ public class EncodeS {
 			s+=o.substring(o.length()-1,o.length());
 		return s;
 	}
-	
-	public String decrypt(String s){
-		return encrypt(s);
-	}
-	
 	public void write(String plaintext)
 	{
 		String s= encrypt(plaintext);
@@ -110,7 +105,7 @@ public class EncodeS {
 	}
 	
 	public File getFile(){
-		return file;
+		
 	}
 
 }
