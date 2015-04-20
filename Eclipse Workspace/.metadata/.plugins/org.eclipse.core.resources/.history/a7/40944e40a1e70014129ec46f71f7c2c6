@@ -19,14 +19,4 @@ public class Encoder {
 	public String decode(String s){
 		return encode(s);
 	}
-	
-	public String toHash(String s){
-		char[] x = s.toCharArray();
-		int sum = 0;
-		for(int i = 0 ; i < x.length ; i++){
-			{
-				sum+= (int)x[i];
-			}
-		}
-	}
 }
