@@ -1,7 +1,0 @@
-package GUI;
-
-public class SRunner {
-	public static void main(String[] args){
-		
-	}
-}
