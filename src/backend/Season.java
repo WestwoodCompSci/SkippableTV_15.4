@@ -12,7 +12,7 @@ public class Season {
 	ArrayList<Episode> e;
 	public Season(int n)
 	{
-		num=n;
+		numSeason=n;
 	}
 
 	

@@ -35,19 +35,23 @@ public class EchoThread extends Thread {
 
 			System.out.println("Just connected to "
 					+ socket.getRemoteSocketAddress());
-
-			String str = in.readUTF();
-			System.out.println(str);
+			
+			
+				String s = in.readUTF();
+				System.out.println("Message from client: " + s);
+			
+			
+			
 
 
 
 			out.writeUTF("Thank you for connecting to "
 					+ socket.getLocalSocketAddress() + "\nGoodbye!");
-
+			System.out.println("Connection closed from " + socket.getRemoteSocketAddress());
 			socket.close();
 		}catch(Exception e)
 		{
-			e.printStackTrace();
+			System.out.println("Connection unexpectedly closed from " + socket.getRemoteSocketAddress());
 
 		}
 
