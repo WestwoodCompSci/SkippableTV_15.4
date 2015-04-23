@@ -8,49 +8,49 @@ import java.io.IOException;
 import java.net.Socket;
 
 public class EchoThread extends Thread {
-    protected Socket socket;
+	protected Socket socket;
 
-    public EchoThread(Socket clientSocket) {
-        socket = clientSocket;
-    }
+	public EchoThread(Socket clientSocket) {
+		socket = clientSocket;
+	}
 
-    public void run() {
-        DataInputStream in = null;
-     
-        DataOutputStream out = null;
-        try {
-            
-            in = new DataInputStream(socket.getInputStream());
-           
-            out = new DataOutputStream(socket.getOutputStream());
-        } catch (IOException e) {
-            return;
-        }
-        
-        while (true) {
-        	try
-			{
-				
-				
-				
-				System.out.println("Just connected to "
-						+ socket.getRemoteSocketAddress());
-				
-				String str = in.readUTF();
-				System.out.println(str);
-				
+	public void run() {
+		DataInputStream in = null;
 
-				
-				out.writeUTF("Thank you for connecting to "
-						+ socket.getLocalSocketAddress() + "\nGoodbye!");
+		DataOutputStream out = null;
+		try {
 
-				socket.close();
-			}catch(Exception e)
-			{
-				e.printStackTrace();
-				break;
-			}
-           
-        }
-    }
+			in = new DataInputStream(socket.getInputStream());
+
+			out = new DataOutputStream(socket.getOutputStream());
+		} catch (IOException e) {
+			return;
+		}
+
+
+		try
+		{
+
+
+
+			System.out.println("Just connected to "
+					+ socket.getRemoteSocketAddress());
+
+			String str = in.readUTF();
+			System.out.println(str);
+
+
+
+			out.writeUTF("Thank you for connecting to "
+					+ socket.getLocalSocketAddress() + "\nGoodbye!");
+
+			socket.close();
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+
+		}
+
+
+	}
 }
