@@ -6,7 +6,7 @@ import java.io.*;
 
 public class ClientExample
 {
-	final static String serverName = "";
+	final static String serverName = "192.168.1.10";
 	final static int port = 80;
 	public static void main(String [] args)
 	{
@@ -17,8 +17,10 @@ public class ClientExample
 			//establishing connection to server
 			System.out.println("Connecting to " + serverName
 					+ " on port " + port);
-			Socket client = new Socket(serverName, port);
-
+			
+			Socket client = new Socket();
+			client.connect(new InetSocketAddress(serverName,port), 5000);
+			
 			System.out.println("Just connected to "
 					+ client.getRemoteSocketAddress());
 			//setting up data streams
@@ -27,20 +29,17 @@ public class ClientExample
 			InputStream inFromServer = client.getInputStream();
 			DataInputStream in = new DataInputStream(inFromServer);
 			//sending data to server
-			Scanner s = new Scanner(System.in);
-			String str = " ";
-			while(!str.equals("")) {
-				str = s.nextLine();
-				out.writeUTF(str);
-			}
-			s.close();
+			
+				out.writeUTF("ayylmao");
+			
 			//receiving data from server
-			System.out.println("Server says " + in.readUTF());
+			System.out.println("Message from server: " + in.readUTF());
 			//closing connection
 			client.close();
 		}catch(IOException e)
 		{
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.out.println("Error connecting to host server.");
 		}
 	}
 }
