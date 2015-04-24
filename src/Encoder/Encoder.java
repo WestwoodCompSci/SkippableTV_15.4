@@ -1,6 +1,30 @@
 package Encoder;
 
+import java.io.IOException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.ShortBufferException;
+
 public class Encoder {
+	
+	
+	private byte[] iv = new byte[3];
+	private byte[] key = new byte[3];
+	private static Crypt crypt;
+	
+	
+	public Encoder(){
+		key[0] = 71;
+		key[1] = 22;
+		key[2] = 62;
+		iv[0] = 63;
+		iv[0] = 22;
+		iv[0] = 55;
+		crypt = new Crypt(key, iv);
+	}
 
 	public static String encode(String s){
 		String o= "";
@@ -14,6 +38,14 @@ public class Encoder {
 		if(s.length()%2==1)
 			o+=s.substring(s.length()-1,s.length());
 		return o;
+	}
+	
+	public static byte[] encrypt(String s) throws InvalidKeyException, InvalidAlgorithmParameterException, IllegalBlockSizeException, ShortBufferException, BadPaddingException, IOException{
+		return crypt.encrypt(s);
+	}
+	
+	public static Object decrypt(byte[] b) throws InvalidKeyException, InvalidAlgorithmParameterException, IllegalBlockSizeException, ShortBufferException, BadPaddingException, IOException, ClassNotFoundException{
+		return crypt.decrypt(b);
 	}
 	
 	public static String decode(String s){
