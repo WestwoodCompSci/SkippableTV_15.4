@@ -10,7 +10,7 @@ import javax.crypto.ShortBufferException;
 
 public class Encoder {
 	
-	
+	//TODO
 	private byte[] iv = new byte[3];
 	private byte[] key = new byte[3];
 	private static Crypt crypt;
@@ -26,6 +26,7 @@ public class Encoder {
 		crypt = new Crypt(key, iv);
 	}
 
+	//returns an encoded string of plaintext
 	public static String encode(String s){
 		String o= "";
 		for(int i=0;i<s.length()-1;i+=2)
@@ -40,10 +41,12 @@ public class Encoder {
 		return o;
 	}
 	
+	//returns an encrypted byte array
 	public static byte[] encrypt(String s) throws InvalidKeyException, InvalidAlgorithmParameterException, IllegalBlockSizeException, ShortBufferException, BadPaddingException, IOException{
 		return crypt.encrypt(s);
 	}
 	
+	//returns a decrypted object (should be a string)
 	public static Object decrypt(byte[] b) throws InvalidKeyException, InvalidAlgorithmParameterException, IllegalBlockSizeException, ShortBufferException, BadPaddingException, IOException, ClassNotFoundException{
 		return crypt.decrypt(b);
 	}
@@ -66,14 +69,4 @@ public class Encoder {
 	public static String encodeInt(int i){
 		return encode(Integer.toString(i));
 	}
-	
-	/*public static String encodeShow(Show x){
-		String s = "";
-		s.add(encode(x.getTitle()) + "\n");
-		s.add(encodeInt(x.getTime()) + "\n");
-		s.add(encodeInt(x.getCuTime()) + "\n");
-		s.add(encodeInt(x.getShows()) + "\n");
-		s.add(encodeInt(x.getSeasons()) + "\n");
-		return s;
-	}*/
 }
