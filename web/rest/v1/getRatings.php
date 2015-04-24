@@ -1,7 +1,7 @@
 <?php
 
 require("../../config/config.php");
-if((!isset($_GET['parent_show']) || !isset($_GET['parent_season']) || !(isset($_GET['episode']))) || (!(isset($_GET['episode_id']))))
+if((!(isset($_GET['episode'])) || !isset($_GET['show']) || !isset($_GET['season'])) && !isset($_GET['rating_id']))
 	die(json_encode(array("error" => 1,"status" => 403, "errors" => array("Parent show or season not specified"))));
 $connection = mysqli_connect(config::$database["host"],config::$database["username"],config::$database["password"],config::$database["database"]) 
 	or die(json_encode(array("error" => 1, "status" => 500,"errors" => array("Could not connect to databsase"))));
