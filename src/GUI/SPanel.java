@@ -10,8 +10,8 @@ import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 
 public class SPanel extends JPanel implements Runnable{
-	public static int width = 1080;
-	public static int height = 720;
+	public static int width = 1040;
+	public static int height = 585;
 	
 	private Thread thread;
 	private boolean running;
@@ -22,6 +22,8 @@ public class SPanel extends JPanel implements Runnable{
 	private final int FPS = 60;
 	private int averageFPS;
 
+	private SideBar s;
+	
 	public SPanel(){
 		super();
 		
@@ -47,6 +49,8 @@ public class SPanel extends JPanel implements Runnable{
 		g = (Graphics2D)image.getGraphics();
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+		
+		s = new SideBar();
 		
 		long startTime;
 		long URDTimeMilli;
@@ -95,8 +99,7 @@ public class SPanel extends JPanel implements Runnable{
 		
 		//SideBar
 		
-		g.setColor(new Color(214,214,214));
-		g.fillRect(0, 0, width/4, height);
+		s.draw(g);
 		
 		//Test
 		

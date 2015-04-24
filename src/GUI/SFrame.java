@@ -9,6 +9,7 @@ import javax.swing.JLayeredPane;
 
 public class SFrame extends JFrame{	
 	private Graphics2D g;
+	private SPanel panel;
 	
 	public SFrame(){
 		//Initial Values
@@ -18,13 +19,15 @@ public class SFrame extends JFrame{
 		
 		//Adding Components
 		
-		this.setContentPane(new SPanel());
+		panel = new SPanel();
+		
+		this.setContentPane(panel);
+		this.setResizable(false);
 		
 		//Finishing Up
 		
 		this.pack();
 		
-		this.setSize(1080, 720);
 		
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 	    int x = (int) ((dimension.getWidth() - this.getWidth())/ 2);
@@ -32,7 +35,6 @@ public class SFrame extends JFrame{
 	    
 	    this.setLocation(x, y);
 	    
-		this.setResizable(false);
 		this.setVisible(true);
 	}
 }
