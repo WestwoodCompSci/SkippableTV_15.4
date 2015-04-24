@@ -6,11 +6,11 @@ import java.awt.Dimension;
 import javax.swing.JPanel;
 
 public class SideBar extends JPanel{
-	public SideBar(){
-		this.setPreferredSize(new Dimension(SFrame.width/4, SFrame.height));
-		this.setMaximumSize(new Dimension(SFrame.width/4, SFrame.height));
-		this.setMinimumSize(new Dimension(SFrame.width/4, SFrame.height));
+	public SideBar(Dimension d){
+		this.setBackground(new Color(255,255,255,100));
 		
-		this.setBackground(new Color(237,237,237));
+		this.setPreferredSize(d);
+		
+		this.setLocation(0, 0);
 	}
 }

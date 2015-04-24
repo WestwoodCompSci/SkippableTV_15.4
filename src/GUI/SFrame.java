@@ -1,14 +1,14 @@
 package GUI;
 
 import java.awt.Dimension;
+import java.awt.Graphics2D;
 import java.awt.Toolkit;
 
-import javax.swing.Box;
 import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
 
-public class SFrame extends JFrame{
-	public static int width = 1080;
-	public static int height = 720;
+public class SFrame extends JFrame{	
+	private Graphics2D g;
 	
 	public SFrame(){
 		//Initial Values
@@ -18,25 +18,17 @@ public class SFrame extends JFrame{
 		
 		//Adding Components
 		
-		Box mainBox = Box.createHorizontalBox();
-		
-		SideBar s = new SideBar();
-		MainContent m = new MainContent();
-		
-		mainBox.add(s);
-		mainBox.add(m);
-		
-		this.add(mainBox);
+		this.setContentPane(new SPanel());
 		
 		//Finishing Up
 		
 		this.pack();
 		
-		this.setSize(width, height);
+		this.setSize(1080, 720);
 		
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-	    int x = (int) ((dimension.getWidth() - width)/ 2);
-	    int y = (int) ((dimension.getHeight() - height) / 2);
+	    int x = (int) ((dimension.getWidth() - this.getWidth())/ 2);
+	    int y = (int) ((dimension.getHeight() - this.getHeight()) / 2);
 	    
 	    this.setLocation(x, y);
 	    
