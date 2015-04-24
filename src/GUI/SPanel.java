@@ -89,6 +89,7 @@ public class SPanel extends JPanel implements Runnable{
 	}
 	
 	public void update(){
+		s.update();
 	}
 	
 	public void renderGraphics(){
