@@ -11,7 +11,7 @@ $query = "SELECT * FROM Shows where $showid=`id`";
 $result = mysqli_query($connection,$query) or die(json_encode(array("error" => 1, "status" => 500,"errors" => array("Query error"))));;
 $myArray = array();
 if(mysqli_num_rows($result) > 1)
-	die(json_encode(array("error" => 1, "status" => 500,"errors" => array("More than one show returned"))));;
+	die(json_encode(array("error" => 1, "status" => 500,"errors" => array("More than one show returned"))));
 while($row = $result->fetch_array(MYSQL_ASSOC))
 	 $myArray[] = $row;
 $return = array("error" => 0, "status" => 200, "errors" => null, "show" => $myArray);
