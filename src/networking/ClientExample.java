@@ -1,7 +1,6 @@
 package networking;
 
 import java.net.*;
-import java.util.Scanner;
 import java.io.*;
 
 public class ClientExample

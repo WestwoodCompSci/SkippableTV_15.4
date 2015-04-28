@@ -4,8 +4,10 @@ import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
  
+
 import javax.net.ssl.HttpsURLConnection;
 
 
@@ -13,6 +15,7 @@ import javax.net.ssl.HttpsURLConnection;
 public class URLConnect {
  
 	private final String USER_AGENT = "Mozilla/5.0";
+	private URL baseurl;
  
 	public static void main(String[] args) throws Exception {
  
@@ -26,12 +29,23 @@ public class URLConnect {
  
 	}
  
+	public URLConnect() { };
+	
+	public URLConnect(String url) {
+		try {
+			baseurl = new URL(url);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	// HTTP GET request
-	private void sendGet(String url) throws Exception {
+	private void sendGet(String suburl) throws Exception {
  
 		
- 
-		URL obj = new URL(url);
+		URL obj = new URL(baseurl, suburl);
+		
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
  
 		// optional default is GET
@@ -41,7 +55,7 @@ public class URLConnect {
 		con.setRequestProperty("User-Agent", USER_AGENT);
  
 		int responseCode = con.getResponseCode();
-		System.out.println("\nSending 'GET' request to URL : " + url);
+		System.out.println("\nSending 'GET' request to URL : " + suburl);
 		System.out.println("Response Code : " + responseCode);
  
 		BufferedReader in = new BufferedReader(
@@ -51,6 +65,7 @@ public class URLConnect {
  
 		while ((inputLine = in.readLine()) != null) {
 			response.append(inputLine);
+			//response.append("\n");
 		}
 		in.close();
  
@@ -60,11 +75,11 @@ public class URLConnect {
 	}
  
 	// HTTP POST request
-	private void sendPost(String url) throws Exception {
+	private void sendPost(String suburl) throws Exception {
  
 		
 		
-		URL obj = new URL(url);
+		URL obj = new URL(baseurl, suburl);
 		HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
  
 		//add reuqest header
@@ -82,7 +97,7 @@ public class URLConnect {
 		wr.close();
  
 		int responseCode = con.getResponseCode();
-		System.out.println("\nSending 'POST' request to URL : " + url);
+		System.out.println("\nSending 'POST' request to URL : " + suburl);
 		System.out.println("Post parameters : " + urlParameters);
 		System.out.println("Response Code : " + responseCode);
  
@@ -93,6 +108,7 @@ public class URLConnect {
  
 		while ((inputLine = in.readLine()) != null) {
 			response.append(inputLine);
+			//response.append("\n");
 		}
 		in.close();
  
