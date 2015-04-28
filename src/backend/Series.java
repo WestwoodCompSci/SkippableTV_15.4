@@ -4,8 +4,9 @@ import java.util.ArrayList;
 
 public class Series {
 
-	String title;
-	ArrayList<Season> s;
+	public String title;
+	public ArrayList<Season> s;
+	public int percentage;
 	
 	public Series(String b, ArrayList<Season> a)
 	{
