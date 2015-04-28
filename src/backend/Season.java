@@ -13,7 +13,7 @@ public class Season {
 	{
 		numSeason=n;
 	}
-	public int getTotalTime()
+	public int getSeasonTime()
 	{
 		int n = 0; 
 		for (Episode f: e)
