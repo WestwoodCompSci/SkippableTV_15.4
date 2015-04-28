@@ -76,11 +76,4 @@ public class Encoder {
 		
 		return s;
 	}
-	
-	public static void main(String[] args)
-	{
-		Encoder e = new Encoder();
-		byte[] enc =  e.encrypt("Hello world");
-		System.out.println(e.decrypt(enc));
-	}
 }
