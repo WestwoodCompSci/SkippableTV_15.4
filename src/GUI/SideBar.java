@@ -10,7 +10,9 @@ import javax.swing.JPanel;
 public class SideBar extends JPanel{
 	int x;
 	
-	public boolean starting;
+	private boolean starting;
+	
+	private GenreList genres;
 	
 	public SideBar(){
 		this.setPreferredSize(new Dimension(SPanel.width, SPanel.height));
@@ -19,16 +21,24 @@ public class SideBar extends JPanel{
 		starting = true;
 	}
 	
+	public GenreList getGenreList(){
+		return genres;
+	}
+	
 	public void update(){
 		if(starting){
 			if(x >= 0){
 				starting = false;
 				this.setLocation(0,0);
+				genres = new GenreList(0,50);
 			}
 			else{
 				x += 10;
 				this.setLocation(x, 0);
 			}
+		}
+		else{
+			genres.update();
 		}
 	}
 	
@@ -39,6 +49,10 @@ public class SideBar extends JPanel{
 		
 		g.setColor(new Color(214,214,214));
 		g.fillRect(this.getX(), 0, 260, 585);
+		
+		if(!starting){
+			genres.draw(g);
+		}
 		
 		GradientPaint verticalDownFade = new GradientPaint(0,50,new Color(0,0,0,100),0, 53,new Color(0,0,0,0));
 		g.setPaint(verticalDownFade);

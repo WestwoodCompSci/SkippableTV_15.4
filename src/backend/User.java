@@ -32,6 +32,7 @@ public void removeFromPlaylist(Series s)
 {
 	playlist.remove(s);
 	updateHistory(s);
+
 }
 public void updateHistory(Series s)
 {
@@ -41,5 +42,6 @@ public void getProgress(Series s)
 {
 	//progress=(timeWatched)/(s.getSeriesTime());
 }
+
 
 }

@@ -21,13 +21,17 @@ public class SFrame extends JFrame{
 		
 		panel = new SPanel();
 		
+		//this.setResizable(false);
+		
 		this.setContentPane(panel);
+		
 		this.setResizable(false);
 		
 		//Finishing Up
 		
 		this.pack();
 		
+		//this.setResizable(false);
 		
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 	    int x = (int) ((dimension.getWidth() - this.getWidth())/ 2);
