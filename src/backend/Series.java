@@ -11,7 +11,7 @@ public class Series {
 	{
 		title=b;
 		s = a; 
-	}
+	} 
 	
 
 	

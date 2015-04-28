@@ -10,9 +10,10 @@ public class Season {
 	
 	
 	ArrayList<Episode> e;
-	public Season(int n)
+	public Season(int n, int total)
 	{
 		numSeason=n;
+		totalTime = total; 
 	}
 
 	
