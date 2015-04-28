@@ -12,6 +12,15 @@ public class Series {
 		title=b;
 		s = a; 
 	} 
+	public int getSeriesTime()
+	{
+		int n = 0; 
+		for(Season a: s)
+		{
+			n += a.getSeasonTime();
+		}
+		return n; 
+	}
 	
 
 	
