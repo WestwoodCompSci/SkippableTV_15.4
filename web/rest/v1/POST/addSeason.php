@@ -48,7 +48,7 @@ endforeach;
 
 //first, we want to initialize our own variables
 $override = $_POST['override'];
-$create_episodes = $_POST['autocreate_episodes']
+$create_episodes = $_POST['autocreate_episodes'];
 $season_parent = $_POST['season_parent'];
 $season_number = $_POST['season_number'];
 $season_episodes = $_POST['season_episodes'];
@@ -77,16 +77,9 @@ if($override)
 {
 	//to be done later
 }
-else
+else // We can't write over
 {
-	IF NOT EXISTS (SELECT * FROM `Seasons` 
-                   WHERE __=_
-                   AND __=_
-                   AND __=_)
-   BEGIN
-       INSERT INTO `Seasons` (__,________,_____)
-       VALUES (____,__________,_______)
-   END
+	$query = "IF NOT EXISTS (SELECT * FROM `Seasons` WHERE $season_parent=`parent` AND $season_number=`number`) BEGIN INSERT INTO `Seasons` (`parent`,`number`,`episodes`,`total length`)  VALUES ($season_parent,$season_number,$season_episodes,\"$season_length\") END";
 }
 
 ?>
