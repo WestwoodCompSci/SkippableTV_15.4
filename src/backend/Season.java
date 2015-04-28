@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Season {
 	
 	int numSeason;
-	int totalTime;
 	
 	
 	
@@ -13,7 +12,15 @@ public class Season {
 	public Season(int n, int total)
 	{
 		numSeason=n;
-		totalTime = total; 
+	}
+	public int getTotalTime()
+	{
+		int n = 0; 
+		for (Episode f: e)
+		{
+			n += f.getEpisodeTime();
+		}
+		return n; 
 	}
 
 	

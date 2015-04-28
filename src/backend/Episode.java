@@ -3,12 +3,18 @@ package backend;
 public class Episode {
 
 int time;
-int number; 
+int number;
 
-	public Episode(int n, int place)
+	public Episode(int n, int t)
 	{
-		time = n; 
-		number = place; 
+		time =t;
+		number = n; 
+	}
+	
+	
+	public int getEpisodeTime()
+	{
+		return time;
 	}
 }
 
