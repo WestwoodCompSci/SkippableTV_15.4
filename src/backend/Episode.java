@@ -4,11 +4,13 @@ public class Episode {
 
 int time;
 int number;
+int rating;
 
-	public Episode(int n, int t)
+	public Episode(int n, int t, int r)
 	{
 		time =t;
 		number = n; 
+		rating =r;
 	}
 	
 	
