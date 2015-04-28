@@ -5,11 +5,14 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
+import javax.swing.event.MouseInputListener;
 
-public class SPanel extends JPanel implements Runnable{
+public class SPanel extends JPanel implements Runnable,MouseListener,MouseInputListener{
 	public static int width = 1040;
 	public static int height = 585;
 	
@@ -40,6 +43,9 @@ public class SPanel extends JPanel implements Runnable{
 			thread = new Thread(this);
 			thread.start();
 		}
+		
+		this.addMouseListener(this);
+		this.addMouseMotionListener(this);
 	}
 	
 	public void run(){
@@ -112,5 +118,49 @@ public class SPanel extends JPanel implements Runnable{
 		Graphics g2 = this.getGraphics();
 		g2.drawImage(image, 0, 0, null);
 		g2.dispose();
+	}
+	
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		GenreList temp = s.getGenreList();
+		if(temp != null){
+			temp.checkHovered(e);
+		}
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
