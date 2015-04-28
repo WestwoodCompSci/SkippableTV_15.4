@@ -6,7 +6,7 @@ public class Series {
 
 	public String title;
 	public ArrayList<Season> s;
-
+	public int percentage;
 	
 	public Series(String b, ArrayList<Season> a)
 	{

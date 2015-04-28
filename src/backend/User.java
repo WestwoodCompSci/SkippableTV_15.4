@@ -21,14 +21,9 @@ public void addToPlaylist(Series s)
 {
 	playlist.add(s);
 }
-public void removeFromPlaylist(Series s)
+public void updateHistory()
 {
-	playlist.remove(s);
-	updateHistory(s);
-}
-public void updateHistory(Series s)
-{
-	history.add(s);
+	if(percentage)
 }
 
 
