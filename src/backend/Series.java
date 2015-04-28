@@ -7,9 +7,10 @@ public class Series {
 	String title;
 	ArrayList<Season> s;
 	
-	public Series(String s)
+	public Series(String b, ArrayList<Season> a)
 	{
-		title=s;
+		title=b;
+		s = a; 
 	}
 	
 
