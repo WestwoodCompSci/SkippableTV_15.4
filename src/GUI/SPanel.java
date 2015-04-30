@@ -142,7 +142,7 @@ public class SPanel extends JPanel implements Runnable,MouseListener,MouseInputL
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		GenreList temp = s.getGenreList();
+		GenreList temp = s.getGenreList(;
 		if(temp != null){
 			temp.checkPressed(e, true);
 		}
