@@ -6,12 +6,18 @@ public class Series {
 
 	public String title;
 	public ArrayList<Season> s;
-	public int percentage;
+	public String length;
+	public int id;
+	public int episodeCount;
+	public int seasonCount;
 	
-	public Series(String b, ArrayList<Season> a)
+	public Series(String b,String l,int i, int e,int s)
 	{
 		title=b;
-		s = a; 
+		length=l;
+		id=i;
+		episodeCount=e;
+		seasonCount=s;
 	} 
 	public int getSeriesTime()
 	{

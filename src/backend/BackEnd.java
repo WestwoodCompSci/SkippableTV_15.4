@@ -1,24 +1,36 @@
 package backend;
 
+import java.util.ArrayList;
+
+import org.json.JSONObject;
+
+import networking.Access;
+
 public class BackEnd {
 
-	Series s;
-	User u;
+	ArrayList<Series> series;
 	
 	
-	public BackEnd(Series t, User v)
+	Access a;
+	
+	public BackEnd()
 	{
-		s=t;
-		u=v;
+		a=new Access();
+		series = getSeries();
+	
+	}
+	public ArrayList<Series> getSeries()
+	{
+		ArrayList<Series> s=new ArrayList<Series>();
+		ArrayList<Integer> i=a.getShows();
+		for(int j :i)
+		{
+			JSONObject temp =a.getShow(j);
+			Series t =new Series(temp.getString("name"),temp.getString("total length"),temp.getInt("id"),temp.getInt("episodes"),temp.getInt("seasons"));
+			series.add(t);
+			
+		}
+		return s;
 	}
 	
-	public void addSeries()
-	{
-		u.addToPlaylist(s);
-	}
-	
-	public int barOutput()
-	{
-		return 0;
-	}
 }
