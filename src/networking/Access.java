@@ -37,6 +37,28 @@ public class Access {
 		return arr;
 	}
 	
+	public JSONObject getSeason(int showID, int seasonID) {
+		String parse = con.sendPost("getSeason.php?show_id="+showID+"&season_id="+seasonID, "");
+		JSONObject arr = new JSONObject(parse).getJSONArray("season").getJSONObject(0);
+		return arr;
+	}
+	
+	public ArrayList<JSONObject> getSeasons(int showID) {
+		ArrayList<JSONObject> o = new ArrayList<JSONObject>();
+		int max = getShow(showID).getInt("seasons");
+		for(int i = 0; i < max; i++) {
+			o.add(getSeason(showID,i));
+		}
+		return o;
+	}
+	
+//	public JSONObject getEpisode(int showID, int seasonID, int episodeNumber) {
+//		String parse = con.sendPost("getEpisode.php?show_id="+showID+"&season_id="+seasonID, "");
+//		JSONObject arr = new JSONObject(parse).getJSONArray("season").getJSONObject(0);
+//		return arr;
+//	}
+	
+	
 	public static void main(String[] args) {
 		Access ax = new Access();
 		ArrayList<Integer> a = ax.getShows();
@@ -44,5 +66,8 @@ public class Access {
 		
 		System.out.println();
 		System.out.println(ax.getShow(1).getString("seasons"));
+		
+		System.out.println();
+		ax.getSeason(1,2);
 	}
 }
