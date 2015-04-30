@@ -66,4 +66,14 @@ public class GenreList {
 			}
 		}
 	}
+	
+	public void checkPressed(MouseEvent e, boolean b){
+		for(int i = 0; i < gButtons.size(); i++){
+			boolean hover = gButtons.get(i).isHovered(e);
+			if(hover){
+				gButtons.get(i).setPressed(b);
+				break;
+			}
+		}
+	}
 }

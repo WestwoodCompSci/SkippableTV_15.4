@@ -20,6 +20,7 @@ public class GenreButton{
 	
 	private boolean selected;
 	private boolean hovered;
+	private boolean pressed;
 	
 	private Color color;
 	
@@ -48,6 +49,10 @@ public class GenreButton{
 		hovered = b;
 	}
 	
+	public void setPressed(boolean b){
+		pressed = b;
+	}
+	
 	public void update(){
 		if(starting){
 			if(alpha >= 229){
@@ -64,6 +69,9 @@ public class GenreButton{
 		if(!selected){
 			if(hovered){
 				color = Color.CYAN;
+				if(pressed){
+					color = Color.CYAN.darker();
+				}
 			}
 			else{
 				color = original;
@@ -80,18 +88,19 @@ public class GenreButton{
 		}
 		g.fillRect(x, y, width, height);
 		
-		GradientPaint verticalFade1 = new GradientPaint(x,y,new Color(0,0,0,50),x,y + 3,new Color(0,0,0,0));
-		g.setPaint(verticalFade1);
-		g.fillRect(x, y, width, 3);
+		//GradientPaint verticalFade1 = new GradientPaint(x,y,new Color(0,0,0,50),x,y + 3,new Color(0,0,0,0));
+		//g.setPaint(verticalFade1);
+		g.setColor(new Color(0,0,0,50));
+		g.fillRect(x, y, width, 1);
 		
-		GradientPaint verticalFade2 = new GradientPaint(x,y + height - 3,new Color(0,0,0,0),x,y + height,new Color(0,0,0,50));
-		g.setPaint(verticalFade2);
-		g.fillRect(x, y + height - 3, width, 3);
+		//GradientPaint verticalFade2 = new GradientPaint(x,y + height - 3,new Color(0,0,0,0),x,y + height,new Color(0,0,0,50));
+		//g.setPaint(verticalFade2);
+		g.fillRect(x, y + height - 1, width, 1);
 		
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("Century Gothic", Font.BOLD, 24));
 		int length = (int)g.getFontMetrics().getStringBounds(title, g).getWidth();
-		g.drawString(title, x + width/2 - length/2, y + height/2);
+		g.drawString(title, x + width/2 - length/2, y + height/2 + 5);
 	}
 
 	public boolean isHovered(MouseEvent e){
