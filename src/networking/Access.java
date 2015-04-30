@@ -6,7 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class Access {
-	private static URLConnect con;
+	private URLConnect con;
 	 
 	public Access() {	
 		con = new URLConnect("http://preview.qbizlbk2gkua0pb93crxph878kcvj9k957h3bwfu5v0u23xr.box.codeanywhere.com/web/rest/v1/");
@@ -22,7 +22,7 @@ public class Access {
 	public ArrayList<Integer> getShows() {
 		String parse = con.sendPost("findShow.php?show_name=", "");
 		JSONArray obj = new JSONObject(parse).getJSONArray("shows");
-		//System.out.println(obj.toString());
+		
 		ArrayList<Integer> list = new ArrayList<Integer>();
 		for(int i = 0; i < obj.length(); i++) {
 			list.add(obj.getJSONObject(i).getInt("id"));
@@ -34,8 +34,6 @@ public class Access {
 		
 		String parse = con.sendPost("getShow.php?show_id="+ID, "");
 		JSONObject arr = new JSONObject(parse).getJSONArray("show").getJSONObject(0);
-		System.out.println(arr.toString());
-		
 		return arr;
 	}
 	
