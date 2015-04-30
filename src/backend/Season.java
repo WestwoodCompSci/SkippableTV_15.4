@@ -23,6 +23,11 @@ public class Season {
 		return n; 
 	}
 	
+	public Episode getEpisode(int episode)
+	{
+		return e.get(episode);
+	}
+	
 
 	
 

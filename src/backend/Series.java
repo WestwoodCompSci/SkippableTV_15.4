@@ -23,6 +23,11 @@ public class Series {
 		return n; 
 	}
 	
+	public Season getSeason(int season)
+	{
+		return s.get(season);
+	}
+	
 
 	
 	

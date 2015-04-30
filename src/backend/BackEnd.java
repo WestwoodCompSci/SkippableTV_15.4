@@ -17,8 +17,15 @@ public class BackEnd {
 		u.addToPlaylist(s);
 	}
 	
-	public int barOutput()
+	public int barOutput(int t, int f)
 	{
-		return 0;
+		if(s.getSeason(t).getEpisode(f).getRating()<1)
+			return 1;
+		else if(s.getSeason(t).getEpisode(f).getRating()<2)
+			return 2;
+		else if(s.getSeason(t).getEpisode(f).getRating()<4)
+			return 4;
+		else 
+			return 5;
 	}
 }
