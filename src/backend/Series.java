@@ -1,6 +1,7 @@
 package backend;
 
 import java.util.ArrayList;
+import backend.Season;
 
 public class Series {
 
