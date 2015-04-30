@@ -1,44 +1,172 @@
-# Windows image file caches
-Thumbs.db
-ehthumbs.db
+#====================================================================================#
+# Remove the leading '#' from a line to uncomment a file type to begin ignoring.     #
+#     Commented = synced/allowed                                                     #
+#     Uncommented = ignored/disallowed                                               #
+#====================================================================================#
 
-# Folder config file
-Desktop.ini
+# Java Files
+#-------------------
+*.class
+#*.java
+#.jar
 
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
 
-# Windows Installer files
-*.cab
-*.msi
-*.msm
-*.msp
+# Text Files
+#-------------------
+#*.txt
+#*.dat
 
-# Windows shortcuts
-*.lnk
 
-# =========================
-# Operating System Files
-# =========================
+# PDF Files
+#-------------------
+#*.pdf
 
-# OSX
-# =========================
 
+# HTML Files
+#-------------------
+#*.htm
+#*.html
+#*.css
+#*.js
+
+
+# Audio Files
+#-------------------
+#*.mp3
+#*.m3u
+#*.aac
+#*.wma
+#*.asx
+#*.ogg
+#*.wav
+#*.aiff
+#*.au
+
+
+# Video Files
+#-------------------
+#*.mov
+#*.qt
+#*.mpeg
+#*.mpg
+#*.mp4
+#*.m4v
+#*.mkv
+#*.avi
+#*.wmv
+#*.asf
+#*.divx
+#*.flv
+
+
+# MacOS Files
+#-------------------
 .DS_Store
 .AppleDouble
 .LSOverride
-
-# Thumbnails
+Icon
 ._*
-
-# Files that might appear on external disk
+.DocumentRevisions-V100
+.fseventsd
 .Spotlight-V100
+.TemporaryItems
 .Trashes
-
-# Directories potentially created on remote AFP share
+.VolumeIcon.icns
 .AppleDB
 .AppleDesktop
 Network Trash Folder
 Temporary Items
 .apdisk
-bin/backend/Episode.class
+
+
+# Windows Files
+#-------------------
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+*.lnk
+*.tmp
+~*
+
+
+# Linux Files
+#-------------------
+*~
+.directory
+.Trash-*
+
+
+# Eclipse Files
+#-------------------
+*.pydevproject
+.metadata
+.gradle
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.project
+.externalToolBuilders/
+*.launch
+.cproject
+.classpath
+.buildpath
+.target
+.texlipse
+
+
+# Netbeans Files
+#-------------------
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+.nb-gradle/
+
+
+# XCode Files
+#-------------------
+build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+*.xccheckout
+*.moved-aside
+DerivedData
+*.xcuserstate
+
+
+# TextMate Files
+#-------------------
+*.tmproj
+*.tmproject
+tmtags
+
+
+# Microsoft Office Files
+#-------------------
+*.tmp
+~$*.doc*
+~$*.xls*
+*.xlk
+
+
