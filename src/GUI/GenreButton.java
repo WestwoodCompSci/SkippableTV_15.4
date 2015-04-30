@@ -25,6 +25,9 @@ public class GenreButton{
 	private Color color;
 	
 	private Color original;
+	private Color hover;
+	private Color press;
+	private Color select;
 	
 	public GenreButton(String n, int x, int y){
 		title = n;
@@ -37,8 +40,11 @@ public class GenreButton{
 		
 		selected = false;
 		
-		color = new Color(150,50,150, alpha);
-		original = new Color(150,50,150);
+		color = new Color(150,150,150, alpha);
+		original = new Color(150,150,150);
+		hover = new Color(125,125,125);
+		press = new Color(100,100,100);
+		select = new Color(75,75,75);
 	}
 	
 	public void setSelected(boolean b){
@@ -58,7 +64,7 @@ public class GenreButton{
 			if(alpha >= 229){
 				starting = false;
 				alpha = 255;
-				color = new Color(150,50,150, alpha);
+				color = original;
 			}
 			else{
 				y--;
@@ -68,9 +74,9 @@ public class GenreButton{
 		}
 		if(!selected){
 			if(hovered){
-				color = Color.CYAN;
+				color = hover;
 				if(pressed){
-					color = Color.CYAN.darker();
+					color = press;
 				}
 			}
 			else{
@@ -81,7 +87,7 @@ public class GenreButton{
 	
 	public void draw(Graphics2D g){
 		if(selected){
-			g.setColor(color.darker());
+			g.setColor(select);
 		}
 		else{
 			g.setColor(color);

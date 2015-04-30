@@ -72,6 +72,16 @@ public class GenreList {
 			boolean hover = gButtons.get(i).isHovered(e);
 			if(hover){
 				gButtons.get(i).setPressed(b);
+				if(!b){
+					for(int j = 0; j < gButtons.size(); j++){
+						if(j != i){
+							gButtons.get(j).setSelected(false);
+						}
+						else{
+							gButtons.get(j).setSelected(true);
+						}
+					}
+				}
 				break;
 			}
 		}
