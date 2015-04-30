@@ -15,6 +15,6 @@ while($row = $result->fetch_array(MYSQL_ASSOC))
 	 $myArray = $row;
 mysqli_close($connection);
 $return = array("error" => 0, "status" => 200, "errors" => null, "user" => $myArray);
-print crypt("password");
 die(json_encode($return));
+
 ?>
