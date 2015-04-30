@@ -18,18 +18,6 @@ public class BackEnd {
 		a=new Access();
 		series = getSeries();
 	
-<<<<<<< HEAD
-	public int barOutput(int t, int f)
-	{
-		if(s.getSeason(t).getEpisode(f).getRating()<1)
-			return 1;
-		else if(s.getSeason(t).getEpisode(f).getRating()<2)
-			return 2;
-		else if(s.getSeason(t).getEpisode(f).getRating()<4)
-			return 4;
-		else 
-			return 5;
-=======
 	}
 	public static void main(String [] args)
 	{
@@ -48,7 +36,6 @@ public class BackEnd {
 			
 		}
 		return s;
->>>>>>> origin/master
 	}
 	
 }

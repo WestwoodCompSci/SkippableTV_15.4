@@ -43,7 +43,7 @@ public void updateHistory(Series s)
 {
 	history.add(s);
 }
-public int getProgress(Series s)
+//public int getProgress(Series s)
 {
 	//return progress=(timeWatched)/(s.getSeriesTime());
 }
