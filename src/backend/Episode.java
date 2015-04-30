@@ -18,5 +18,13 @@ int rating;
 	{
 		return time;
 	}
+	public int getRating()
+	{
+		return rating;
+	}
+	public int getNumber()
+	{
+		return number;
+	}
 }
 

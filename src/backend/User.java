@@ -10,7 +10,12 @@ public class User {
 	ArrayList<Series> playlist;
 	ArrayList<Series> history;
 	int progress;
-
+public User(String u, String p)
+{
+	id=id;
+	username=u;
+	password=p;
+}
 
 public String toString()	
 {
@@ -38,9 +43,9 @@ public void updateHistory(Series s)
 {
 	history.add(s);
 }
-public void getProgress(Series s)
+public int getProgress(Series s)
 {
-	//progress=(timeWatched)/(s.getSeriesTime());
+	//return progress=(timeWatched)/(s.getSeriesTime());
 }
 
 
