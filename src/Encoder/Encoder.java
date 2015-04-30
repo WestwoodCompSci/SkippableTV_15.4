@@ -14,6 +14,7 @@ public class Encoder {
 	
 	private Cipher myCipher;
 	private SecretKey myKey;
+	private SecretKey disposable;
 	
 	public Encoder(){
 		try{
@@ -45,6 +46,33 @@ public class Encoder {
 			e.printStackTrace();
 		}
 		
+		return encrypted;
+	}
+	
+	public byte[] encryptOneWay(String plaintext){
+		KeyGenerator spec;
+		try {
+			spec = KeyGenerator.getInstance("AES");
+			spec.init(128);
+			disposable = spec.generateKey();
+		} catch (NoSuchAlgorithmException e1) {
+			e1.printStackTrace();
+		}
+		try {
+			myCipher.init(Cipher.ENCRYPT_MODE, disposable);
+		} catch (InvalidKeyException e) {
+			e.printStackTrace();
+		}
+		
+		byte[] input = plaintext.getBytes();
+		byte[] encrypted = new byte[myCipher.getOutputSize(input.length)];
+		
+		try {
+			encrypted = myCipher.doFinal(input);
+		} catch (IllegalBlockSizeException | BadPaddingException e) {
+			e.printStackTrace();
+		}
+		disposable = null;
 		return encrypted;
 	}
 	
