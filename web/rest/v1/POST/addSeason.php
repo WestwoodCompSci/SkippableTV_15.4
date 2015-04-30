@@ -21,7 +21,7 @@ if(!isset($_POST[$key]))
 		die(json_encode(array("error"=>1,"status"=>412,"errors"=>array("Missing POST data"))));
 	if(!is_null($value)):
 		if(!$_POST[$key] == $value) //The only time we need to check if $key=>$value is if it exists, and it has to work properly
-			die(json_encode(array("error"=>1,"status"=>412,"errors"=>array("POST data failed"))));
+			die(json_encode(array("error"=>1,"status"=>412,"errors"=>array("POST data failed $key,$value"))));
 	endif;
 endforeach;
 
@@ -35,10 +35,10 @@ $required = array(); // This is temporary until we have the user agent set up fr
 
 foreach($required as $key => $value):
 	if(!isset($_SERVER[$key]))
-		die(json_encode(array("error"=>1,"status"=>403,"errors"=>array("Security Exception $key "))));
+		die(json_encode(array("error"=>1,"status"=>403,"errors"=>array("Security Exception"))));
 	if(!is_null($value)):
 		if(!($_SERVER[$key] === $value))
-			die(json_encode(array("error"=>1,"status"=>403,"errors"=>array("Security Exception "))));
+			die(json_encode(array("error"=>1,"status"=>403,"errors"=>array("Security Exception"))));
 	endif;
 endforeach;
 
@@ -51,7 +51,7 @@ $override = $_POST['override'];
 $create_episodes = $_POST['autocreate_episodes'];
 $season_parent = $_POST['season_parent'];
 $season_number = $_POST['season_number'];
-$season_episodes = $_POST['season_episodes'];
+$season_episodes = $_POST['num_episodes'];
 $season_length = $_POST['season_length'];
 
 /** Now we're going to set the type of the variables. 
@@ -71,11 +71,20 @@ if(!settype($season_episodes,"int")) die(json_encode(array("error"=>1,"status"=>
 
 //Now we're ready to do database queries. 
 
+$connection = mysqli_connect(config::$database["host"],config::$database["username"],config::$database["password"],config::$database["database"]) 
+	or die(json_encode(array("error" => 1, "status" => 500,"errors" => array("Could not connect to databsase"))));
+$db_prefix = config::$database['prefix'];
 
 //The first logical split is to make sure we don't override!
 if($override)
 {
-	//to be done later
+	$query = "SELECT `id` FROM `Seasons` WHERE $season_parent=`parent` AND $season_number=`number`";
+	$result = mysqli_query($connection,$query) or die(json_encode(array("error" => 1, "status" => 500,"errors" => array("Query error"))));
+	$result = $result->fetch_array(MYSQL_ASSOC);
+	$result = $result['id'];
+	$query = "UPDATE  `skippable`.`Seasons` SET  `parent` =  $season_parent, `number` =  $season_number, `episodes` =  $season_episodes, `total length` =  \"$season_length\" WHERE  `Seasons`.`id` = $result";
+	$result = mysqli_query($connection,$query) or die(json_encode(array("error" => 1, "status" => 500,"errors" => array("Quedf error"))));	
+	die(json_encode(array("error"=>0,"errors"=>array(),"status"=>200,"result"=>$result,"affected_rows"=>mysqli_affected_rows($result))));
 }
 else // We can't write over
 {
