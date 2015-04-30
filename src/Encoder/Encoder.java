@@ -1,72 +1,78 @@
 package Encoder;
 
-import java.io.IOException;
-import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
 import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.ShortBufferException;
+import javax.crypto.KeyGenerator;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
 
 public class Encoder {
 	
-	//TODO
-	private byte[] iv = new byte[3];
-	private byte[] key = new byte[3];
-	private static Crypt crypt;
-	
+	private Cipher myCipher;
+	private SecretKey myKey;
 	
 	public Encoder(){
-		key[0] = 71;
-		key[1] = 22;
-		key[2] = 62;
-		iv[0] = 63;
-		iv[0] = 22;
-		iv[0] = 55;
-		crypt = new Crypt(key, iv);
-	}
-
-	//returns an encoded string of plaintext
-	public static String encode(String s){
-		String o= "";
-		for(int i=0;i<s.length()-1;i+=2)
-		{
-			String a= s.substring(i,i+1);
-			String b= s.substring(i+1,i+2);
-			o+=b;
-			o+=a;
+		try{
+			KeyGenerator gen = KeyGenerator.getInstance("AES");
+			gen.init(128);
+			myKey = gen.generateKey();
+			myCipher = Cipher.getInstance("AES");
 		}
-		if(s.length()%2==1)
-			o+=s.substring(s.length()-1,s.length());
-		return o;
-	}
-	
-	//returns an encrypted byte array
-	public static byte[] encrypt(String s) throws InvalidKeyException, InvalidAlgorithmParameterException, IllegalBlockSizeException, ShortBufferException, BadPaddingException, IOException{
-		return crypt.encrypt(s);
-	}
-	
-	//returns a decrypted object (should be a string)
-	public static Object decrypt(byte[] b) throws InvalidKeyException, InvalidAlgorithmParameterException, IllegalBlockSizeException, ShortBufferException, BadPaddingException, IOException, ClassNotFoundException{
-		return crypt.decrypt(b);
-	}
-	
-	public static String decode(String s){
-		return encode(s);
-	}
-	
-	public static String toHash(String s){
-		char[] x = s.toCharArray();
-		int sum = 0;
-		for(int i = 0 ; i < x.length ; i++){
-			{
-				sum+= (int)x[i]*(9029+i);  
-			}
+		catch (NoSuchAlgorithmException e){
+			e.printStackTrace();
+		} catch (NoSuchPaddingException e) {
+			e.printStackTrace();
 		}
-		return Integer.toString(sum%23987);
 	}
 	
-	public static String encodeInt(int i){
-		return encode(Integer.toString(i));
+	public byte[] encrypt(String plaintext){
+		try {
+			myCipher.init(Cipher.ENCRYPT_MODE, myKey);
+		} catch (InvalidKeyException e) {
+			e.printStackTrace();
+		}
+		
+		byte[] input = plaintext.getBytes();
+		byte[] encrypted = new byte[myCipher.getOutputSize(input.length)];
+		
+		try {
+			encrypted = myCipher.doFinal(input);
+		} catch (IllegalBlockSizeException | BadPaddingException e) {
+			e.printStackTrace();
+		}
+		
+		return encrypted;
+	}
+	
+	public String decrypt(byte[] DATA){
+		try {
+			myCipher.init(Cipher.DECRYPT_MODE, myKey);
+		} catch (InvalidKeyException e) {
+			e.printStackTrace();
+		}
+		
+		byte[] decrypted = new byte[myCipher.getOutputSize(DATA.length)];
+		
+		try {
+			decrypted = myCipher.doFinal(DATA);
+		} catch (IllegalBlockSizeException | BadPaddingException e) {
+			e.printStackTrace();
+		}
+		
+		return this.toString(decrypted);
+	}
+	
+	private String toString(byte[] b){
+		String s = "";
+		
+		for(byte x : b){
+			s += (char) x;
+		}
+		
+		return s;
 	}
 }
