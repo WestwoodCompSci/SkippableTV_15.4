@@ -31,6 +31,9 @@ public class GenreList {
 		if(starting){
 			if(startAdd > 40){
 				starting = false;
+				for(int i = 0; i < 5; i++){
+					gButtons.add(new GenreButton(startAdd + "", x, y + GenreButton.height*(startAdd/10) + (i+1)*GenreButton.height));
+				}
 			}
 			else{
 				if(startAdd%10 == 0){
@@ -84,6 +87,29 @@ public class GenreList {
 				}
 				break;
 			}
+		}
+	}
+	
+	public void scrollUp(){
+		startIndex--;
+		if(startIndex >= 0){
+			for(int i = 0; i < gButtons.size(); i++){
+				gButtons.get(i).setY(gButtons.get(i).getY() + GenreButton.height);
+			}
+		}
+		else{
+			startIndex = 0;
+		}
+	}
+	public void scrollDown(){
+		startIndex++;
+		if(startIndex < gButtons.size()-5){
+			for(int i = 0; i < gButtons.size(); i++){
+				gButtons.get(i).setY(gButtons.get(i).getY() - GenreButton.height);
+			}
+		}
+		else{
+			startIndex = gButtons.size()-6;
 		}
 	}
 }
