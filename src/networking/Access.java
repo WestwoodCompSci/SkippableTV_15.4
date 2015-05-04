@@ -47,6 +47,7 @@ public class Access {
 	public JSONObject getSeason(int showID, int seasonID) {
 		String parse = con.sendGet("getSeason.php?show_id="+showID+"&season_id="+seasonID);
 		try {
+			System.out.println(new JSONObject(parse).getJSONArray("season").toString());
 			JSONObject obj = new JSONObject(parse).getJSONArray("season").getJSONObject(0);
 			return obj;
 		} catch (JSONException e) {
@@ -59,7 +60,8 @@ public class Access {
 	public ArrayList<JSONObject> getSeasons(int showID) {
 		ArrayList<JSONObject> o = new ArrayList<JSONObject>();
 		int max = getShow(showID).getInt("seasons");
-		for(int i = 0; i < max; i++) {
+		System.out.println("number of seasons: " + max);
+		for(int i = 1; i < max + 1; i++) {
 			o.add(getSeason(showID,i));
 		}
 		return o;

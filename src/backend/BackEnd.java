@@ -8,7 +8,7 @@ import networking.Access;
 
 public class BackEnd {
 
-	ArrayList<Series> series;
+	static ArrayList<Series> series;
 	
 	
 	Access a;
@@ -23,6 +23,8 @@ public class BackEnd {
 	{
 		BackEnd b = new BackEnd();
 		System.out.println(b.series.get(0).title);
+		
+		b.getSeasons(series.get(0).id);
 	}
 	public ArrayList<Series> getSeries()
 	{
@@ -36,6 +38,19 @@ public class BackEnd {
 			
 		}
 		return s;
+	}
+	public ArrayList<Season> getSeasons(int showID)
+	{
+		ArrayList<Season> s =new ArrayList<Season>();
+		ArrayList<JSONObject> j = a.getSeasons(showID);
+		
+		for(JSONObject k : j)
+		{
+			k.toString();
+			
+		}
+		return null;
+		
 	}
 	
 }
