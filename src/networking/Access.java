@@ -46,11 +46,13 @@ public class Access {
 	public ArrayList<JSONObject> getSeasons(int showID) {
 		ArrayList<JSONObject> o = new ArrayList<JSONObject>();
 		int max = getShow(showID).getInt("seasons");
-		for(int i = 0; i < max; i++) {
+		for(int i = 1; i < max + 1; i++) {
 			o.add(getSeason(showID,i));
 		}
 		return o;
 	}
+	
+	
 	
 //	public JSONObject getEpisode(int showID, int seasonID, int episodeNumber) {
 //		String parse = con.sendPost("getEpisode.php?show_id="+showID+"&season_id="+seasonID, "");
