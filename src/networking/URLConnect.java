@@ -14,14 +14,12 @@ public class URLConnect {
  
 	private final String USER_AGENT = "SkippableTV 1.1";
 	private URL baseurl;
- 
-	public URLConnect() { };
-	
+ 	
 	public URLConnect(String url) {
 		try {
 			baseurl = new URL(url);
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
@@ -105,6 +103,7 @@ public class URLConnect {
 			con.disconnect();
 			//print result
 			//System.out.println(response.toString());
+			
 			return response.toString();
 	 
 		}

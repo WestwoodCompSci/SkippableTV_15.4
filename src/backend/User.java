@@ -10,9 +10,9 @@ public class User {
 	ArrayList<Series> playlist;
 	ArrayList<Series> history;
 	int progress;
-public User(String u, String p)
+public User(String u, String p, int id)
 {
-	id=id;
+	this.id=id;
 	username=u;
 	password=p;
 }
