@@ -25,7 +25,7 @@ public class URLConnect {
 	}
 	
 	// HTTP GET request
-	public String sendGet(String suburl) throws Exception {
+	public String sendGet(String suburl) {
 		try {
 			URL obj = new URL(baseurl, suburl);
 			
@@ -37,10 +37,8 @@ public class URLConnect {
 			//add request header
 			con.setRequestProperty("User-Agent", USER_AGENT);
 	 
-			int responseCode = con.getResponseCode();
-			System.out.println("\nSending 'GET' request to URL : " + suburl);
-			System.out.println("Response Code : " + responseCode);
-	 
+			
+			
 			BufferedReader in = new BufferedReader(
 			        new InputStreamReader(con.getInputStream()));
 			String inputLine;

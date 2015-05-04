@@ -3,6 +3,7 @@ package networking;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Access {
@@ -20,7 +21,7 @@ public class Access {
 	}
 	
 	public ArrayList<Integer> getShows() {
-		String parse = con.sendPost("findShow.php?show_name=", "");
+		String parse = con.sendGet("findShow.php?show_name=");
 		JSONArray obj = new JSONObject(parse).getJSONArray("shows");
 		
 		ArrayList<Integer> list = new ArrayList<Integer>();
@@ -32,21 +33,33 @@ public class Access {
 	
 	public JSONObject getShow(int ID) {
 		
-		String parse = con.sendPost("getShow.php?show_id="+ID, "");
-		JSONObject obj = new JSONObject(parse).getJSONArray("show").getJSONObject(0);
-		return obj;
+		String parse = con.sendGet("getShow.php?show_id="+ID);
+		try {
+			JSONObject obj = new JSONObject(parse).getJSONArray("show").getJSONObject(0);
+			return obj;
+		} catch (JSONException e){
+			e.printStackTrace();
+			return null;
+		}
+ 		
 	}
 	
 	public JSONObject getSeason(int showID, int seasonID) {
-		String parse = con.sendPost("getSeason.php?show_id="+showID+"&season_id="+seasonID, "");
-		JSONObject obj = new JSONObject(parse).getJSONArray("season").getJSONObject(0);
-		return obj;
+		String parse = con.sendGet("getSeason.php?show_id="+showID+"&season_id="+seasonID);
+		try {
+			JSONObject obj = new JSONObject(parse).getJSONArray("season").getJSONObject(0);
+			return obj;
+		} catch (JSONException e) {
+			e.printStackTrace();
+			return null;
+		}
+		
 	}
 	
 	public ArrayList<JSONObject> getSeasons(int showID) {
 		ArrayList<JSONObject> o = new ArrayList<JSONObject>();
 		int max = getShow(showID).getInt("seasons");
-		for(int i = 1; i < max + 1; i++) {
+		for(int i = 0; i < max; i++) {
 			o.add(getSeason(showID,i));
 		}
 		return o;
@@ -55,21 +68,42 @@ public class Access {
 	
 	
 	public JSONObject getEpisode(int showID, int seasonID, int episodeNumber) {
-		String parse = con.sendPost("getEpisode.php?parent_show="+showID+"&parent_season="+seasonID+"&episode_number="+episodeNumber, "");
+		String parse = con.sendGet("getEpisode.php?parent_show="+showID+"&parent_season="+seasonID+"&episode_number="+episodeNumber);
+		try {
+			JSONObject obj = new JSONObject(parse).getJSONArray("episode").getJSONObject(0);
+			return obj;
+		}
+		catch(JSONException e) {
+			return null;
+		}
 		
-		//JSONObject obj = new JSONObject(parse)getJSONArray("episode").getJSONObject(0);
-		System.out.println(parse);
-		return null;
 	}
 	
 	public ArrayList<JSONObject> getEpisodes(int showID, int seasonID) {
 		ArrayList<JSONObject> o = new ArrayList<JSONObject>();
 		int max = getSeason(showID, seasonID).getInt("episodes");
-		for(int i = 1; i < max + 1; i++) {
+		for(int i = 0; i < max; i++) {
 			o.add(getEpisode(showID, seasonID, i));
 		}
 		return o;
 	}
+	
+	public ArrayList<JSONObject> getRatings(int showID, int seasonID, int episodeID) {
+		ArrayList<JSONObject> o = new ArrayList<JSONObject>();
+		String parse = con.sendGet("getEpisode.php?episode="+episodeID+"&show="+showID+"&season="+seasonID);
+		System.out.println(parse);
+		return null;
+//		try {
+//			JSONObject obj = new JSONObject(parse).getJSONArray("episode").getJSONObject(0);
+//			
+//		}
+//		catch(JSONException e) {
+//			return null;
+//		}
+		
+	}
+	
+	
 	
 	public static void main(String[] args) {
 		Access ax = new Access();
@@ -84,5 +118,8 @@ public class Access {
 		
 		System.out.println();
 		System.out.println(ax.getEpisode(1, 2, 1));
+		
+		System.out.println();
+		ax.getRatings(1, 2, 1);
 	}
 }
