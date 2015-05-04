@@ -47,10 +47,11 @@ public class BackEnd {
 		for(JSONObject k : j)
 		{
 			k.toString();
-			
+			s.add(new Season(k.getString("length"),k.getInt("parent"),k.getInt("number"),k.getInt("id"),k.getInt("episodes")));
 		}
-		return null;
+		return s;
 		
 	}
+	
 	
 }

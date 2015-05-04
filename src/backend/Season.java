@@ -4,14 +4,21 @@ import java.util.ArrayList;
 
 public class Season {
 	
-	int numSeason;
-	
+	String length;
+	int parent;
+	int number;
+	int id;
+	int episodeCount;
 	
 	
 	ArrayList<Episode> e;
-	public Season(int n, int total)
+	public Season(String l, int p, int n, int i,  int e)
 	{
-		numSeason=n;
+		length =l;
+		parent=p;
+		number=n;
+		id=i;
+		episodeCount=e;
 	}
 	public int getSeasonTime()
 	{
