@@ -33,14 +33,14 @@ public class Access {
 	public JSONObject getShow(int ID) {
 		
 		String parse = con.sendPost("getShow.php?show_id="+ID, "");
-		JSONObject arr = new JSONObject(parse).getJSONArray("show").getJSONObject(0);
-		return arr;
+		JSONObject obj = new JSONObject(parse).getJSONArray("show").getJSONObject(0);
+		return obj;
 	}
 	
 	public JSONObject getSeason(int showID, int seasonID) {
 		String parse = con.sendPost("getSeason.php?show_id="+showID+"&season_id="+seasonID, "");
-		JSONObject arr = new JSONObject(parse).getJSONArray("season").getJSONObject(0);
-		return arr;
+		JSONObject obj = new JSONObject(parse).getJSONArray("season").getJSONObject(0);
+		return obj;
 	}
 	
 	public ArrayList<JSONObject> getSeasons(int showID) {
@@ -54,12 +54,22 @@ public class Access {
 	
 	
 	
-//	public JSONObject getEpisode(int showID, int seasonID, int episodeNumber) {
-//		String parse = con.sendPost("getEpisode.php?show_id="+showID+"&season_id="+seasonID, "");
-//		JSONObject arr = new JSONObject(parse).getJSONArray("season").getJSONObject(0);
-//		return arr;
-//	}
+	public JSONObject getEpisode(int showID, int seasonID, int episodeNumber) {
+		String parse = con.sendPost("getEpisode.php?parent_show="+showID+"&parent_season="+seasonID+"&episode_id="+episodeNumber, "");
+		
+		//JSONObject obj = new JSONObject(parse)getJSONArray("episode").getJSONObject(0);
+		System.out.println(parse);
+		return null;
+	}
 	
+	public ArrayList<JSONObject> getEpisodes(int showID, int seasonID) {
+		ArrayList<JSONObject> o = new ArrayList<JSONObject>();
+		int max = getSeason(showID, seasonID).getInt("episodes");
+		for(int i = 1; i < max + 1; i++) {
+			o.add(getEpisode(showID, seasonID, i));
+		}
+		return o;
+	}
 	
 	public static void main(String[] args) {
 		Access ax = new Access();
@@ -67,9 +77,12 @@ public class Access {
 		System.out.println(a.toString());
 		
 		System.out.println();
-		System.out.println(ax.getShow(1).getString("seasons"));
+		System.out.println(ax.getSeason(0,1));
 		
 		System.out.println();
 		ax.getSeason(1,2);
+		
+		System.out.println();
+		System.out.println(ax.getEpisode(1, 2, 1));
 	}
 }
