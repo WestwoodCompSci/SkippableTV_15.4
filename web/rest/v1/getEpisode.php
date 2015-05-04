@@ -6,7 +6,7 @@ if(
 	&& (isset($_GET['parent_season'])) 
 	&& (isset($_GET['episode_number']))) 
 	|| !(isset($_GET['episode_id'])))
-	die(json_encode(array("error" => 1,"status" => 403, "errors" => array("Not enough data not specified"))));
+	die(json_encode(array("get"=> $_GET,"error" => 1,"status" => 403, "errors" => array("Not enough data not specified"))));
 $connection = mysqli_connect(config::$database["host"],config::$database["username"],config::$database["password"],config::$database["database"]) 
 	or die(json_encode(array("error" => 1, "status" => 500,"errors" => array("Could not connect to databsase"))));
 $db_prefix = config::$database['prefix'];
