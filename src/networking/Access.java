@@ -55,7 +55,7 @@ public class Access {
 	
 	
 	public JSONObject getEpisode(int showID, int seasonID, int episodeNumber) {
-		String parse = con.sendPost("getEpisode.php?parent_show="+showID+"&parent_season="+seasonID+"&episode_id="+episodeNumber, "");
+		String parse = con.sendPost("getEpisode.php?parent_show="+showID+"&parent_season="+seasonID+"&episode_number="+episodeNumber, "");
 		
 		//JSONObject obj = new JSONObject(parse)getJSONArray("episode").getJSONObject(0);
 		System.out.println(parse);

@@ -4,6 +4,7 @@ require("../../config/config.php");
 if(
 	!(isset($_GET['parent_show'])) 
 	&& !(isset($_GET['parent_season'])) 
+	&& !(isset($_GET['episode_number'])) 
 	|| !(isset($_GET['episode_id'])))
 	die(json_encode(array("error" => 1,"status" => 403, "errors" => array("Not enough data not specified"))));
 $connection = mysqli_connect(config::$database["host"],config::$database["username"],config::$database["password"],config::$database["database"]) 
@@ -12,7 +13,7 @@ $db_prefix = config::$database['prefix'];
 if(isset($_GET['parent_show']) && isset($_GET['parent_season'])):
 	$parent_show = $_GET['parent_show'];
 	$parent_season = $_GET['parent_season'];
-	$episode = $_GET['episode'];
+	$episode = $_GET['episode_number'];
 	$query = "SELECT * FROM Episodes WHERE $parent_season=`Season Parent` AND $parent_show=`Show Parent` AND $episode=`number`";
 else:
 	$episode_id = $_GET['episode_id'];
