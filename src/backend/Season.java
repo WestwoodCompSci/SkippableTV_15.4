@@ -20,16 +20,16 @@ public class Season {
 		id=i;
 		episodeCount=e;
 	}
-	public int getSeasonTime()
-	{
-		int n = 0; 
-		for (Episode f: e)
-		{
-			n += f.getEpisodeTime();
-		}
-		return n; 
-	}
-	
+//	public int getSeasonTime()
+//	{
+//		int n = 0; 
+//		for (Episode f: e)
+//		{
+//			n += f.getEpisodeTime();
+//		}
+//		return n; 
+//	}
+//	
 	public Episode getEpisode(int episode)
 	{
 		return e.get(episode);

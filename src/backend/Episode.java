@@ -2,19 +2,26 @@ package backend;
 
 public class Episode {
 
-int time;
-int number;
-int rating;
+	public String title;
+	public String time;
+	public int number;
+	public int rating;
+	public int season;
+	public int series;
 
-	public Episode(int n, int t, int r)
+	public Episode(String title,  String t,int n, int r, int season_parent, int show_parent)
 	{
-		time =t;
+		this.title = title;
+		time = t;
 		number = n; 
-		rating =r;
+		rating = r;
+		season = season_parent;
+		series = show_parent;
+		
 	}
-	
-	
-	public int getEpisodeTime()
+
+
+	public String getEpisodeTime()
 	{
 		return time;
 	}

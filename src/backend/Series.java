@@ -20,15 +20,15 @@ public class Series {
 		episodeCount=e;
 		seasonCount=s;
 	} 
-	public int getSeriesTime()
-	{
-		int n = 0; 
-		for(Season a: s)
-		{
-			n += a.getSeasonTime();
-		}
-		return n; 
-	}
+//	public int getSeriesTime()
+//	{
+//		int n = 0; 
+//		for(Season a: s)
+//		{
+//			n += a.getSeasonTime();
+//		}
+//		return n; 
+//	}
 	
 	public Season getSeason(int season)
 	{
