@@ -9,7 +9,7 @@ $post_requirements = array(
 	"season_parent" => null,
 	"season_number" => null,
 	"num_episodes" => null,
-	"season_length" => null,
+	"season_length" => null
 );
 if(!isset($_POST['is_post']) || $_POST['is_post'] !== "1")
 	die(json_encode(array("error"=>1,"status"=>400,"errors"=>array("POST methods only"))));
@@ -52,7 +52,7 @@ $result = mysqli_query($connection, $query) or die(json_encode(array("error"=>1,
 if(mysqli_num_rows($result) > 0)
 	die(json_encode(array("error"=>1,"status"=>500,"errors"=>array("Season Exists!"))));
 
-$query = "INSERT INTO `Seasons` (`parent`,`number`,`episodes`,`total length`) VALUES ({$season_parent},{$season_number},{$season_episodes},'{$season_length}')";
+$query = "INSERT INTO `Seasons` (`parent`,`number`,`episodes`,`total length`) VALUES ($season_parent,$season_number,$season_episodes,'$season_length')";
 $result = mysqli_query($connection, $query) or die(json_encode(array("error"=>1,"status"=>500,"errors"=>array("Query error!"))));
 
 die(json_encode(array("error"=>0,"status"=>200,"errors"=>null)));
