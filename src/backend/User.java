@@ -7,8 +7,8 @@ public class User {
 	int id;
 	String username;
 	String password;
-	ArrayList<Show> playlist;
-	ArrayList<Show> history;
+	ArrayList<Series> playlist;
+	ArrayList<Series> history;
 	int progress;
 public User(String u, String p, int id)
 {
@@ -29,17 +29,17 @@ public void setPassword(String s)
 {
 	password =s;
 }
-public void addToPlaylist(Show s)
+public void addToPlaylist(Series s)
 {
 	playlist.add(s);
 }
-public void removeFromPlaylist(Show s)
+public void removeFromPlaylist(Series s)
 {
 	playlist.remove(s);
 	updateHistory(s);
 
 }
-public void updateHistory(Show s)
+public void updateHistory(Series s)
 {
 	history.add(s);
 }
