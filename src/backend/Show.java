@@ -3,7 +3,7 @@ package backend;
 import java.util.ArrayList;
 import backend.Season;
 
-public class Series {
+public class Show {
 
 	public String title;
 	public ArrayList<Season> s;
@@ -12,7 +12,7 @@ public class Series {
 	public int episodeCount;
 	public int seasonCount;
 	
-	public Series(String b,String l,int i, int e,int s)
+	public Show(String b,String l,int i, int e,int s)
 	{
 		title=b;
 		length=l;
