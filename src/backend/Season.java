@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class Season {
 	
-	String length;
-	int parent;
-	int number;
-	int id;
-	int episodeCount;
+	public String length;
+	public int parent;
+	public int number;
+	public int id;
+	public int episodeCount;
 	
 	
 	ArrayList<Episode> e;
