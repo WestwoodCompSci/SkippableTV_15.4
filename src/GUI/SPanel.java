@@ -70,7 +70,7 @@ public class SPanel extends JPanel implements Runnable,MouseListener,MouseInputL
 		for(int i = 0; i < 12; i++){
 			if(i%4 == 0 && i > 0){
 				x = 310;
-				y += 180;
+				y += 190;
 			}
 			
 			movies.add(new MovieButton(x,y));

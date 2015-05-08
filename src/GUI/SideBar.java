@@ -75,10 +75,10 @@ public class SideBar extends JPanel{
 			
 			if(!genres.isStarting() && scrolling){				
 				g.setColor(new Color(50,50,50,alphaScroll));
-				g.fillRoundRect(x + 2, 50, 5, 435, 5, 5);
+				g.fillRoundRect(x + 253, 50, 5, 435, 5, 5);
 				
 				g.setColor(new Color(0,0,0,alphaScroll));
-				g.fillRoundRect(x + 2, genres.getStartIndex()*(435/genres.getSize())*2 + 52, 5, 435/genres.getSize()*2, 5, 5);
+				g.fillRoundRect(x + 253, genres.getStartIndex()*(435/genres.getSize())*2 + 52, 5, 435/genres.getSize()*2, 5, 5);
 			}
 		}
 		
