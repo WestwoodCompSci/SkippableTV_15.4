@@ -54,6 +54,18 @@ public class BackEnd {
 		return s;
 		
 	}
+	public void addSeason(Season s)
+	{
+		a.addSeason(s);
+	}
+	public void addShow(Series s)
+	{
+		a.addShow(s);
+	}
+	public void addEpisode(Episode e)
+	{
+		a.addEpisode(e);
+	}
 	
 	public ArrayList<Episode> getEpisode(int showID, int seasonID)
 	{
