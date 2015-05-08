@@ -19,17 +19,7 @@ public class Series {
 		id=i;
 		episodeCount=e;
 		seasonCount=s;
-	} 
-//	public int getSeriesTime()
-//	{
-//		int n = 0; 
-//		for(Season a: s)
-//		{
-//			n += a.getSeasonTime();
-//		}
-//		return n; 
-//	}
-	
+	}
 	public Season getSeason(int season)
 	{
 		return s.get(season);
