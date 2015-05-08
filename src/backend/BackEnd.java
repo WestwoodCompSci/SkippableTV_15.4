@@ -10,7 +10,6 @@ public class BackEnd {
 
 	static ArrayList<Series> series;
 	
-	
 	Access a;
 	
 	public BackEnd()
@@ -19,6 +18,7 @@ public class BackEnd {
 		series = getSeries();
 	
 	}
+	
 	public static void main(String [] args)
 	{
 		BackEnd b = new BackEnd();
@@ -26,6 +26,7 @@ public class BackEnd {
 		
 		b.getSeasons(series.get(0).id);
 	}
+	
 	public ArrayList<Series> getSeries()
 	{
 		ArrayList<Series> s=new ArrayList<Series>();
@@ -39,6 +40,7 @@ public class BackEnd {
 		}
 		return s;
 	}
+	
 	public ArrayList<Season> getSeasons(int showID)
 	{
 		ArrayList<Season> s =new ArrayList<Season>();
@@ -51,6 +53,20 @@ public class BackEnd {
 		}
 		return s;
 		
+	}
+	
+	public ArrayList<Episode> getEpisode(int showID, int seasonID)
+	{
+		ArrayList<Episode> s=new ArrayList<Episode>();
+		ArrayList<JSONObject> i=a.getEpisodes(showID, seasonID);
+		for(JSONObject j :i)
+		{
+			
+			s.add(new Episode(j.getString("name"),j.getString("time"),j.getInt("number"),j.getInt("rating"),j.getInt("season"),j.getInt("series")));
+			
+			
+		}
+		return s;
 	}
 	
 	
