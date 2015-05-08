@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
 
 
@@ -25,7 +26,7 @@ public class URLConnect {
 	}
 	
 	// HTTP GET request
-	public String sendGet(String suburl) throws Exception {
+	public String sendGet(String suburl) {
 		try {
 			URL obj = new URL(baseurl, suburl);
 			
@@ -37,10 +38,8 @@ public class URLConnect {
 			//add request header
 			con.setRequestProperty("User-Agent", USER_AGENT);
 	 
-			int responseCode = con.getResponseCode();
-			System.out.println("\nSending 'GET' request to URL : " + suburl);
-			System.out.println("Response Code : " + responseCode);
-	 
+			
+			
 			BufferedReader in = new BufferedReader(
 			        new InputStreamReader(con.getInputStream()));
 			String inputLine;
@@ -64,7 +63,7 @@ public class URLConnect {
 	}
  
 	// HTTP POST request
-	public String sendPost(String suburl, String params) {
+	public String sendPost(String suburl, ArrayList<String> params) {
  
 		try {
 			URL obj = new URL(baseurl, suburl);
@@ -81,10 +80,13 @@ public class URLConnect {
 			// Send post request
 			con.setDoOutput(true);
 			DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-			wr.writeBytes(params);
-			wr.flush();
+			for(String p : params) {
+				wr.writeBytes(p);
+				wr.flush();
+			}
+			
 			wr.close();
-	 
+			
 			//int responseCode = con.getResponseCode();
 			//System.out.println("\nSending 'POST' request to URL : " + suburl);
 			//System.out.println("Post parameters : " + params);
@@ -97,12 +99,11 @@ public class URLConnect {
 	 
 			while ((inputLine = in.readLine()) != null) {
 				response.append(inputLine);
-				//response.append("\n");
+				response.append("\n");
 			}
 			in.close();
 			con.disconnect();
-			//print result
-			//System.out.println(response.toString());
+			
 			
 			return response.toString();
 	 

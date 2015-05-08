@@ -18,9 +18,7 @@ public class EncoderTest {
 			{
 				System.out.println(i);
 			}
-		} catch (InvalidKeyException | InvalidAlgorithmParameterException
-				| IllegalBlockSizeException | ShortBufferException
-				| BadPaddingException | IOException e) 
+		} catch (Exception e) 
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
