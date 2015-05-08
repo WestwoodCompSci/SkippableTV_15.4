@@ -7,26 +7,23 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.ShortBufferException;
 
+import Encoder.Encoder;
+
 
 public class EncoderTest {
-	private static EncoderTest e = new EncoderTest();
+	
 
 	public static void main(String[] args) {
-		try {
-			byte[] x = e.enrypt("dingus");
-			for(byte i : x)
-			{
-				System.out.println(i);
-			}
-		} catch (Exception e) 
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Encoder e = new Encoder();
+		
+		String toEncrypt = "Sai is testing";
+		
+		byte [] encryptedString = e.encrypt(toEncrypt);
+		String decrypted = e.decrypt(encryptedString);
+		
+		System.out.println("String to be encrypted is: " + toEncrypt);
+		System.out.println("Encrypted thing: " + encryptedString);
+		System.out.println("Decrypted string: " + decrypted);
 	}
 	
-	private byte[] enrypt(String string) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
