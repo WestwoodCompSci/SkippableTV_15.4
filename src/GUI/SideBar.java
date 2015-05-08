@@ -2,9 +2,11 @@ package GUI;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public class SideBar extends JPanel{
@@ -84,14 +86,23 @@ public class SideBar extends JPanel{
 		g.setPaint(verticalDownFade);
 		g.fillRect(this.getX(), 50, 260, 3);
 		
-		g.setColor(Color.BLUE);
+		g.setColor(new Color(37, 110, 121));
 		g.fillRect(this.getX(), 0, 260, 50);
 		
 		GradientPaint verticalUpFade = new GradientPaint(0,480,new Color(0,0,0,0),0, 485,new Color(0,0,0,100));
 		g.setPaint(verticalUpFade);
 		g.fillRect(this.getX(),480,260,5);
 		
-		g.setColor(Color.RED);
+		g.setColor(new Color(37, 110, 121));
 		g.fillRect(this.getX(), 485, 260, 100);
+		
+		g.drawImage(new ImageIcon("images/skip.png").getImage(), x + 10, 500, 70, 70,null);
+	
+		g.setColor(new Color(0, 0, 0, 50));
+		g.setFont(new Font("Century Gothic", Font.BOLD, 27));
+		g.drawString("SKIPPABLE.tv", x + 92, 545);
+		g.setColor(new Color(220,220,220));
+		g.drawString("SKIPPABLE.tv", x + 90, 543);
+		
 	}
 }

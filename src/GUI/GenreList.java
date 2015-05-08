@@ -116,8 +116,8 @@ public class GenreList {
 		}
 	}
 	
-	public void scrollUp(){
-		if(!starting){
+	public void scrollUp(MouseEvent e){
+		if(!starting && (e.getX() > x && e.getY() > this.y && e.getX() < this.x + 270 && e.getY() < this.y + 435)){
 			s.setScrolling(true);
 			time = System.nanoTime();
 			startIndex--;
@@ -131,8 +131,8 @@ public class GenreList {
 			}
 		}
 	}
-	public void scrollDown(){
-		if(!starting){
+	public void scrollDown(MouseEvent e){
+		if(!starting && (e.getX() > x && e.getY() > this.y && e.getX() < this.x + 270 && e.getY() < this.y + 435)){
 			s.setScrolling(true);
 			time = System.nanoTime();
 			startIndex++;

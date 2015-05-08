@@ -10,6 +10,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 import javax.swing.event.MouseInputListener;
@@ -28,6 +29,7 @@ public class SPanel extends JPanel implements Runnable,MouseListener,MouseInputL
 	private int averageFPS;
 
 	private SideBar s;
+	private ArrayList<MovieButton> movies;
 	
 	public SPanel(){
 		super();
@@ -60,6 +62,21 @@ public class SPanel extends JPanel implements Runnable,MouseListener,MouseInputL
 		g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 		
 		s = new SideBar();
+		movies = new ArrayList<MovieButton>();
+		
+		int x = 310;
+		int y = 30;
+		
+		for(int i = 0; i < 12; i++){
+			if(i%4 == 0 && i > 0){
+				x = 310;
+				y += 180;
+			}
+			
+			movies.add(new MovieButton(x,y));
+			
+			x += 180;
+		}
 		
 		long startTime;
 		long URDTimeMilli;
@@ -104,17 +121,16 @@ public class SPanel extends JPanel implements Runnable,MouseListener,MouseInputL
 	public void renderGraphics(){
 		//Background
 		
-		g.setColor(new Color(200,130,130));
+		g.setColor(new Color(80,86,90));
 		g.fillRect(0, 0, width, height);
 		
 		//SideBar
 		
 		s.draw(g);
 		
-		//Test
-		
-		g.setColor(Color.WHITE);
-		g.drawString("FPS: " + averageFPS, 20, 20);
+		for(int i = 0; i < movies.size(); i++){
+			movies.get(i).draw(g);;
+		}
 	}
 	
 	public void paintGraphics(){
@@ -167,12 +183,12 @@ public class SPanel extends JPanel implements Runnable,MouseListener,MouseInputL
 			if(notches < 0){
 				notches = Math.abs(notches);
 				for(int i = 0; i < notches; i++){
-					temp.scrollUp();
+					temp.scrollUp(e);
 				}
 			}
 			else{
 				for(int i = 0; i < notches; i++){
-					temp.scrollDown();
+					temp.scrollDown(e);
 				}
 			}
 		}

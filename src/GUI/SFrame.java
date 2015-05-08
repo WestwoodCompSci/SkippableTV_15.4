@@ -4,8 +4,8 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLayeredPane;
 
 public class SFrame extends JFrame{	
 	private Graphics2D g;
@@ -16,6 +16,9 @@ public class SFrame extends JFrame{
 		
 		this.setTitle("Skippable TV");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		ImageIcon icon = new ImageIcon("images/skip.png");
+		this.setIconImage(icon.getImage());
 		
 		//Adding Components
 		
