@@ -11,18 +11,36 @@ public class SideBar extends JPanel{
 	int x;
 	
 	private boolean starting;
+	private boolean scrolling;
 	
 	private GenreList genres;
+	
+	private int alphaScroll;
 	
 	public SideBar(){
 		this.setPreferredSize(new Dimension(SPanel.width, SPanel.height));
 		x = -260;
 		this.setLocation(x,0);
 		starting = true;
+		scrolling = false;
+		
+		alphaScroll = 100;
+	}
+	
+	public void setScrolling(boolean b){
+		scrolling = b;
 	}
 	
 	public GenreList getGenreList(){
 		return genres;
+	}
+	
+	public boolean isScrolling(){
+		return scrolling;
+	}
+	
+	public void setAlphaScroll(int x){
+		alphaScroll = 100;
 	}
 	
 	public void update(){
@@ -30,7 +48,7 @@ public class SideBar extends JPanel{
 			if(x >= 0){
 				starting = false;
 				this.setLocation(0,0);
-				genres = new GenreList(0,50);
+				genres = new GenreList(0,50, this);
 			}
 			else{
 				x += 10;
@@ -52,6 +70,14 @@ public class SideBar extends JPanel{
 		
 		if(!starting){
 			genres.draw(g);
+			
+			if(!genres.isStarting() && scrolling){				
+				g.setColor(new Color(50,50,50,alphaScroll));
+				g.fillRoundRect(x + 2, 50, 5, 435, 5, 5);
+				
+				g.setColor(new Color(0,0,0,alphaScroll));
+				g.fillRoundRect(x + 2, genres.getStartIndex()*(435/genres.getSize())*2 + 52, 5, 435/genres.getSize()*2, 5, 5);
+			}
 		}
 		
 		GradientPaint verticalDownFade = new GradientPaint(0,50,new Color(0,0,0,100),0, 53,new Color(0,0,0,0));

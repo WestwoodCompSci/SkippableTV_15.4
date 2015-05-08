@@ -26,12 +26,9 @@ public class EncoderTest {
 			e.printStackTrace();
 		}
 	}
+	
 	private byte[] enrypt(String string) {
 		// TODO Auto-generated method stub
 		return null;
-
-
-
-		}
-}
+	}
 }

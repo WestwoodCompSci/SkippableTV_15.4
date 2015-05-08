@@ -7,12 +7,14 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 import javax.swing.event.MouseInputListener;
 
-public class SPanel extends JPanel implements Runnable,MouseListener,MouseInputListener{
+public class SPanel extends JPanel implements Runnable,MouseListener,MouseInputListener,MouseWheelListener{
 	public static int width = 1040;
 	public static int height = 585;
 	
@@ -46,6 +48,7 @@ public class SPanel extends JPanel implements Runnable,MouseListener,MouseInputL
 		
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
+		this.addMouseWheelListener(this);
 	}
 	
 	public void run(){
@@ -153,6 +156,25 @@ public class SPanel extends JPanel implements Runnable,MouseListener,MouseInputL
 		GenreList temp = s.getGenreList();
 		if(temp != null){
 			temp.checkPressed(e, false);
+		}
+	}
+
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent e) {
+		GenreList temp = s.getGenreList();
+		if(temp != null){
+			int notches = e.getWheelRotation();
+			if(notches < 0){
+				notches = Math.abs(notches);
+				for(int i = 0; i < notches; i++){
+					temp.scrollUp();
+				}
+			}
+			else{
+				for(int i = 0; i < notches; i++){
+					temp.scrollDown();
+				}
+			}
 		}
 	}
 }

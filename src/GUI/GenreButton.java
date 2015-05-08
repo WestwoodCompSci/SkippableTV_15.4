@@ -47,6 +47,9 @@ public class GenreButton{
 		select = new Color(75,75,75);
 	}
 	
+	public int getX(){return x;}
+	public int getY(){return y;}
+	
 	public void setSelected(boolean b){
 		selected = b;
 	}
@@ -57,6 +60,14 @@ public class GenreButton{
 	
 	public void setPressed(boolean b){
 		pressed = b;
+	}
+	
+	public void setX(int x){
+		this.x = x;
+	}
+	
+	public void setY(int y){
+		this.y = y;	
 	}
 	
 	public void update(){

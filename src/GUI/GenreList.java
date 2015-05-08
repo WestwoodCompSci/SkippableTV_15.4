@@ -15,7 +15,11 @@ public class GenreList {
 	private boolean starting;
 	private int startAdd;
 	
-	public GenreList(int x, int y){
+	private SideBar s;
+	
+	private long time;
+	
+	public GenreList(int x, int y, SideBar s){
 		startIndex = 0;
 		
 		this.x = x;
@@ -25,12 +29,29 @@ public class GenreList {
 		
 		starting = true;
 		startAdd = 0;
+		
+		this.s = s;
+	}
+	
+	public int getStartIndex(){
+		return startIndex;
+	}
+	
+	public int getSize(){
+		return gButtons.size();
+	}
+	
+	public boolean isStarting(){
+		return starting;
 	}
 	
 	public void update(){
 		if(starting){
 			if(startAdd > 40){
 				starting = false;
+				for(int i = 0; i < 5; i++){
+					gButtons.add(new GenreButton(startAdd + "", x, y + GenreButton.height*(startAdd/10) + (i+1)*GenreButton.height));
+				}
 			}
 			else{
 				if(startAdd%10 == 0){
@@ -40,6 +61,14 @@ public class GenreList {
 					}
 				}
 				startAdd++;
+			}
+		}
+		
+		if(s.isScrolling()){
+			long elapsed = (System.nanoTime() - time)/100000;
+			s.setAlphaScroll(100 - 4);
+			if(elapsed > 7000){
+				s.setScrolling(false);
 			}
 		}
 		
@@ -83,6 +112,37 @@ public class GenreList {
 					}
 				}
 				break;
+			}
+		}
+	}
+	
+	public void scrollUp(){
+		if(!starting){
+			s.setScrolling(true);
+			time = System.nanoTime();
+			startIndex--;
+			if(startIndex >= 0){
+				for(int i = 0; i < gButtons.size(); i++){
+					gButtons.get(i).setY(gButtons.get(i).getY() + GenreButton.height);
+				}
+			}
+			else{
+				startIndex = 0;
+			}
+		}
+	}
+	public void scrollDown(){
+		if(!starting){
+			s.setScrolling(true);
+			time = System.nanoTime();
+			startIndex++;
+			if(startIndex < gButtons.size()-5){
+				for(int i = 0; i < gButtons.size(); i++){
+					gButtons.get(i).setY(gButtons.get(i).getY() - GenreButton.height);
+				}
+			}
+			else{
+				startIndex = gButtons.size()-6;
 			}
 		}
 	}
