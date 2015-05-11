@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GradientPaint;
@@ -19,7 +20,9 @@ public class SideBar extends JPanel{
 	
 	private int alphaScroll;
 	
-	public SideBar(){
+	private SPanel parent;
+	
+	public SideBar(SPanel s){
 		this.setPreferredSize(new Dimension(SPanel.width, SPanel.height));
 		x = -260;
 		this.setLocation(x,0);
@@ -27,6 +30,16 @@ public class SideBar extends JPanel{
 		scrolling = false;
 		
 		alphaScroll = 100;
+		
+		parent = s;
+	}
+	
+	public boolean isStarting(){
+		if(!starting){
+			return genres.isStarting();
+		}
+		
+		return true;
 	}
 	
 	public void setScrolling(boolean b){
@@ -42,7 +55,7 @@ public class SideBar extends JPanel{
 	}
 	
 	public void setAlphaScroll(int x){
-		alphaScroll = 100;
+		alphaScroll = x;
 	}
 	
 	public void update(){
@@ -104,5 +117,9 @@ public class SideBar extends JPanel{
 		g.setColor(new Color(220,220,220));
 		g.drawString("SKIPPABLE.tv", x + 90, 543);
 		
+	}
+	
+	public void setCursor(Cursor c){
+		parent.setCursor(c);
 	}
 }

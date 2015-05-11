@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseWheelEvent;
@@ -15,7 +17,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.event.MouseInputListener;
 
-public class SPanel extends JPanel implements Runnable,MouseListener,MouseInputListener,MouseWheelListener{
+public class SPanel extends JPanel implements Runnable,MouseListener,MouseInputListener,MouseWheelListener,KeyListener{
 	public static int width = 1040;
 	public static int height = 585;
 	
@@ -29,7 +31,7 @@ public class SPanel extends JPanel implements Runnable,MouseListener,MouseInputL
 	private int averageFPS;
 
 	private SideBar s;
-	private ArrayList<MovieButton> movies;
+	private MainContent m;
 	
 	public SPanel(){
 		super();
@@ -51,6 +53,7 @@ public class SPanel extends JPanel implements Runnable,MouseListener,MouseInputL
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
 		this.addMouseWheelListener(this);
+		this.addKeyListener(this);
 	}
 	
 	public void run(){
@@ -61,22 +64,9 @@ public class SPanel extends JPanel implements Runnable,MouseListener,MouseInputL
 		g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 		
-		s = new SideBar();
-		movies = new ArrayList<MovieButton>();
+		s = new SideBar(this);
 		
-		int x = 310;
-		int y = 30;
-		
-		for(int i = 0; i < 12; i++){
-			if(i%4 == 0 && i > 0){
-				x = 310;
-				y += 190;
-			}
-			
-			movies.add(new MovieButton(x,y));
-			
-			x += 180;
-		}
+		m = new MainContent(260, 0, "Untitled", this);
 		
 		long startTime;
 		long URDTimeMilli;
@@ -116,6 +106,9 @@ public class SPanel extends JPanel implements Runnable,MouseListener,MouseInputL
 	
 	public void update(){
 		s.update();
+		if(!s.isStarting()){
+			m.update();
+		}
 	}
 	
 	public void renderGraphics(){
@@ -126,11 +119,9 @@ public class SPanel extends JPanel implements Runnable,MouseListener,MouseInputL
 		
 		//SideBar
 		
-		s.draw(g);
+		m.draw(g);
 		
-		for(int i = 0; i < movies.size(); i++){
-			movies.get(i).draw(g);;
-		}
+		s.draw(g);
 	}
 	
 	public void paintGraphics(){
@@ -148,10 +139,20 @@ public class SPanel extends JPanel implements Runnable,MouseListener,MouseInputL
 		if(temp != null){
 			temp.checkHovered(e);
 		}
+		SearchBar temp2 = m.getSearchBar();
+		if(temp2 != null){
+			temp2.checkTextHovered(e);
+		}
+		m.checkHovered(e);
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent e) {}
+	public void mouseClicked(MouseEvent e) {
+		SearchBar temp = m.getSearchBar();
+		if(temp != null){
+			temp.selectText(true);
+		}
+	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {}
@@ -172,6 +173,10 @@ public class SPanel extends JPanel implements Runnable,MouseListener,MouseInputL
 		GenreList temp = s.getGenreList();
 		if(temp != null){
 			temp.checkPressed(e, false);
+			SearchBar temp1 = m.getSearchBar();
+			if(temp1 != null){
+				temp1.selectText(false);
+			}
 		}
 	}
 
@@ -193,4 +198,31 @@ public class SPanel extends JPanel implements Runnable,MouseListener,MouseInputL
 			}
 		}
 	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		SearchBar temp = m.getSearchBar();
+		if(temp != null){
+			if(e.getKeyCode() == KeyEvent.VK_BACK_SPACE){
+				temp.backSpace();
+			}
+			else if (e.getKeyCode() == KeyEvent.VK_DELETE){
+				
+			}
+			
+			else if(e.getKeyCode() == KeyEvent.VK_LEFT){
+				
+			}
+			
+			else if(KeyEvent.getKeyText(e.getKeyCode()).length() == 1){
+				temp.appendText(e.getKeyChar());
+			}
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {}
 }

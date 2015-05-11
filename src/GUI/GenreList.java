@@ -1,5 +1,6 @@
 package GUI;
 
+import java.awt.Cursor;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -18,6 +19,8 @@ public class GenreList {
 	private SideBar s;
 	
 	private long time;
+	
+	private SPanel parent;
 	
 	public GenreList(int x, int y, SideBar s){
 		startIndex = 0;
@@ -66,7 +69,7 @@ public class GenreList {
 		
 		if(s.isScrolling()){
 			long elapsed = (System.nanoTime() - time)/100000;
-			s.setAlphaScroll(100 - 4);
+			//s.setAlphaScroll((int)(100 - elapsed/1000));
 			if(elapsed > 7000){
 				s.setScrolling(false);
 			}
@@ -89,6 +92,7 @@ public class GenreList {
 			boolean hover = gButtons.get(i).isHovered(e);
 			if(hover){
 				gButtons.get(i).setHovered(true);
+				//s.setCursor(new Cursor(Cursor.HAND_CURSOR));
 			}
 			else{
 				gButtons.get(i).setHovered(false);

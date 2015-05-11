@@ -50,6 +50,10 @@ public class GenreButton{
 	public int getX(){return x;}
 	public int getY(){return y;}
 	
+	public boolean isStarting(){
+		 return starting;
+	}
+	
 	public void setSelected(boolean b){
 		selected = b;
 	}
@@ -121,7 +125,7 @@ public class GenreButton{
 	}
 
 	public boolean isHovered(MouseEvent e){
-		if(e.getX() > x && e.getX() < x + width){
+		if(e.getX() > x && e.getX() < x + width && !selected){
 			if(e.getY() > y && e.getY() < y + height){
 				return true;
 			}
