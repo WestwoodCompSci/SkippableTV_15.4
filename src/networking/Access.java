@@ -146,7 +146,7 @@ public class Access {
 		post.add("security=420xBlazexIt&");
 		post.add("season_parent=" + e.season + "&");
 		post.add("show_parent=" + e.series + "&");
-		post.add("name=" + e.title + "&");
+		post.add("name=" + e.name + "&");
 		post.add("length=" + e.time +"&");
 		post.add("number=" + e.number);		
 		return con.sendPost("POST/addEpisode.php", post);
