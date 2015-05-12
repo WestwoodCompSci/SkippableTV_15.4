@@ -1,7 +1,7 @@
 package backend;
 
 import java.util.ArrayList;
-
+import GUI.Profile;
 import org.json.JSONObject;
 import backend.Series;
 import networking.Access;
@@ -68,7 +68,10 @@ public class BackEnd {
 			
 		}
 		return s;
+	
 	}
+
+
 	
 	public void addSeason(Season s)
 	{
