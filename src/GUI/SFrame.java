@@ -14,7 +14,7 @@ public class SFrame extends JFrame{
 	public SFrame(){
 		//Initial Values
 		
-		this.setTitle("Skippable TV");
+		this.setTitle("SKIPPABLE.tv");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		ImageIcon icon = new ImageIcon("images/skip.png");

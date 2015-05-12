@@ -118,6 +118,8 @@ public class MovieButton {
 				g.setClip(x - 5, y + r, 150, 100);
 			}
 			
+			g.setFont(new Font("Century Gothic", Font.BOLD, 18));
+			
 			int length = (int)g.getFontMetrics().getStringBounds(title, g).getWidth();
 			
 			if(length > r){
@@ -136,8 +138,6 @@ public class MovieButton {
 			}
 			else{
 				g.drawString(title, x + r/2 - length/2, y + r + 25);
-				
-				g.setClip(0, 0, SPanel.width, SPanel.height); 
 			}
 			g.setClip(0, 0, SPanel.width, SPanel.height);
 		}

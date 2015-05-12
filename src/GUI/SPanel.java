@@ -146,6 +146,7 @@ public class SPanel extends JPanel implements Runnable,MouseListener,MouseInputL
 			temp2.checkTextHovered(e);
 		}
 		m.checkHovered(e);
+		s.checkProfileHovered(e);
 	}
 
 	@Override

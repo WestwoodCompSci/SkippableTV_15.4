@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -56,8 +57,15 @@ public class SideBar extends JPanel{
 		return scrolling;
 	}
 	
-	public void setAlphaScroll(int x){
-		alphaScroll = x;
+	public void checkProfileHovered(MouseEvent e){
+		if(profile != null){
+			if(e.getX() > 210 && e.getX() < 260 && e.getY() > 0 && e.getY() < 50){
+				profile.setHover(true);
+			}
+			else{
+				profile.setHover(false);
+			}
+		}
 	}
 	
 	public void update(){
@@ -66,7 +74,7 @@ public class SideBar extends JPanel{
 				starting = false;
 				this.setLocation(0,0);
 				genres = new GenreList(0,50, this);
-				profile = new Profile(0,0, "USER 1");
+				profile = new Profile(0,0, "Testing testing testing");
 			}
 			else{
 				x += 10;
@@ -90,11 +98,11 @@ public class SideBar extends JPanel{
 		if(!starting){
 			genres.draw(g);
 			
-			if(!genres.isStarting() && scrolling){				
-				g.setColor(new Color(50,50,50,alphaScroll));
+			if(!genres.isStarting()){				
+				g.setColor(new Color(50,50,50, 100));
 				g.fillRoundRect(x + 253, 50, 5, 435, 5, 5);
 				
-				g.setColor(new Color(0,0,0,alphaScroll));
+				g.setColor(new Color(0,0,0, 100));
 				g.fillRoundRect(x + 253, genres.getStartIndex()*(435/genres.getSize())*2 + 52, 5, 435/genres.getSize()*2, 5, 5);
 			}
 		}
