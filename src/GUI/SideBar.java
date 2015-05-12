@@ -68,6 +68,20 @@ public class SideBar extends JPanel{
 		}
 	}
 	
+	public void checkProfilePressed(MouseEvent e, boolean b){
+		if(profile != null){
+			if(e.getX() > 210 && e.getX() < 260 && e.getY() > 0 && e.getY() < 50){
+				profile.setPressed(b);
+				if(!b){
+					profile.setSelected(false);
+				}
+			}
+			else{
+				profile.setPressed(false);
+			}
+		}
+	}
+	
 	public void update(){
 		if(starting){
 			if(x >= 0){

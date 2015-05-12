@@ -66,12 +66,10 @@ public class Profile {
 	}
 	
 	public void draw(Graphics2D g){		
-		g.setColor(new Color(7, 80, 91));
+		g.setColor(new Color(0, 70, 81));
 		g.fillRect(x + 208, 0, 2, 50);
 		
 		g.drawImage(profPic.getImage(), 0, 0, 50, 50, null);
-		
-		//g.setFont(new Font("Century Gothic", Font.BOLD, 18));
 		
 		if(hovered){						
 			g.setColor(new Color(240,240,240));
@@ -100,8 +98,14 @@ public class Profile {
 			}
 			g.setClip(0, 0, SPanel.width, SPanel.height);
 			
-			g.setColor(new Color(17, 90, 101));
-			g.fillRect(210, 0, 50, 50);
+			if(pressed){
+				g.setColor(new Color(7, 80, 91));
+				g.fillRect(210, 0, 50, 50);
+			}
+			else{
+				g.setColor(new Color(17, 90, 101));
+				g.fillRect(210, 0, 50, 50);
+			}
 		}
 		else{
 			g.setColor(new Color(240,240,240));

@@ -170,6 +170,7 @@ public class SPanel extends JPanel implements Runnable,MouseListener,MouseInputL
 			temp.checkPressed(e, true);
 		}
 		m.checkPressed(e, true);
+		s.checkProfilePressed(e, true);
 	}
 
 	@Override
@@ -183,6 +184,8 @@ public class SPanel extends JPanel implements Runnable,MouseListener,MouseInputL
 			temp1.selectText(false);
 		}
 		m.checkPressed(e, false);
+		
+		s.checkProfilePressed(e, false);
 	}
 
 	@Override
