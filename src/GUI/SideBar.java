@@ -18,6 +18,8 @@ public class SideBar extends JPanel{
 	
 	private GenreList genres;
 	
+	private Profile profile;
+	
 	private int alphaScroll;
 	
 	private SPanel parent;
@@ -64,6 +66,7 @@ public class SideBar extends JPanel{
 				starting = false;
 				this.setLocation(0,0);
 				genres = new GenreList(0,50, this);
+				profile = new Profile(0,0, "USER 1");
 			}
 			else{
 				x += 10;
@@ -72,6 +75,7 @@ public class SideBar extends JPanel{
 		}
 		else{
 			genres.update();
+			profile.update();
 		}
 	}
 	
@@ -108,6 +112,10 @@ public class SideBar extends JPanel{
 		
 		g.setColor(new Color(37, 110, 121));
 		g.fillRect(this.getX(), 485, 260, 100);
+		
+		if(!starting){
+			profile.draw(g);
+		}
 		
 		g.drawImage(new ImageIcon("images/skip.png").getImage(), x + 10, 500, 70, 70,null);
 	

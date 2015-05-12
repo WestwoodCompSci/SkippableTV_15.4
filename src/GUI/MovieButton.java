@@ -79,10 +79,10 @@ public class MovieButton {
 			g.setColor(new Color(0,0,0,(int)(alpha/5)));
 			g.fillOval(x - 3, y - 3, 136, 136);
 			
-			g.setColor(new Color(85,96,105, alpha));
+			g.setColor(new Color(121,140,154, alpha));
 			g.fillArc(x, y, r, r, 90, -angle);
 			
-			g.setColor(new Color(121,140,154, alpha));
+			g.setColor(new Color(85,96,105, alpha));
 			g.fillArc(x + 15, y+15, 100, 100, -angle + 90, -(360 - angle));
 			
 			g.setColor(new Color(240,240,240, alpha));
