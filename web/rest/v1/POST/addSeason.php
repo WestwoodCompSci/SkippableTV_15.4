@@ -55,5 +55,5 @@ if(mysqli_num_rows($result) > 0)
 $query = "INSERT INTO `Seasons` (`parent`,`number`,`episodes`,`total length`) VALUES ($season_parent,$season_number,$season_episodes,'$season_length')";
 $result = mysqli_query($connection, $query) or die(json_encode(array("error"=>1,"status"=>500,"errors"=>array("Query error!"))));
 
-die(json_encode(array("error"=>0,"status"=>200,"errors"=>null)));
+die(json_encode(array("error"=>0,"status"=>200,"errors"=>null,"result"=>mysqli_insert_id($connection))));
 ?>

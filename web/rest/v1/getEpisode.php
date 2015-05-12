@@ -3,9 +3,6 @@
 require("../../config/config.php");
 if(!(((isset($_GET['parent_show'])) && (isset($_GET['parent_season'])) && (isset($_GET['episode_number']))) || (isset($_GET['episode_id']))))
 {
-	print $_GET['parent_show'];
-	print $_GET['parent_season'];
-	print $_GET['episode_number'];
 	die(json_encode(array("get"=> $_GET,"error" => 1,"status" => 403, "errors" => array("Not enough data not specified"))));
 }
 $connection = mysqli_connect(config::$database["host"],config::$database["username"],config::$database["password"],config::$database["database"]) 

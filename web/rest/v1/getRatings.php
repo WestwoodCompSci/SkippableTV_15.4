@@ -12,14 +12,14 @@ if(isset($_GET['episode']) && isset($_GET['show']) && isset($_GET['season'])):
 	$season = $_GET['season'];
 	$query = "SELECT * FROM Ratings WHERE $episode=`episode` AND $show=`show` AND $season=`season`";
 else:
-	$id = $_GET['rating_id']
+	$id = $_GET['rating_id'];
 	$query = "SELECT * FROM Ratings where $id=`id`";
 endif;
 $result = mysqli_query($connection,$query) or die(json_encode(array("error" => 1, "status" => 500,"errors" => array("Query error"))));
 $myArray = array();
 while($row = $result->fetch_array(MYSQL_ASSOC))
 	 $myArray[] = $row;
-$return = array("error" => 0, "status" => 200, "errors" => null, "rating" => $myArray, "number_of_ratings"=>mysqli_num_rows($rating));
+$return = array("error" => 0, "status" => 200, "errors" => null, "rating" => $myArray, "number_of_ratings"=>mysqli_num_rows($result));
 mysqli_close($connection);
 die(json_encode($return));
 ?>

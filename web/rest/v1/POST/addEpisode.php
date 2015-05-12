@@ -48,14 +48,7 @@ if(!settype($number,"int")) die(json_encode(array("error"=>1,"status"=>400,"erro
 
 $connection = mysqli_connect(config::$database["host"],config::$database["username"],config::$database["password"],config::$database["database"]) 
 	or die(json_encode(array("error" => 1, "status" => 500,"errors" => array("Could not connect to databsase"))));
-$query = "SELECT * FROM `Episodes` WHERE $season_parent=`Season parent` AND $show_parent=`Show parent` AND $number = `number`";
-$result = mysqli_query($connection, $query) or die(json_encode(array("error"=>1,"status"=>500,"errors"=>array("Query error!"))));
-
-if(mysqli_num_rows($result) > 0)
-	die(json_encode(array("error"=>1,"status"=>500,"errors"=>array("Episode Exists!"))));
-
-$query = "INSERT INTO `Episodes`(`Season Parent`, `Show Parent`, `name`, `length`, `number`) VALUES ($season_parent,$show_parent,$name,$length,$number)";
-$result = mysqli_query($connection, $query) or die(json_encode(array("error"=>1,"status"=>500,"errors"=>array("Query error!"))));
-
-die(json_encode(array("error"=>0,"status"=>200,"errors"=>null)));
+$query = "INSERT INTO `Episodes`(`Season Parent`, `Show Parent`, `name`, `length`, `number`) VALUES ($season_parent,$show_parent,\"$name\",\"$length\",$number)";
+$result = mysqli_query($connection, $query) or die(json_encode(array("error"=>1,"status"=>500,"errors"=>array("Query error! Episode might already exist",mysqli_error($connection)))));
+die(json_encode(array("error"=>0,"status"=>200,"errors"=>null,"result"=>mysqli_insert_id($connection))));
 ?>
