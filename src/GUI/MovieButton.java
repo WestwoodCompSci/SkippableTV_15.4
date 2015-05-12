@@ -21,6 +21,10 @@ public class MovieButton {
 	
 	private boolean hovered;
 	
+	private boolean pressed;
+	
+	private boolean selected;
+	
 	private int percentDone;
 	
 	private int angle;
@@ -53,6 +57,13 @@ public class MovieButton {
 		hovered = b;
 	}
 	
+	public void setPressed(boolean b){
+		pressed = b;
+	}
+	public void setSelected(boolean b){
+		selected = b;
+	}
+	
 	public boolean isHovered(MouseEvent e){
 		if(e.getX() > x && e.getX() < x + r && e.getY() > y && e.getY() < y + r){
 			return true;
@@ -76,19 +87,36 @@ public class MovieButton {
 	
 	public void draw(Graphics2D g){		
 		if(hovered){
-			g.setColor(new Color(0,0,0,(int)(alpha/5)));
-			g.fillOval(x - 3, y - 3, 136, 136);
-			
-			g.setColor(new Color(121,140,154, alpha));
-			g.fillArc(x, y, r, r, 90, -angle);
-			
-			g.setColor(new Color(85,96,105, alpha));
-			g.fillArc(x + 15, y+15, 100, 100, -angle + 90, -(360 - angle));
-			
-			g.setColor(new Color(240,240,240, alpha));
-			g.setFont(new Font("Century Gothic", Font.BOLD, 18));
-			
-			g.setClip(x - 5, y + r, 150, 100);
+			if(pressed){
+				g.setColor(new Color(0,0,0,(int)(alpha/5)));
+				g.fillOval(x, y, r, r);
+				
+				g.setColor(new Color(101,120,134, alpha));
+				g.fillArc(x + 3, y + 3, r - 6, r - 6, 90, -angle);
+				
+				g.setColor(new Color(85,96,105, alpha));
+				g.fillArc(x + 18, y+ 18, 94, 94, -angle + 90, -(360 - angle));
+				
+				g.setColor(new Color(240,240,240, alpha));
+				g.setFont(new Font("Century Gothic", Font.BOLD, 18));
+				
+				g.setClip(x - 5, y + r, 150, 100);
+			}
+			else{
+				g.setColor(new Color(0,0,0,(int)(alpha/5)));
+				g.fillOval(x - 6, y - 6, 142, 142);
+				
+				g.setColor(new Color(101,120,134, alpha));
+				g.fillArc(x - 3, y - 3, r + 6, r + 6, 90, -angle);
+				
+				g.setColor(new Color(85,96,105, alpha));
+				g.fillArc(x + 12, y+12, 106, 106, -angle + 90, -(360 - angle));
+				
+				g.setColor(new Color(240,240,240, alpha));
+				g.setFont(new Font("Century Gothic", Font.BOLD, 18));
+				
+				g.setClip(x - 5, y + r, 150, 100);
+			}
 			
 			int length = (int)g.getFontMetrics().getStringBounds(title, g).getWidth();
 			

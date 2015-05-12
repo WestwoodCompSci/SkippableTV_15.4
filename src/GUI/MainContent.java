@@ -66,6 +66,26 @@ public class MainContent{
 		}
 	}
 	
+	public void checkPressed(MouseEvent e, boolean b){
+		for(int i = 0; i < movies.size(); i++){
+			boolean hover = movies.get(i).isHovered(e);
+			if(hover){
+				movies.get(i).setPressed(b);
+				if(!b){
+					for(int j = 0; j < movies.size(); j++){
+						if(j != i){
+							movies.get(j).setSelected(false);
+						}
+						else{
+							movies.get(j).setSelected(true);
+						}
+					}
+				}
+				break;
+			}
+		}
+	}
+	
 	public void update(){
 		if(starting){
 			if(timer > 59){

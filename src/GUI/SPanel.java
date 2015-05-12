@@ -168,6 +168,7 @@ public class SPanel extends JPanel implements Runnable,MouseListener,MouseInputL
 		if(temp != null){
 			temp.checkPressed(e, true);
 		}
+		m.checkPressed(e, true);
 	}
 
 	@Override
@@ -175,11 +176,12 @@ public class SPanel extends JPanel implements Runnable,MouseListener,MouseInputL
 		GenreList temp = s.getGenreList();
 		if(temp != null){
 			temp.checkPressed(e, false);
-			SearchBar temp1 = m.getSearchBar();
-			if(temp1 != null){
-				temp1.selectText(false);
-			}
 		}
+		SearchBar temp1 = m.getSearchBar();
+		if(temp1 != null){
+			temp1.selectText(false);
+		}
+		m.checkPressed(e, false);
 	}
 
 	@Override
