@@ -4,6 +4,17 @@
 #     Uncommented = ignored/disallowed                                               #
 #====================================================================================#
 
+
+bin/backend/*
+bin/Encoder/*
+bin/GUI/*
+bin/networking/*
+bin/org/*
+bin/Testing/*
+
+
+
+
 # Java Files
 #-------------------
 *.class
