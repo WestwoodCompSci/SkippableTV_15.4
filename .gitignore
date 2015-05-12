@@ -106,14 +106,14 @@ $RECYCLE.BIN/
 *.pydevproject
 .metadata
 .gradle
-bin/
-tmp/
+bin/*
+tmp/*
 *.tmp
 *.bak
 *.swp
 *~.nib
 local.properties
-.settings/
+.settings/*
 .loadpath
 .project
 .externalToolBuilders/
