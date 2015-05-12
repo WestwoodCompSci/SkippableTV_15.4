@@ -101,8 +101,9 @@ public class Access {
 		System.out.println(parse);
 		return null;
 //		try {
-//			JSONObject obj = new JSONObject(parse).getJSONArray("episode").getJSONObject(0);
+//			JSONObject obj = new JSONObject(parse).getJSONArray("rating").getJSONObject(0);
 //			
+//			//return obj;
 //		}
 //		catch(JSONException e) {
 //			return null;
@@ -173,6 +174,6 @@ public class Access {
 		ax.getRatings(1,1,1);
 		
 		System.out.println("get episode");
-		ax.getEpisode(1,1,1);
+		System.out.println(ax.getEpisode(1,1,3).toString());
 	}
 }
