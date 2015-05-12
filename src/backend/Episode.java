@@ -2,22 +2,30 @@ package backend;
 
 public class Episode {
 
-	public String title;
+	public String name;
 	public String time;
 	public int number;
 	public int rating;
 	public int season;
 	public int series;
-
-	public Episode(String title,  String t,int n, int r, int season_parent, int show_parent)
+	/**
+	 * 
+	 * @param n is the name of episode 
+	 * @param t is the time length
+	 * @param i is the number episode in the season
+	 * @param r is the overall rating of show 
+	 * @param sea is the parent season
+	 * @param ser is the parent series
+	 */
+	public Episode(String n,String t, int i, int r, int sea, int ser)
 	{
-		this.title = title;
-		time = t;
-		number = n; 
-		rating = r;
-		season = season_parent;
-		series = show_parent;
-		
+		name=n;
+		time=t;
+		number=i;
+		rating=r;
+		season=sea;
+		series=ser;
+
 	}
 
 
