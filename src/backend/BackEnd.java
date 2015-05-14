@@ -62,8 +62,9 @@ public class BackEnd {
 		ArrayList<JSONObject> i=a.getEpisodes(showID, seasonID);
 		for(JSONObject j :i)
 		{
-			
-			s.add(new Episode(j.getString("name"),j.getString("time"),j.getInt("number"),j.getInt("rating"),j.getInt("season"),j.getInt("series")));
+			Episode e = new Episode(j.getString("name"),j.getString("time"),j.getInt("number"),j.getInt("season"),j.getInt("series"));
+			e.setRatings(a.getRatings(showID, seasonID, j.getInt("number")));
+			s.add(e);
 			
 			
 		}

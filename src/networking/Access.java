@@ -95,19 +95,21 @@ public class Access {
 		return o;
 	}
 	
-	public ArrayList<JSONObject> getRatings(int showID, int seasonID, int episodeID) {
-		ArrayList<JSONObject> o = new ArrayList<JSONObject>();
+	public ArrayList<Rating> getRatings(int showID, int seasonID, int episodeID) {
 		String parse = con.sendGet("getRatings.php?episode="+episodeID+"&show="+showID+"&season="+seasonID);
 		System.out.println(parse);
-		return null;
-//		try {
-//			JSONObject obj = new JSONObject(parse).getJSONArray("rating").getJSONObject(0);
-//			
-//			//return obj;
-//		}
-//		catch(JSONException e) {
-//			return null;
-//		}
+		try {
+			JSONArray arr = new JSONObject(parse).getJSONArray("rating");
+			ArrayList<Rating> r = new ArrayList<Rating>();
+			for(int i  = 0; i < arr.length(); i++) {
+				r.add(new Rating(showID,seasonID,episodeID,arr.getJSONObject(i).getString("comment"),arr.getJSONObject(i).getInt("rating")));
+			}
+			
+			return r;
+		}
+		catch(JSONException e) {
+			return null;
+		}
 		
 	}
 	
@@ -168,12 +170,16 @@ public class Access {
 		System.out.println(ax.addShow(new Series("This is a tst show","56:44:27",256,69,555)));
 		
 		System.out.println("add episode test");		
-		System.out.println(ax.addEpisode(new Episode("This is a test show","56:44:27",3,4,1,1)));
-		
-		System.out.println("get ratings");
-		ax.getRatings(1,1,1);
+		System.out.println(ax.addEpisode(new Episode("This is a test show","56:44:27",3,1,1)));
+	
 		
 		System.out.println("get episode");
 		System.out.println(ax.getEpisode(1,1,3).toString());
+		
+		
+		
+		System.out.println("get ratings");
+		ax.getRatings(1,1,1);
+	
 	}
 }
