@@ -27,6 +27,15 @@ public class BackEnd {
 		b.getSeasons(series.get(0).id);
 	}
 	
+	public boolean addUser(String username, String firstname, String lastname, String email, String birthday) {
+		if(username.contains(" ")) {
+			return false;
+		}
+		a.addUser(username, firstname, lastname, email, birthday);
+		
+		return true;
+	}
+	
 	public ArrayList<Series> getSeries()
 	{
 		ArrayList<Series> s=new ArrayList<Series>();

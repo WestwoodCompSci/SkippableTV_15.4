@@ -10,7 +10,7 @@ public class Episode {
 	public ArrayList<Rating> ratings;
 	public int season;
 	public int series;
-
+	
 	public Episode(String title,  String t,int n, ArrayList<Rating> r, int season_parent, int show_parent)
 	{
 		this.title = title;
