@@ -52,7 +52,7 @@ public class Access {
 	public JSONObject getSeason(int showID, int seasonID) {
 		String parse = con.sendGet("getSeason.php?show_id="+showID+"&season_id="+seasonID);
 		try {
-			//System.out.println(new JSONObject(parse).getJSONArray("season").toString());
+			
 			JSONObject obj = new JSONObject(parse).getJSONArray("season").getJSONObject(0);
 			return obj;
 		} catch (JSONException e) {
@@ -65,7 +65,7 @@ public class Access {
 	public ArrayList<JSONObject> getSeasons(int showID) {
 		ArrayList<JSONObject> o = new ArrayList<JSONObject>();
 		int max = getShow(showID).getInt("seasons");
-		//System.out.println("number of seasons: " + max);
+		
 		for(int i = 1; i < max + 1; i++) {
 			o.add(getSeason(showID,i));
 		}
@@ -127,7 +127,7 @@ public class Access {
 	}
 	
 	public String addShow(Series s) {
-		//if a show with the same name exists, will return an error
+		
 		ArrayList<String> post = new ArrayList<String>();			
 		post.add("is_post=1&");
 		post.add("security_token=xB9wFUSNz3H3j69sUxK3rjz8sSderupCvekhPY5BkWKGAnYj3Uasd7xPtwD9m82d&");
@@ -141,7 +141,7 @@ public class Access {
 	}
 	
 	public String addEpisode(Episode e) {
-		//if a show with the same name exists, will return an error
+		
 		ArrayList<String> post = new ArrayList<String>();			
 		post.add("is_post=1&");
 		post.add("security_token=xB9wFUSNz3H3j69sUxK3rjz8sSderupCvekhPY5BkWKGAnYj3Uasd7xPtwD9m82d&");
@@ -158,6 +158,7 @@ public class Access {
 	public void updateReferences() {
 		// TODO 
 		//code to update references
+		//actually dont do this just update when adding episode and stuff
 	}
 	
 	public static void main(String[] args) {
@@ -171,12 +172,9 @@ public class Access {
 		
 		System.out.println("add episode test");		
 		System.out.println(ax.addEpisode(new Episode("This is a test show","56:44:27",3,1,1)));
-	
 		
 		System.out.println("get episode");
 		System.out.println(ax.getEpisode(1,1,3).toString());
-		
-		
 		
 		System.out.println("get ratings");
 		ax.getRatings(1,1,1);
