@@ -10,11 +10,18 @@ public class User {
 	ArrayList<Series> playlist;
 	ArrayList<Series> history;
 	int progress;
+	private String hash;
+	
 public User(String u, String p)
 {
 	id=id;
 	username=u;
 	password=p;
+}
+
+public String getHash()
+{
+	return hash;
 }
 
 public String toString()	
