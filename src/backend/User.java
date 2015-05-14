@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public class User {
 	
-	public int id;
-	public String username;
-	public String password;
-	public ArrayList<Series> playlist;
-	public ArrayList<Series> history;
-	public int progress;
+	int id;
+	String username;
+	String password;
+	ArrayList<Series> playlist;
+	ArrayList<Series> history;
+	int progress;
 public User(String u, String p)
 {
 	id=id;
