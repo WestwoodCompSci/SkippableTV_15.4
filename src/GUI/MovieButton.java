@@ -23,7 +23,7 @@ public class MovieButton {
 	
 	private boolean pressed;
 	
-	private boolean selected;
+	private boolean clicked;
 	
 	private int percentDone;
 	
@@ -60,8 +60,8 @@ public class MovieButton {
 	public void setPressed(boolean b){
 		pressed = b;
 	}
-	public void setSelected(boolean b){
-		selected = b;
+	public void setClicked(boolean b){
+		clicked = b;
 	}
 	
 	public boolean isHovered(MouseEvent e){

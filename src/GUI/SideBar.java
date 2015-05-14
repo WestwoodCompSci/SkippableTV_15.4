@@ -21,7 +21,9 @@ public class SideBar extends JPanel{
 	
 	private Profile profile;
 	
-	private int alphaScroll;
+	private OptionPane options;
+	
+	//private int alphaScroll;
 	
 	private SPanel parent;
 	
@@ -32,7 +34,9 @@ public class SideBar extends JPanel{
 		starting = true;
 		scrolling = false;
 		
-		alphaScroll = 100;
+		//alphaScroll = 100;
+		
+		options = new OptionPane(0, -365);
 		
 		parent = s;
 	}
@@ -73,7 +77,7 @@ public class SideBar extends JPanel{
 			if(e.getX() > 210 && e.getX() < 260 && e.getY() > 0 && e.getY() < 50){
 				profile.setPressed(b);
 				if(!b){
-					profile.setSelected(false);
+					profile.toggleSelected();
 				}
 			}
 			else{
@@ -98,6 +102,10 @@ public class SideBar extends JPanel{
 		else{
 			genres.update();
 			profile.update();
+			
+			options.setShown(profile.isSelected());
+			
+			options.update();
 		}
 	}
 	
@@ -119,6 +127,8 @@ public class SideBar extends JPanel{
 				g.setColor(new Color(0,0,0, 100));
 				g.fillRoundRect(x + 253, genres.getStartIndex()*(435/genres.getSize())*2 + 52, 5, 435/genres.getSize()*2, 5, 5);
 			}
+			
+			options.draw(g);
 		}
 		
 		GradientPaint verticalDownFade = new GradientPaint(0,50,new Color(0,0,0,100),0, 53,new Color(0,0,0,0));
@@ -140,12 +150,14 @@ public class SideBar extends JPanel{
 		}
 		
 		g.drawImage(new ImageIcon("images/skip.png").getImage(), x + 10, 500, 70, 70,null);
-	
+		
+		Font temp = SPanel.font.deriveFont(28f);
+		
 		g.setColor(new Color(0, 0, 0, 50));
-		g.setFont(new Font("Century Gothic", Font.BOLD, 27));
-		g.drawString("SKIPPABLE.tv", x + 92, 545);
+		g.setFont(temp);
+		g.drawString("SKIPPABLE.tv", x + 92, 548);
 		g.setColor(new Color(220,220,220));
-		g.drawString("SKIPPABLE.tv", x + 90, 543);
+		g.drawString("SKIPPABLE.tv", x + 90, 545);
 		
 	}
 	

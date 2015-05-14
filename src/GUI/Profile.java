@@ -23,6 +23,10 @@ public class Profile {
 	
 	private int textX;
 	
+	private boolean starting;
+	
+	private int alphaFade;
+	
 	public Profile(int x, int y, String name){
 		this.x = x;
 		this.y = y;
@@ -34,6 +38,9 @@ public class Profile {
 		textX = 0;
 		
 		over = false;
+		
+		starting = true;
+		alphaFade = 255;
 	}
 	
 	public Profile(int x, int y, String name, ImageIcon img){
@@ -57,23 +64,42 @@ public class Profile {
 		pressed = b;
 	}
 	
-	public void setSelected(boolean b){
-		selected = b;
+	public void toggleSelected(){
+		if(selected){
+			selected = false;
+		}
+		else{
+			selected = true;
+		}
+	}
+	
+	public boolean isSelected(){
+		return selected;
 	}
 	
 	public void update(){
-		
+		if(starting){
+			if(alphaFade <= 15){
+				alphaFade = 0;
+				starting = false;
+			}
+			else{
+				alphaFade -= 20;
+			}
+		}
 	}
 	
 	public void draw(Graphics2D g){		
-		g.setColor(new Color(0, 70, 81));
-		g.fillRect(x + 208, 0, 2, 50);
+		//g.setColor(new Color(0, 70, 81));
+		//g.fillRect(x + 208, 0, 2, 50);
 		
 		g.drawImage(profPic.getImage(), 0, 0, 50, 50, null);
 		
-		if(hovered){						
+		if(hovered){					
+			Font temp = SPanel.font.deriveFont(22f);
+			
 			g.setColor(new Color(240,240,240));
-			g.setFont(new Font("Century Gothic", Font.BOLD, 20));
+			g.setFont(temp);
 			
 			int length = (int)g.getFontMetrics().getStringBounds(name, g).getWidth();
 			
@@ -97,19 +123,12 @@ public class Profile {
 				g.drawString(name, x + 65, y + 33);
 			}
 			g.setClip(0, 0, SPanel.width, SPanel.height);
-			
-			if(pressed){
-				g.setColor(new Color(7, 80, 91));
-				g.fillRect(210, 0, 50, 50);
-			}
-			else{
-				g.setColor(new Color(17, 90, 101));
-				g.fillRect(210, 0, 50, 50);
-			}
 		}
 		else{
+			Font temp = SPanel.font.deriveFont(22f);
+			
 			g.setColor(new Color(240,240,240));
-			g.setFont(new Font("Century Gothic", Font.BOLD, 20));
+			g.setFont(temp);
 			String shown = name;
 			int length = (int)g.getFontMetrics().getStringBounds(shown, g).getWidth();
 			int end = name.length() - 1;
@@ -129,12 +148,43 @@ public class Profile {
 			
 			length = (int)g.getFontMetrics().getStringBounds(shown, g).getWidth();
 			
-			g.drawString(shown, x + 60, y + 33);
-			
-			g.setColor(new Color(27, 100, 111));
-			g.fillRect(210, 0, 50, 50);
-			
-			
+			g.drawString(shown, x + 60, y + 33);		
 		}
+		
+		if(selected){
+			if(hovered){
+				if(pressed){
+					g.setColor(new Color(0, 50, 61));
+					g.fillRect(210, 0, 50, 50);
+				}
+				else{
+					g.setColor(new Color(0, 60, 71));
+					g.fillRect(210, 0, 50, 50);
+				}
+			}
+			else{
+				g.setColor(new Color(0, 70, 81));
+				g.fillRect(210, 0, 50, 50);	
+			}
+		}
+		else{
+			if(hovered){
+				if(pressed){
+					g.setColor(new Color(0, 60, 81));
+					g.fillRect(210, 0, 50, 50);
+				}
+				else{
+					g.setColor(new Color(7, 80, 91));
+					g.fillRect(210, 0, 50, 50);
+				}
+			}
+			else{
+				g.setColor(new Color(17, 90, 101));
+				g.fillRect(210, 0, 50, 50);	
+			}
+		}
+		
+		g.setColor(new Color(37,110,121,alphaFade));
+		g.fillRect(0,0,260,50);
 	}
 }

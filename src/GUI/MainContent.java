@@ -74,10 +74,10 @@ public class MainContent{
 				if(!b){
 					for(int j = 0; j < movies.size(); j++){
 						if(j != i){
-							movies.get(j).setSelected(false);
+							movies.get(j).setClicked(false);
 						}
 						else{
-							movies.get(j).setSelected(true);
+							movies.get(j).setClicked(true);
 						}
 					}
 				}

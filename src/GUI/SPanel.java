@@ -2,8 +2,11 @@ package GUI;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GraphicsEnvironment;
 import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -12,7 +15,8 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JPanel;
 import javax.swing.event.MouseInputListener;
@@ -30,6 +34,8 @@ public class SPanel extends JPanel implements Runnable,MouseListener,MouseInputL
 	private final int FPS = 60;
 	private int averageFPS;
 
+	public static Font font;
+	
 	private SideBar s;
 	private MainContent m;
 	
@@ -41,6 +47,18 @@ public class SPanel extends JPanel implements Runnable,MouseListener,MouseInputL
 		this.setPreferredSize(new Dimension(width, height));
 		this.setFocusable(true);
 		this.requestFocus();
+		
+		try {
+			font = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Railway.ttf"));
+			
+			GraphicsEnvironment genv = GraphicsEnvironment.getLocalGraphicsEnvironment();
+			genv.registerFont(font);
+			
+		} catch (FontFormatException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void addNotify(){
@@ -132,6 +150,10 @@ public class SPanel extends JPanel implements Runnable,MouseListener,MouseInputL
 		g2.dispose();
 	}
 	
+	public Font getFont(){
+		return font;
+	}
+	
 	@Override
 	public void mouseDragged(MouseEvent e) {}
 
@@ -141,7 +163,7 @@ public class SPanel extends JPanel implements Runnable,MouseListener,MouseInputL
 		if(temp != null){
 			temp.checkHovered(e);
 		}
-		SearchBar temp2 = m.getSearchBar();
+		SearchBar temp2 = m.getSearchBar();	
 		if(temp2 != null){
 			temp2.checkTextHovered(e);
 		}

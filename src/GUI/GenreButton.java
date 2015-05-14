@@ -118,10 +118,13 @@ public class GenreButton{
 		//g.setPaint(verticalFade2);
 		g.fillRect(x, y + height - 1, width, 1);
 		
+		Font temp = SPanel.font.deriveFont(24f);
+		
 		g.setColor(Color.WHITE);
-		g.setFont(new Font("Century Gothic", Font.BOLD, 24));
+		g.setFont(temp);
+		//g.setFont(new Font("Century Gothic", Font.BOLD, 24));
 		int length = (int)g.getFontMetrics().getStringBounds(title, g).getWidth();
-		g.drawString(title, x + width/2 - length/2, y + height/2 + 5);
+		g.drawString(title, x + width/2 - length/2, y + height/2 + 7);
 	}
 
 	public boolean isHovered(MouseEvent e){
