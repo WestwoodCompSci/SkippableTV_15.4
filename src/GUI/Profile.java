@@ -166,6 +166,8 @@ public class Profile {
 				g.setColor(new Color(0, 70, 81));
 				g.fillRect(210, 0, 50, 50);	
 			}
+			
+			g.drawImage(new ImageIcon("images/setUp.png").getImage(), x + 215, y + 5, 40, 40,null);
 		}
 		else{
 			if(hovered){
@@ -182,6 +184,8 @@ public class Profile {
 				g.setColor(new Color(17, 90, 101));
 				g.fillRect(210, 0, 50, 50);	
 			}
+			
+			g.drawImage(new ImageIcon("images/setDown.png").getImage(), x + 215, y + 5, 40, 40,null);
 		}
 		
 		g.setColor(new Color(37,110,121,alphaFade));

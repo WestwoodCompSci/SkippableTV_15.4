@@ -30,6 +30,10 @@ public class MainContent{
 	
 	private SPanel parent;
 	
+	private MovieInfo info;
+	
+	private boolean showningInfo;
+	
 	public MainContent(int x, int y, String title, SPanel s){
 		this.x = x;
 		this.y = y;
@@ -48,10 +52,18 @@ public class MainContent{
 		this.title = title;
 		
 		parent = s;
+		
+		info = null;
+		
+		showningInfo = false;
 	}
 	
 	public SearchBar getSearchBar(){
 		return search;
+	}
+	
+	public boolean isShowingInfo(){
+		return showningInfo;
 	}
 	
 	public void checkHovered(MouseEvent e){
@@ -78,6 +90,8 @@ public class MainContent{
 						}
 						else{
 							movies.get(j).setClicked(true);
+							info = new MovieInfo(260, 50, movies.get(j).getX(),movies.get(j).getY(),movies.get(j).getAngle());
+							showningInfo = true;;
 						}
 					}
 				}
@@ -124,11 +138,19 @@ public class MainContent{
 		for(int i = 0; i < movies.size(); i++){
 			movies.get(i).update();
 		}
+		
+		if(info != null){
+			info.update();
+		}
 	}
 	
 	public void draw(Graphics2D g){
 		for(int i = 0; i < movies.size(); i++){
 			movies.get(i).draw(g);
+		}
+		
+		if(info != null){
+			info.draw(g);
 		}
 		
 		if(starting){
@@ -139,8 +161,10 @@ public class MainContent{
 			g.setColor(new Color(60,66,70));
 			g.fillRect(x, startingY, 780, 50);
 			
+			Font tempFont = SPanel.font.deriveFont(24f);
+			
 			g.setColor(new Color(220,220,220));
-			g.setFont(new Font("Century Gothic", Font.BOLD, 24));
+			g.setFont(tempFont);
 			g.drawString(title, x + 30, startingY + 35);
 		}
 		else{
@@ -151,8 +175,10 @@ public class MainContent{
 			g.setColor(new Color(60,66,70));
 			g.fillRect(x, y, 780, 50);
 			
+			Font tempFont = SPanel.font.deriveFont(24f);
+			
 			g.setColor(new Color(220,220,220));
-			g.setFont(new Font("Century Gothic", Font.BOLD, 24));
+			g.setFont(tempFont);
 			g.drawString(title, x + 30, y + 35);
 			
 			search.draw(g);

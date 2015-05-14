@@ -9,7 +9,7 @@ public class MovieButton {
 	private int x;
 	private int y;
 	
-	private static int r = 130;
+	public static int r = 130;
 	
 	private boolean starting;
 	
@@ -51,6 +51,22 @@ public class MovieButton {
 		angle = (int)((percentDone/100.0) * 360);
 		
 		textX = 0;
+	}
+	
+	public int getX(){
+		return x;
+	}
+	
+	public int getY(){
+		return y;
+	}
+	
+	public int getAngle(){
+		return angle;
+	}
+	
+	public boolean isClicked(){
+		return clicked;
 	}
 	
 	public void setHovered(boolean b){
@@ -97,8 +113,10 @@ public class MovieButton {
 				g.setColor(new Color(85,96,105, alpha));
 				g.fillArc(x + 18, y+ 18, 94, 94, -angle + 90, -(360 - angle));
 				
+				Font tempFont = SPanel.font.deriveFont(18f);
+				
 				g.setColor(new Color(240,240,240, alpha));
-				g.setFont(new Font("Century Gothic", Font.BOLD, 18));
+				g.setFont(tempFont);
 				
 				g.setClip(x - 5, y + r, 150, 100);
 			}
@@ -112,13 +130,17 @@ public class MovieButton {
 				g.setColor(new Color(85,96,105, alpha));
 				g.fillArc(x + 12, y+12, 106, 106, -angle + 90, -(360 - angle));
 				
+				Font tempFont = SPanel.font.deriveFont(18f);
+				
 				g.setColor(new Color(240,240,240, alpha));
-				g.setFont(new Font("Century Gothic", Font.BOLD, 18));
+				g.setFont(tempFont);
 				
 				g.setClip(x - 5, y + r, 150, 100);
 			}
 			
-			g.setFont(new Font("Century Gothic", Font.BOLD, 18));
+			Font tempFont = SPanel.font.deriveFont(18f);
+			
+			g.setFont(tempFont);
 			
 			int length = (int)g.getFontMetrics().getStringBounds(title, g).getWidth();
 			
@@ -151,8 +173,10 @@ public class MovieButton {
 			g.setColor(new Color(121,140,154, alpha));
 			g.fillOval(x+15, y+15, 100, 100);
 			
+			Font tempFont = SPanel.font.deriveFont(18f);
+			
 			g.setColor(new Color(240,240,240, alpha));
-			g.setFont(new Font("Century Gothic", Font.BOLD, 18));
+			g.setFont(tempFont);
 			
 			String shown = title;
 			int length = (int)g.getFontMetrics().getStringBounds(shown, g).getWidth();

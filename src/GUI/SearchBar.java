@@ -154,7 +154,9 @@ public class SearchBar {
 		
 		int length = 0;
 		
-		g.setFont(new Font("Century Gothic", Font.PLAIN, 18));
+		Font tempFont = SPanel.font.deriveFont(18f);
+		
+		g.setFont(tempFont);
 		
 		if((int)g.getFontMetrics().getStringBounds(typed, g).getWidth() > 187){
 			int over = (int)g.getFontMetrics().getStringBounds(typed, g).getWidth() - 187;
