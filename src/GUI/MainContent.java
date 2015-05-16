@@ -24,6 +24,7 @@ public class MainContent{
 	
 	private int timer;
 	
+	private String originalTitle;
 	private String title;
 	
 	private SearchBar search;
@@ -32,7 +33,7 @@ public class MainContent{
 	
 	private MovieInfo info;
 	
-	private boolean showningInfo;
+	private boolean showingInfo;
 	
 	public MainContent(int x, int y, String title, SPanel s){
 		this.x = x;
@@ -49,13 +50,14 @@ public class MainContent{
 		
 		timer = 0;
 		
+		originalTitle = title;
 		this.title = title;
 		
 		parent = s;
 		
 		info = null;
 		
-		showningInfo = false;
+		showingInfo = false;
 	}
 	
 	public SearchBar getSearchBar(){
@@ -63,7 +65,7 @@ public class MainContent{
 	}
 	
 	public boolean isShowingInfo(){
-		return showningInfo;
+		return showingInfo;
 	}
 	
 	public void checkHovered(MouseEvent e){
@@ -85,13 +87,14 @@ public class MainContent{
 				movies.get(i).setPressed(b);
 				if(!b){
 					for(int j = 0; j < movies.size(); j++){
-						if(j != i){
+						if(j != i){ 
 							movies.get(j).setClicked(false);
 						}
 						else{
 							movies.get(j).setClicked(true);
 							info = new MovieInfo(260, 50, movies.get(j).getX(),movies.get(j).getY(),movies.get(j).getAngle());
-							showningInfo = true;;
+							showingInfo = true;
+							title = movies.get(j).getTitle();
 						}
 					}
 				}
@@ -104,7 +107,6 @@ public class MainContent{
 		if(starting){
 			if(timer > 59){
 				starting = false;
-				search = new SearchBar(x + 500, y + 10, this);
 			}
 			else{
 				if(timer%5 == 0){
@@ -115,6 +117,7 @@ public class MainContent{
 					
 					if(timer == 0){
 						movies.add(new MovieButton(buttonX, buttonY, "Some Filler Text", 40));
+						search = new SearchBar(x + 500, y + 10, this);
 					}
 					else{
 						movies.add(new MovieButton(buttonX, buttonY, "" + timer, timer * 2));
@@ -131,8 +134,29 @@ public class MainContent{
 				startingY += 10;
 			}
 		}
-		else{
+		
+		if(search != null){
 			search.update();
+			if(showingInfo){
+				if(search.getAlpha() <= 5){
+					search.setAlpha(0);
+				}
+				else{
+					search.setAlpha(search.getAlpha() - 25);
+				}
+			}
+			else{
+				if(search.getAlpha() >= 250){
+					search.setAlpha(255);
+				}
+				else{
+					search.setAlpha(search.getAlpha() + 25);
+				}
+			}
+		}
+		
+		if(!showingInfo){
+			this.title = originalTitle;
 		}
 		
 		for(int i = 0; i < movies.size(); i++){
@@ -180,7 +204,9 @@ public class MainContent{
 			g.setColor(new Color(220,220,220));
 			g.setFont(tempFont);
 			g.drawString(title, x + 30, y + 35);
-			
+		}
+		
+		if(search != null){
 			search.draw(g);
 		}
 	}

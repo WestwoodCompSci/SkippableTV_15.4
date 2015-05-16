@@ -61,6 +61,10 @@ public class MovieButton {
 		return y;
 	}
 	
+	public String getTitle(){
+		return title;
+	}
+	
 	public int getAngle(){
 		return angle;
 	}

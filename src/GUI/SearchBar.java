@@ -47,7 +47,17 @@ public class SearchBar {
 		blinkIndex = 0;
 	}
 	
+	public boolean isStarting(){
+		return starting;
+	}
 	
+	public int getAlpha(){
+		return alpha;
+	}
+	
+	public void setAlpha(int x){
+		alpha = x;
+	}
 	
 	public void checkTextHovered(MouseEvent e){
 		if(e.getX() > x && e.getX() < x + 200 && e.getY() > y && e.getY() < y + 30){

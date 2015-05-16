@@ -15,6 +15,8 @@ public class MovieInfo {
 	private boolean starting1;
 	private boolean starting2;
 	
+	private int whiteAlpha;
+	
 	private int r;
 	
 	public MovieInfo(int x, int y, int sX, int sY, int sA){
@@ -31,6 +33,8 @@ public class MovieInfo {
 		
 		starting1 = true;
 		starting2 = false;
+		
+		whiteAlpha = 255;
 	}
 	
 	public void update(){
@@ -41,10 +45,16 @@ public class MovieInfo {
 				starting2 = true;
 			}
 			else{
-				endingAngle += 15;
+				endingAngle += 20;
 			}
 		}
 		else if(starting2){
+			if(whiteAlpha <= 5){
+				whiteAlpha = 0;
+			}
+			else{
+				whiteAlpha -= 25;
+			}
 			if(r > 1600){
 				starting2 = false;
 			}
@@ -56,17 +66,23 @@ public class MovieInfo {
 		}
 	}
 	
-	public void draw(Graphics2D g){
-		g.setColor(new Color(101,120,134));
-		
+	public void draw(Graphics2D g){		
 		if(starting1){
+			g.setColor(new Color(101,120,134));
+			g.fillArc(startingX - 3, startingY - 3, r + 6, r + 6, 90, -startingAngle);
 			g.fillArc(startingX - 3, startingY - 3, r + 6, r + 6, 90 - startingAngle + 5, -endingAngle);
 		}
 		else if(starting2){
+			g.setColor(new Color(101,120,134));
 			g.fillOval(startingX - 3, startingY - 3, r + 6, r + 6);
+			
+			g.setColor(new Color(240,240,240,whiteAlpha));
+			g.fillOval(startingX - 3, startingY - 3, r + 6, r + 6);
+			
 		}
 		else{
-			g.fillRect(x, y, width, height);
+			g.setColor(new Color(101,120,134));
+			g.fillRect(x, y, 780, 535);
 		}
 	}
 }
