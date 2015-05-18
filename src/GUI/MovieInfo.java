@@ -14,10 +14,14 @@ public class MovieInfo {
 	
 	private boolean starting1;
 	private boolean starting2;
+	private boolean starting3;
 	
 	private int whiteAlpha;
+	private int alpha;
 	
 	private int r;
+	
+	private boolean close;
 	
 	public MovieInfo(int x, int y, int sX, int sY, int sA){
 		this.x = x;
@@ -35,6 +39,10 @@ public class MovieInfo {
 		starting2 = false;
 		
 		whiteAlpha = 255;
+
+		alpha = 255;
+		
+		close = false;
 	}
 	
 	public void update(){
@@ -57,11 +65,30 @@ public class MovieInfo {
 			}
 			if(r > 1600){
 				starting2 = false;
+				starting3 = true;
 			}
 			else{
 				r += 80;
 				startingX -= 40;
 				startingY -= 40;
+			}
+		}
+		else if(starting3){
+			if(alpha <= 5){
+				alpha = 0;
+			}
+			else{
+				alpha -= 25; 
+			}
+		}
+		
+		if(close){
+			if(y < -460){
+				y = -485;
+				close = false;
+			}
+			else{
+				y -= 25;
 			}
 		}
 	}
@@ -83,6 +110,16 @@ public class MovieInfo {
 		else{
 			g.setColor(new Color(101,120,134));
 			g.fillRect(x, y, 780, 535);
+			
+			g.setColor(new Color(85,96,105));
+			g.fillRoundRect(x + 40, y + 25, 230, 230, 10, 10);
+			
+			g.setColor(new Color(101,120,134, alpha));
+			g.fillRect(x + 40, y + 25, 230, 230);
 		}
+	}
+	
+	public void close(){
+		close = true;
 	}
 }

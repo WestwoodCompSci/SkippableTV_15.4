@@ -173,9 +173,13 @@ public class SPanel extends JPanel implements Runnable,MouseListener,MouseInputL
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		SearchBar temp = m.getSearchBar();
-		if(temp != null){
-			temp.selectText(true);
+		if(e.getButton() == MouseEvent.BUTTON1){
+			if(!m.isShowingInfo()){
+				SearchBar temp = m.getSearchBar();
+				if(temp != null){
+					temp.selectText(true);
+				}
+			}
 		}
 	}
 
@@ -187,27 +191,31 @@ public class SPanel extends JPanel implements Runnable,MouseListener,MouseInputL
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		GenreList temp = s.getGenreList();
-		if(temp != null){
-			temp.checkPressed(e, true);
+		if(e.getButton() == MouseEvent.BUTTON1){
+			GenreList temp = s.getGenreList();
+			if(temp != null){
+				temp.checkPressed(e, true);
+			}
+			m.checkPressed(e, true);
+			s.checkProfilePressed(e, true);
 		}
-		m.checkPressed(e, true);
-		s.checkProfilePressed(e, true);
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		GenreList temp = s.getGenreList();
-		if(temp != null){
-			temp.checkPressed(e, false);
+		if(e.getButton() == MouseEvent.BUTTON1){
+			GenreList temp = s.getGenreList();
+			if(temp != null){
+				temp.checkPressed(e, false);
+			}
+			SearchBar temp1 = m.getSearchBar();
+			if(temp1 != null){
+				temp1.selectText(false);
+			}
+			m.checkPressed(e, false);
+			
+			s.checkProfilePressed(e, false);
 		}
-		SearchBar temp1 = m.getSearchBar();
-		if(temp1 != null){
-			temp1.selectText(false);
-		}
-		m.checkPressed(e, false);
-		
-		s.checkProfilePressed(e, false);
 	}
 
 	@Override

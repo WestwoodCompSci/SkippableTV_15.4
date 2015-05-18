@@ -61,7 +61,9 @@ public class SearchBar {
 	
 	public void checkTextHovered(MouseEvent e){
 		if(e.getX() > x && e.getX() < x + 200 && e.getY() > y && e.getY() < y + 30){
-			parent.setCursor(new Cursor(Cursor.TEXT_CURSOR));
+			if(!parent.isShowingInfo()){
+				parent.setCursor(new Cursor(Cursor.TEXT_CURSOR));
+			}
 			textHovered = true;
 		}
 		else{

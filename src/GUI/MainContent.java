@@ -35,6 +35,9 @@ public class MainContent{
 	
 	private boolean showingInfo;
 	
+	private boolean hovered;
+	private boolean pressed;
+	
 	public MainContent(int x, int y, String title, SPanel s){
 		this.x = x;
 		this.y = y;
@@ -69,36 +72,57 @@ public class MainContent{
 	}
 	
 	public void checkHovered(MouseEvent e){
-		for(int i = 0; i < movies.size(); i++){
-			boolean hover = movies.get(i).isHovered(e);
-			if(hover){
-				movies.get(i).setHovered(true);
+		if(!showingInfo){
+			for(int i = 0; i < movies.size(); i++){
+				boolean hover = movies.get(i).isHovered(e);
+				if(hover){
+					movies.get(i).setHovered(true);
+				}
+				else{
+					movies.get(i).setHovered(false);
+				}
+			}
+		}
+		else{
+			if(e.getX() > x + 730 && e.getX() < x + 780 && e.getY() > 0 && e.getY() < 50){
+				hovered = true;
 			}
 			else{
-				movies.get(i).setHovered(false);
+				hovered = false;
 			}
 		}
 	}
 	
 	public void checkPressed(MouseEvent e, boolean b){
-		for(int i = 0; i < movies.size(); i++){
-			boolean hover = movies.get(i).isHovered(e);
-			if(hover){
-				movies.get(i).setPressed(b);
-				if(!b){
-					for(int j = 0; j < movies.size(); j++){
-						if(j != i){ 
-							movies.get(j).setClicked(false);
-						}
-						else{
-							movies.get(j).setClicked(true);
-							info = new MovieInfo(260, 50, movies.get(j).getX(),movies.get(j).getY(),movies.get(j).getAngle());
-							showingInfo = true;
-							title = movies.get(j).getTitle();
+		if(!showingInfo){
+			for(int i = 0; i < movies.size(); i++){
+				boolean hover = movies.get(i).isHovered(e);
+				if(hover){
+					movies.get(i).setPressed(b);
+					if(!b){
+						for(int j = 0; j < movies.size(); j++){
+							if(j != i){ 
+								movies.get(j).setClicked(false);
+							}
+							else{
+								movies.get(j).setClicked(true);
+								info = new MovieInfo(260, 50, movies.get(j).getX(),movies.get(j).getY(),movies.get(j).getAngle());
+								showingInfo = true;
+								title = movies.get(j).getTitle();
+							}
 						}
 					}
+					break;
 				}
-				break;
+			}
+		}
+		else{
+			if(hovered){
+				pressed = b;
+				if(!b){
+					showingInfo = false;
+					info.close();
+				}
 			}
 		}
 	}
@@ -208,6 +232,20 @@ public class MainContent{
 		
 		if(search != null){
 			search.draw(g);
+		}
+		
+		if(showingInfo){			
+			if(hovered){
+				g.setColor(new Color(100,106,110));
+				if(pressed){
+					g.setColor(new Color(80,86,90));
+				}
+			}
+			else{
+				g.setColor(new Color(120,126,130));
+			}
+			
+			g.fillRect(x + 730, y, 50, 50);
 		}
 	}
 	
