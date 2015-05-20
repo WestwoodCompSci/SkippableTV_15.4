@@ -1,6 +1,3 @@
 <?php
-
-header("Content-type *	application/json");
-header("trakt-api-key *	d82804225ae578d48659ae79240aeb388e5fb401890ab44bcdd6c6de5c05ca13");
-header("trakt-api-version *	2");
+print_r(unserialize('a:1:{i:0;s:34:"$1$nK9C6CLq$Si0BijJlj9T9ep.XBbg.C.";}'));
 ?>

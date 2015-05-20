@@ -9,7 +9,8 @@ $post_requirements = array(
 	"name" => null,
 	"num_seasons" => null,
 	"num_episodes" => null,
-	"total_length" => null
+	"total_length" => null,
+	"genre" => null,
 );
 if(!isset($_POST['is_post']) || $_POST['is_post'] !== "1")
 	die(json_encode(array("error"=>1,"status"=>400,"errors"=>array("POST methods only"))));
@@ -51,7 +52,7 @@ $result = mysqli_query($connection, $query) or die(json_encode(array("error"=>1,
 if(mysqli_num_rows($result) > 0)
 	die(json_encode(array("error"=>1,"status"=>500,"errors"=>array("Show Exists!"))));
 
-$query = "INSERT INTO `Shows` (`name`,`seasons`,`episodes`,`total length`) VALUES (\"$show_name\",$num_seasons,$num_episodes,'$length')";
+$query = "INSERT INTO `Shows` (`name`,`seasons`,`episodes`,`total length`,`genre`) VALUES (\"$show_name\",$num_seasons,$num_episodes,'{$length}','{$genre}'')";
 $result = mysqli_query($connection, $query) or die(json_encode(array("error"=>1,"status"=>500,"errors"=>array("Query error!"))));
 
 die(json_encode(array("error"=>0,"status"=>200,"errors"=>null,"result"=>mysqli_insert_id($connection))));
