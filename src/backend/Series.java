@@ -1,6 +1,7 @@
 package backend;
 
 import java.util.ArrayList;
+
 import backend.Season;
 
 public class Series {
@@ -12,6 +13,7 @@ public class Series {
 	public int id;
 	public int episodeCount;
 	public int seasonCount;
+	public double seasonRating; 
 	
 	public Series(String b,String l,int i, int e,int s)
 	{
@@ -20,10 +22,20 @@ public class Series {
 		id=i;
 		episodeCount=e;
 		seasonCount=s;
+		seasonRating = this.getAverageRating();
+		
 	}
 	public Season getSeason(int season)
 	{
 		return s.get(season);
+	}
+	public double getAverageRating()
+	{
+		double sum = 0;
+		for(Season r : s) {
+			sum += r.getAverageRating();
+		}
+		return (sum / seasonCount);
 	}
 	
 	

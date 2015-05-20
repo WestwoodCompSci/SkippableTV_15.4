@@ -42,9 +42,9 @@ public class Episode {
 	{
 		return time;
 	}
-	public int getAverageRating()
+	public double getAverageRating()
 	{
-		int sum = 0;
+		double sum = 0;
 		for(Rating r : ratings) {
 			sum += r.rating;
 		}
