@@ -16,8 +16,6 @@ public class EncoderTester {
 		System.out.println("String to be encrypted is: " + toEncrypt);
 		System.out.println("Encrypted thing: " + encryptedString);
 		System.out.println("Decrypted string: " + decrypted);
-		
-		//aaa
 	}
 	
 }
