@@ -26,20 +26,30 @@ public class Access {
 	//return obj;
 	//}
 
-	public boolean addUser(String username, String firstname, String lastname, String email, String birthday) {
+	public boolean addUser(String username, String firstname, String lastname, String email, String birthday, String pictureURL) {
+		
 		ArrayList<String> post = new ArrayList<String>();		
 		post.add("is_post=1&");
 		post.add("security_token=fUheHuhaSaH82haswU8ReSAcreD6wre5gevanEPaWrerEca6HacHAqechEnazEq2&");
 		post.add("token=ZG1scllYTT0%3D&");
 		post.add("security=vikas&");
-		//		post.add("season_parent=" + s.parent + "&");
-		//		post.add("season_number=" + s.number +"&");
-		//		post.add("num_episodes=" + s.episodeCount + "&");
-		//		post.add("season_length=" + s.length);
+		if(pictureURL != null) {
+			pictureURL = pictureURL.replace(" ", "%20");
+			post.add("profile_uri="+pictureURL);
+		}
 		if(con.sendPost("POST/addUser.php", post).contains("\"error\":1")) {
 			return false;
 		}
 		return true;
+	}
+	
+	public String login(String username, String password) {
+		ArrayList<String> post = new ArrayList<String>();		
+		post.add("ispost=1&");
+		post.add("username="+username+"&");
+		post.add("password="+password+"&");
+		return con.sendPost("POST/login.php", post);
+	
 	}
 
 	public ArrayList<Integer> getShows() {
@@ -151,7 +161,8 @@ public class Access {
 		post.add("name=" + s.title + "&");
 		post.add("num_seasons=" + s.seasonCount +"&");
 		post.add("num_episodes=" + s.episodeCount + "&");
-		post.add("total_length=" + s.length);
+		post.add("total_length=" + s.length+"&");
+		post.add("genre="+s.genre);
 		return con.sendPost("POST/addShow.php", post);
 	}
 
@@ -171,7 +182,7 @@ public class Access {
 	}
 
 	public void updateReferences() {
-		// TODO 
+		//TODO 
 		//code to update references
 		//actually dont do this just update when adding episode and stuff
 	}
@@ -194,7 +205,11 @@ public class Access {
 		System.out.println("get ratings");
 		ax.getRatings(1,1,1);
 		
+		System.out.println("login test");
+		System.out.println(ax.login("vikaspotluri123", "password"));
 
+		System.out.println("add user");
+		System.out.println(ax.addUser("ayylmao","Chris","Ayoub","asd@gmail.com","05/05/15",null));
 
 	}
 
