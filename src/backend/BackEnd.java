@@ -2,6 +2,7 @@ package backend;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import GUI.Profile;
 
@@ -42,6 +43,52 @@ public class BackEnd {
 		a.addUser(username, firstname, lastname, email, birthday);
 		
 		return true;
+	}
+	
+	public double[] sortSeries()
+	{
+		
+		double[] ratings = new double[series.size()];
+		for(int i=0; i<series.size(); i++)
+		{
+			ratings[i] = series.get(i).getAverageRating();
+		}
+		
+		BubbleSort(ratings);
+		return ratings;
+		
+	}
+	
+	public static void BubbleSort( double [ ] num )
+	{
+	     int j;
+	     boolean flag = true;   
+	     double temp;   
+
+	     while ( flag )
+	     {
+	            flag= false;   
+	            for( j=0;  j < num.length -1;  j++ )
+	            {
+	                   if ( num[ j ] < num[j+1] )   
+	                   {
+	                           temp = num[ j ];                
+	                           num[ j ] = num[ j+1 ];
+	                           num[ j+1 ] = temp;
+	                          flag = true;              
+	                  } 
+	            } 
+	      } 
+	} 
+	
+	public ArrayList<Series> topTen()
+	{
+		ArrayList<Series> topTen = new ArrayList<Series>();
+		for(int i=0; i<10; i++)
+		{
+			//TODO
+		}
+			return topTen;
 	}
 	
 	public ArrayList<Series> getSeries()

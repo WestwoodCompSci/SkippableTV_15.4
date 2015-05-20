@@ -13,7 +13,7 @@ public class Series {
 	public int id;
 	public int episodeCount;
 	public int seasonCount;
-	public double seasonRating; 
+	public double seriesRating; 
 	
 	public Series(String b,String l,int i, int e,int s)
 	{
@@ -22,7 +22,7 @@ public class Series {
 		id=i;
 		episodeCount=e;
 		seasonCount=s;
-		seasonRating = this.getAverageRating();
+		seriesRating = this.getAverageRating();
 		
 	}
 	public Season getSeason(int season)
