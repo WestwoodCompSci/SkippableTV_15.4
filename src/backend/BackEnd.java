@@ -1,8 +1,12 @@
 package backend;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import GUI.Profile;
+
 import org.json.JSONObject;
+
 import backend.Series;
 import networking.Access;
 
@@ -11,6 +15,10 @@ public class BackEnd {
 	static ArrayList<Series> series;
 	
 	Access a;
+	
+	public HashMap Genres;
+	
+	
 	
 	public BackEnd()
 	{

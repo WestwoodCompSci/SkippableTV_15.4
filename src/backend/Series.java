@@ -7,6 +7,7 @@ public class Series {
 
 	public String title;
 	public ArrayList<Season> s;
+	public String genre;
 	public String length;
 	public int id;
 	public int episodeCount;
