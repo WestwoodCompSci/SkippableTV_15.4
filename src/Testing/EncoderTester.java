@@ -1,16 +1,8 @@
 package Testing;
-import java.io.IOException;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.ShortBufferException;
-
 import Encoder.Encoder;
 
 
-public class EncoderTest {
+public class EncoderTester {
 	
 
 	public static void main(String[] args) {
@@ -24,6 +16,8 @@ public class EncoderTest {
 		System.out.println("String to be encrypted is: " + toEncrypt);
 		System.out.println("Encrypted thing: " + encryptedString);
 		System.out.println("Decrypted string: " + decrypted);
+		
+		//aaa
 	}
 	
 }
