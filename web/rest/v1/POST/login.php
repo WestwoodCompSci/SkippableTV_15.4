@@ -62,7 +62,9 @@ function cont($result)
 				$hashes = array($hash);
 				$hashes = serialize($hashes);
 				$query = "UPDATE `Passwords` SET `allowed_hashes`='{$hashes}' WHERE `id`=$id";
-				$success = mysqli_query($connection,$query) or die(json_encode(array("error" => 1, "status" => 500,"errors" => array("Could not create session. Contact Administrator"))));
+				$successs = mysqli_query($connection,$query) or die(json_encode(array("error" => 1, "status" => 500,"errors" => array("Could not create session. Contact Administrator. EC 1"))));
+				$query = "INSERT INTO `Hashes` (`hash`,`owner`) VALUES (\"{$hash}\",{$id})";
+				$successss = mysqli_query($connection,$query) or die(json_encode(array("error" => 1, "status" => 500,"errors" => array("Could not create session. Contact Administrator. EC 3"))));
 			}
 			else
 			{
@@ -71,9 +73,17 @@ function cont($result)
 				array_push($hashes,$hash);
 				$hashes = serialize($hashes);
 				$query = "UPDATE `Passwords` SET `allowed_hashes`='{$hashes}' WHERE `id`=$id";
-				$success = mysqli_query($connection,$query) or die(json_encode(array("error" => 1, "status" => 500,"errors" => array("Could not create session. Contact Administrator"))));
+				$successs = mysqli_query($connection,$query) or die(json_encode(array("error" => 1, "status" => 500,"errors" => array("Could not create session. Contact Administrator. EC 2"))));
+				$query = "INSERT INTO `Hashes` (`hash`,`owner`) VALUES (\"{$hash}\",{$id})";
+				$successss = mysqli_query($connection,$query) or die(json_encode(array("error" => 1, "status" => 500,"errors" => array("Could not create session. Contact Administrator. EC 3"))));
 			}
-			die(json_encode(array("error" => 0, "status" => 200,"errors" => null,"user_hash"=>$hash)));
+			$query = "SELECT * FROM `Hashes` WHERE `owner`=$id";
+			$num_hashes = mysqli_query($connection,$query) or die(json_encode(array("error" => 1, "status" => 500,"errors" => array("Could not create session. Contact Administrator. EC 4"))));
+			if(mysqli_num_rows($num_hashes) > 4)
+			{
+				die(json_encode(array("error" => 0, "status" => 200,"errors" => null,"user_hash"=>$hash,"info"=>array(mysqli_fetch_array($num_hashes),"Suggest user logs out of all locations. Currently logged into ".mysqli_num_rows($num_hashes)." places."))));
+			}
+			die(json_encode(array("error" => 0, "status" => 200,"errors" => null,"user_hash"=>$hash,"info"=>array(mysqli_fetch_array($num_hashes)))));
 		}
 		else die(json_encode(array("error" => 1, "status" => 500,"errors" => array("Something was wrong in checking the password."))));
 	}
