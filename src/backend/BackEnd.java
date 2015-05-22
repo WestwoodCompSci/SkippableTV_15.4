@@ -40,7 +40,7 @@ public class BackEnd {
 		if(username.contains(" ")) {
 			return false;
 		}
-		a.addUser(username, firstname, lastname, email, birthday);
+		a.addUser(username, firstname, lastname, email, birthday, null);
 		
 		return true;
 	}
