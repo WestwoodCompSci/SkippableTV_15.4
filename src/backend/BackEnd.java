@@ -45,10 +45,11 @@ public class BackEnd {
 		return true;
 	}
 	
-	public void sortSeries()
+	public ArrayList<Series> sortSeries(ArrayList<Series> s)
 	{
 		
-		Collections.sort(series, new SeriesComparator());
+		Collections.sort(s, new SeriesComparator());
+		return s;
 		
 	}
 	
@@ -56,9 +57,10 @@ public class BackEnd {
 	public ArrayList<Series> topTen()
 	{
 		ArrayList<Series> topTen = new ArrayList<Series>();
+		sortSeries(series);
 		for(int i=0; i<10; i++)
 		{
-			//TODO
+			topTen.add(series.get(i));
 		}
 			return topTen;
 	}
