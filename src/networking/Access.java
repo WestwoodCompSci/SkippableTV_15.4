@@ -47,7 +47,11 @@ public class Access {
 	}
 
 	public boolean addUser(String username, String firstname, String lastname, String email, String birthday, String pictureURL) {
+<<<<<<< HEAD
 
+=======
+		//Your method in BackEnd didn't have the picture parameter so I set it to null
+>>>>>>> origin/master
 		ArrayList<String> post = new ArrayList<String>();		
 		post.add("is_post=1&");
 		post.add("security_token=fUheHuhaSaH82haswU8ReSAcreD6wre5gevanEPaWrerEca6HacHAqechEnazEq2&");

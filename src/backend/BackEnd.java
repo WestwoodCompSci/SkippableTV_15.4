@@ -1,6 +1,7 @@
 package backend;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,7 +19,6 @@ public class BackEnd {
 	Access a;
 	
 	public HashMap Genres;
-	
 	
 	
 	public BackEnd()
@@ -45,48 +45,22 @@ public class BackEnd {
 		return true;
 	}
 	
-	public double[] sortSeries()
+	public ArrayList<Series> sortSeries(ArrayList<Series> s)
 	{
 		
-		double[] ratings = new double[series.size()];
-		for(int i=0; i<series.size(); i++)
-		{
-			ratings[i] = series.get(i).getAverageRating();
-		}
-		
-		BubbleSort(ratings);
-		return ratings;
+		Collections.sort(s, new SeriesComparator());
+		return s;
 		
 	}
 	
-	public static void BubbleSort( double [ ] num )
-	{
-	     int j;
-	     boolean flag = true;   
-	     double temp;   
 
-	     while ( flag )
-	     {
-	            flag= false;   
-	            for( j=0;  j < num.length -1;  j++ )
-	            {
-	                   if ( num[ j ] < num[j+1] )   
-	                   {
-	                           temp = num[ j ];                
-	                           num[ j ] = num[ j+1 ];
-	                           num[ j+1 ] = temp;
-	                          flag = true;              
-	                  } 
-	            } 
-	      } 
-	} 
-	
 	public ArrayList<Series> topTen()
 	{
 		ArrayList<Series> topTen = new ArrayList<Series>();
+		sortSeries(series);
 		for(int i=0; i<10; i++)
 		{
-			//TODO
+			topTen.add(series.get(i));
 		}
 			return topTen;
 	}
