@@ -4,6 +4,8 @@ import java.awt.AWTException;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,14 +22,32 @@ public class Access {
 		con = new URLConnect("http://preview.qbizlbk2gkua0pb93crxph878kcvj9k957h3bwfu5v0u23xr.box.codeanywhere.com/web/rest/v1/");
 	}
 
-	//public JSONObject getUserData(int userID) {
-	//String parse = con.sendPost("getUser.php?user_id="+userID, "");
-	//JSONObject obj = new JSONObject(parse).getJSONObject("user");
-	//return obj;
-	//}
+	public JSONObject getUserData(int userID) {
+		String parse = con.sendGet("getUser.php?user_id="+userID);
+		JSONObject obj = new JSONObject(parse).getJSONObject("user");
+		return obj;
+	}
+
+	public void addRating(int id, String hash, int season, int show, int episode, int rating, String comment) {
+		ArrayList<String> post = new ArrayList<String>();		
+		post.add("is_post=1&");
+		post.add("id="+id+"&");
+		post.add("hash="+hash+"&");
+		post.add("season="+season+"&");
+		post.add("show="+show+"&");
+		post.add("episode="+episode+"&");
+		post.add("rating="+rating+"&");
+		if(comment != null) {
+			comment = comment.replace(" ", "%20");
+			post.add("comment="+comment+"&");
+		}
+		else {
+			post.add("comment="+comment+"&"); }
+		con.sendPost("POST/addRating.php", post);
+	}
 
 	public boolean addUser(String username, String firstname, String lastname, String email, String birthday, String pictureURL) {
-		
+
 		ArrayList<String> post = new ArrayList<String>();		
 		post.add("is_post=1&");
 		post.add("security_token=fUheHuhaSaH82haswU8ReSAcreD6wre5gevanEPaWrerEca6HacHAqechEnazEq2&");
@@ -42,14 +62,14 @@ public class Access {
 		}
 		return true;
 	}
-	
-	public String login(String username, String password) {
+
+	public JSONObject login(String username, String password) {
 		ArrayList<String> post = new ArrayList<String>();		
 		post.add("ispost=1&");
 		post.add("username="+username+"&");
 		post.add("password="+password+"&");
-		return con.sendPost("POST/login.php", post);
-	
+		return new JSONObject(con.sendPost("POST/login.php", post));
+
 	}
 
 	public ArrayList<Integer> getShows() {
@@ -75,7 +95,25 @@ public class Access {
 		}
 
 	}
-
+	public String logout(String username, int id, String hash) { 
+		ArrayList<String> post = new ArrayList<String>();		
+		post.add("ispost=1&");
+		post.add("username="+username+"&");
+		post.add("id="+id+"&");
+		post.add("hash="+hash);
+		return con.sendPost("logout.php", post);
+		
+	}
+	
+	public String logoutAll(String username, int id, String hash) { 
+		ArrayList<String> post = new ArrayList<String>();		
+		post.add("ispost=1&");
+		post.add("username="+username+"&");
+		post.add("id="+id+"&");
+		post.add("hash="+hash);
+		return con.sendPost("logout.sphp?all=1", post);
+		
+	}
 	public JSONObject getSeason(int showID, int seasonID) {
 		String parse = con.sendGet("getSeason.php?show_id="+showID+"&season_id="+seasonID);
 		try {			
@@ -191,26 +229,31 @@ public class Access {
 		Access ax = new Access();
 
 		System.out.println("add season test");
-		System.out.println(ax.addSeason(new Season("56:44:27",1,4,555,27)));
+		//System.out.println(ax.addSeason(new Season("56:44:27",1,4,555,27)));
 
 		System.out.println("add show test");		
-		System.out.println(ax.addShow(new Series("This is a tst show","56:44:27",256,69,555)));
+		//System.out.println(ax.addShow(new Series("This is a tst show","56:44:27",256,69,555)));
 
 		System.out.println("add episode test");		
-		System.out.println(ax.addEpisode(new Episode("This is a test show","56:44:27",3,1,1)));
+		//System.out.println(ax.addEpisode(new Episode("This is a test show","56:44:27",3,1,1)));
 
 		System.out.println("get episode");
-		System.out.println(ax.getEpisode(1,1,3).toString());
+		//System.out.println(ax.getEpisode(1,1,3).toString());
 
 		System.out.println("get ratings");
-		ax.getRatings(1,1,1);
-		
+		//ax.getRatings(1,1,1);
+
 		System.out.println("login test");
 		System.out.println(ax.login("vikaspotluri123", "password"));
 
-		System.out.println("add user");
-		System.out.println(ax.addUser("ayylmao","Chris","Ayoub","asd@gmail.com","05/05/15",null));
-
+		//System.out.println("add user");
+		//System.out.println(ax.addUser("ayylmao","Chris","Ayoub","asd@gmail.com","05/05/15",null));
+		System.out.println("get user");
+		System.out.println(ax.getUserData(1).toString());
+		
+		System.out.println("logout");
+		System.out.println(ax.logoutAll("vikaspotluri123", 1, JOptionPane.showInputDialog("please paste the hash")).toString());
+		
 	}
 
 
