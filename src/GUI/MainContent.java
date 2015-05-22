@@ -8,6 +8,8 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
+
 public class MainContent{
 	
 	private int x;
@@ -246,6 +248,8 @@ public class MainContent{
 			}
 			
 			g.fillRect(x + 730, y, 50, 50);
+			
+			g.drawImage(new ImageIcon("images/close.png").getImage(), x + 745, y + 15, 20, 20, null);
 		}
 	}
 	

@@ -23,6 +23,8 @@ public class MovieInfo {
 	
 	private boolean close;
 	
+	private SeasonList s;
+	
 	public MovieInfo(int x, int y, int sX, int sY, int sA){
 		this.x = x;
 		this.y = y;
@@ -66,6 +68,7 @@ public class MovieInfo {
 			if(r > 1600){
 				starting2 = false;
 				starting3 = true;
+				s = new SeasonList(x + 240, y);
 			}
 			else{
 				r += 80;
@@ -91,6 +94,10 @@ public class MovieInfo {
 				y -= 25;
 			}
 		}
+		
+		if(s != null){
+			s.update(x + 240, y);
+		}
 	}
 	
 	public void draw(Graphics2D g){		
@@ -112,10 +119,12 @@ public class MovieInfo {
 			g.fillRect(x, y, 780, 535);
 			
 			g.setColor(new Color(85,96,105));
-			g.fillRoundRect(x + 40, y + 25, 230, 230, 10, 10);
+			g.fillOval(x + 40, y + 20, 160,160);
 			
 			g.setColor(new Color(101,120,134, alpha));
-			g.fillRect(x + 40, y + 25, 230, 230);
+			g.fillOval(x + 40, y + 20, 160,160);
+			
+			s.draw(g);
 		}
 	}
 	
