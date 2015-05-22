@@ -46,20 +46,22 @@ public class Access {
 		con.sendPost("POST/addRating.php", post);
 	}
 
-	public boolean addUser(String username, String firstname, String lastname, String email, String birthday, String pictureURL) {
-<<<<<<< HEAD
+	public boolean addUser(String username, String password, String firstname, String lastname, String email, String birthday, String pictureURL) {
 
-=======
-		//Your method in BackEnd didn't have the picture parameter so I set it to null
->>>>>>> origin/master
 		ArrayList<String> post = new ArrayList<String>();		
 		post.add("is_post=1&");
-		post.add("security_token=fUheHuhaSaH82haswU8ReSAcreD6wre5gevanEPaWrerEca6HacHAqechEnazEq2&");
-		post.add("token=ZG1scllYTT0%3D&");
-		post.add("security=vikas&");
+		post.add("username="+username+"&");
+		post.add("password="+password+"&");
+		post.add("email_address="+email+"&");
+		post.add("fname="+firstname+"&");
+		post.add("lname="+lastname+"&");
+		post.add("bithday="+birthday+"&");
 		if(pictureURL != null) {
 			pictureURL = pictureURL.replace(" ", "%20");
 			post.add("profile_uri="+pictureURL);
+		}
+		else {
+			
 		}
 		if(con.sendPost("POST/addUser.php", post).contains("\"error\":1")) {
 			return false;
