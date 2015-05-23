@@ -38,9 +38,19 @@ $connection = mysqli_connect(config::$database["host"],config::$database["userna
 $query = "SELECT * FROM `Hashes` WHERE `hash`='{$hash}' AND `owner`=$id'";
 $result = mysql_query($connection,$query)
 	or die(json_encode(array("error" => 1, "status" => 403,"errors" => array("Query error E6"))));
-if(mysqli_num_rows($result) ==1)
+if(mysqli_num_rows($result) == 1)
 {
-	
+	$query = "SELECT  * FROM `Ratings` WHERE `season`=$season AND `show`=$show AND `episode`=$episode AND `owner_id`=$id";
+	$result = mysql_query($connection,$query)
+		or die(json_encode(array("error" => 1, "status" => 403,"errors" => array("Query error E7"))));
+	if(mysqli_num_rows($result) == 1)
+	{
+		$query = "INSERT INTO `Ratings` (`season`,`show`,`episode`,`owner_id`,`rating`,`comment`) VALUES ({$season},{$show},{$episode},{$owner_id},{$rating},\"{$comment}\")";
+		$result = mysql_query($connection,$query)
+			or die(json_encode(array("error" => 1, "status" => 403,"errors" => array("Error E8 inserting comment. "))));
+		die(json_encode(array("error" => 0, "status" => 200,"errors" =>null)));
+	}
+	die(json_encode(array("error" => 1, "status" => 403,"errors" => array("Already rated episode."))));
 }
 else die(json_encode(array("error" => 1, "status" => 403,"errors" => array("Error E7. Contact administrator."))));
 ?>
