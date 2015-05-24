@@ -47,6 +47,10 @@ public class MovieInfo {
 		close = false;
 	}
 	
+	public SeasonList getSeasonList(){
+		return s;
+	}
+	
 	public void update(){
 		if(starting1){
 			int angleLeft = 360 - startingAngle  - endingAngle;

@@ -65,6 +65,10 @@ public class MainContent{
 		showingInfo = false;
 	}
 	
+	public MovieInfo getInfo(){
+		return info;
+	}
+	
 	public SearchBar getSearchBar(){
 		return search;
 	}
@@ -91,6 +95,11 @@ public class MainContent{
 			}
 			else{
 				hovered = false;
+			}
+			
+			SeasonList temp = info.getSeasonList();
+			if(temp != null){
+				temp.checkHovered(e);
 			}
 		}
 	}
@@ -125,6 +134,11 @@ public class MainContent{
 					showingInfo = false;
 					info.close();
 				}
+			}
+			
+			SeasonList temp = info.getSeasonList();
+			if(temp != null){
+				temp.checkPressed(b);
 			}
 		}
 	}
