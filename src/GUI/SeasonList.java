@@ -37,6 +37,9 @@ public class SeasonList {
 		seasons = new ArrayList<Season>();
 		
 		alpha = 255;
+		
+		rB = new RightButton(this.x + 470, this.y + 15, this);
+		lB = new LeftButton(this.x + 40, this.y + 15, this);
 	}
 	
 	public void checkHovered(MouseEvent e){
@@ -79,12 +82,10 @@ public class SeasonList {
 			if(alpha <= 5){
 				alpha = 0;
 				starting = false;
-				rB = new RightButton(x + 470, y + 15, this);
-				lB = new LeftButton(x + 40, y + 15, this);
 			}
 			else{
 				this.y--;
-				seasons.add(new Season(x,y));
+				seasons.add(new Season(x,goalY + 60));
 				alpha -= 25;
 			}
 		}
@@ -101,7 +102,7 @@ public class SeasonList {
 				rB.setActive(true);
 			}
 			
-			rB.update(x + 470, y + 15);
+			rB.update(this.x + 470, this.y + 15);
 		}
 		
 		if(lB != null){
@@ -112,7 +113,11 @@ public class SeasonList {
 				lB.setActive(true);
 			}
 			
-			lB.update(x + 40, y + 15);
+			lB.update(this.x + 40, this.y + 15);
+		}
+		
+		if(seasons.size() > 0){
+			seasons.get(selectedIndex - 1).update(x, y + 60); 
 		}
 	};
 	
@@ -128,7 +133,7 @@ public class SeasonList {
 		g.setFont(temp);
 		
 		g.setColor(new Color(85,96,105));
-		g.fillRoundRect(x + 195, y + 20, 150, 50, 10, 10);
+		g.fillRoundRect(x + 194, y + 19, 152, 52, 10, 10);
 		
 		int length = (int)g.getFontMetrics().getStringBounds("Season " + selectedIndex, g).getWidth(); 
 		
@@ -138,7 +143,7 @@ public class SeasonList {
 			g.drawString("Season " + selectedIndex, x + length/2 + 195 - 7, y + 53);
 		}
 		else{
-			g.drawString("Season " + selectedIndex, x + length/2 + 195 - 10, y + 53);
+			g.drawString("Season " + selectedIndex, x + length/2 + 195 - 13, y + 53);
 		}
 		
 		g.setFont(temp);
@@ -214,10 +219,7 @@ public class SeasonList {
 			}
 		}
 		
-		g.setColor(new Color(101,120,134, alpha));
-		g.fillRect(x, y, 1000, 1000);
-		
-		g.setClip(0, 0, SPanel.width, SPanel.height);
+		g.setClip(x + 40, y + 15, 500, 6000);
 		
 		if(rB != null){
 			rB.draw(g);
@@ -225,6 +227,15 @@ public class SeasonList {
 		
 		if(lB != null){
 			lB.draw(g);
+		}
+		
+		g.setColor(new Color(101,120,134, alpha));
+		g.fillRect(x, y, 1000, 1000);
+		
+		g.setClip(0, 0, SPanel.width, SPanel.height);
+		
+		if(seasons.size() > 0){
+			seasons.get(selectedIndex - 1).draw(g);
 		}
 	};
 }

@@ -11,6 +11,8 @@ public class Season {
 	
 	private ArrayList<Episode> episodes;
 	
+	private Progressbar p;
+	
 	public Season(int x, int y){
 		this.x = x;
 		this.y = y;
@@ -18,9 +20,18 @@ public class Season {
 		starting = true;
 		
 		episodes = new ArrayList<Episode>();
+		
+		p = new Progressbar(x +30, y + 80, 80, 70);
 	}
 	
-	public void update(){};
+	public void update(int x, int y){
+		this.x = x;
+		this.y = y;
+		
+		p.update(this.x + 30, this.y + 80);
+	};
 	
-	public void draw(Graphics2D g){};
+	public void draw(Graphics2D g){
+		p.draw(g);
+	};
 }
