@@ -21,14 +21,14 @@ public class Season {
 		
 		episodes = new ArrayList<Episode>();
 		
-		p = new Progressbar(x +30, y + 80, 80, 70);
+		p = new Progressbar(x +30, y + 90, 80, 70);
 	}
 	
 	public void update(int x, int y){
 		this.x = x;
 		this.y = y;
 		
-		p.update(this.x + 30, this.y + 80);
+		p.update(this.x + 30, this.y + 90);
 	};
 	
 	public void draw(Graphics2D g){

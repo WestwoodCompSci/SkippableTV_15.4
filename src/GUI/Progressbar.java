@@ -93,21 +93,10 @@ public class Progressbar {
 		
 		g.setFont(temp);
 		
-		if(percentSeason < 50){
-			g.drawString(percentSeason + "% of Season", x + 5 + (int)(470*(percentSeason/100.0)) - 4, y - 13);
-		}
-		else{
-			int length = (int)g.getFontMetrics().getStringBounds(percentSeason + "% of Season", g).getWidth();
-			g.drawString(percentSeason + "% of Season", x + 5 + (int)(470*(percentSeason/100.0)) + 2 - length, y - 13);
-		}
+		int length = (int)g.getFontMetrics().getStringBounds(percentSeason + "% to Watch", g).getWidth();
+		g.drawString(percentSeason + "% to Watch", x + 5 + (int)(470*(percentSeason/100.0)) + 2 - (int)(length*(percentSeason/100.0)), y - 13);
 		
-		
-		if(percentComplete < 50){
-			g.drawString(percentComplete + "% of Season", x + 5 + (int)(470*(percentComplete/100.0)) - 4, y + 36);
-		}
-		else{
-			int length = (int)g.getFontMetrics().getStringBounds(percentComplete + "% of Season", g).getWidth();
-			g.drawString(percentComplete + "% of Season", x + 5 + (int)(470*(percentComplete/100.0)) + 2 - length, y + 36);
-		}
+		length = (int)g.getFontMetrics().getStringBounds(percentComplete + "% Completed", g).getWidth();
+		g.drawString(percentComplete + "% Completed", x + 5 + (int)(470*(percentComplete/100.0)) + 2 - (int)(length*(percentComplete/100.0)), y + 39);
 	}
 }
