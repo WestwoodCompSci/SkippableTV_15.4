@@ -18,7 +18,7 @@ $connection = mysqli_connect(config::$database["host"],config::$database["userna
 $info = array(
 	"username" => $_POST['username'],
 	"hash"     => $_POST['hash'],
-	"id"       = $_POST['id']
+	"id"       => $_POST['id']
 );
 settype($info["id"],"integer");
 
