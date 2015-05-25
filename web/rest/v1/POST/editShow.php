@@ -22,9 +22,9 @@ $connection = mysqli_connect(config::$database["host"],config::$database["userna
 	or die(json_encode(array("error" => 1, "status" => 500,"errors" => array("Could not connect to databsase"))));
 
 $info = array(
-	"username" => $_POST['username'];
-	"hash"     => $_POST['hash'];
-	"id"       = $_POST['id'];
+	"username" => $_POST['username'],
+	"hash"     => $_POST['hash'],
+	"id"       = $_POST['id']
 );
 settype($info["id"],"integer");
 
@@ -35,7 +35,7 @@ if(config::checkLogin($info,$connection))
 	$info  = mysqli_fetch_array($res);
 	if($info["privileges"] == "2" || $info["privileges"] == 2 || $info["privileges"] == "1" || $info["privileges"] == 1):
 		$query = "UPDATE `Shows` SET `name` = \"{$_POST['name']}\" AND `seasons` = {$_POST['seasons']} AND `episodes` = {$_POST['episodes']} AND `genre` = {$_POST['genre']} AND `total length` = {$_POST['total length']} WHERE `id` = {$_POST['ep_id']}";
-		mysqli_query($connction,$query) or die(json_encode(array("error" => 1, "status" => 500,"errors" => array("Couldn't update databas"))));
+		mysqli_query($connction,$query) or die(json_encode(array("error" => 1, "status" => 500,"errors" => array("Couldn't update database"))));
 		die(json_encode(array("error" => 0, "status" => 200,"errors" =>array())));
 	else:
 		die(json_encode(array("error" => 1, "status" => 500,"errors" => array("User needs to be administrator or moderator"))));

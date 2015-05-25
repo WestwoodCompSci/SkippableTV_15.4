@@ -18,12 +18,12 @@ class config
 		
 		$query = "SELECT * FROM `Hashes` WHERE `id` = {$info['id']} AND `hash` = \"{$info['hash']}\"";
 		
-		$res = mysqli_query($conn,$query) or return false;
+		$res = mysqli_query($conn,$query) or die(json_encode(array("error"=>1,"status"=>403,"errors"=>array("Couldn't run check"))));
 		
 		if(mysqli_num_rows($res) == 1)
 		{
 			$query = "SELECT * FROM `Users` WHERE `id`={$info['id']} AND `username` = \"{$imfo['username']}\"";
-			$res   = mysqli_query($conn,$query) or return false;
+			$res   = mysqli_query($conn,$query) or die(json_encode(array("error"=>1,"status"=>403,"errors"=>array("Couldn't run check E2"))));
 			$data  = mysqli_fetch_array($res);
 			$hashes = unserialize($data['hashes']);
 			foreach($hashes as $hash)

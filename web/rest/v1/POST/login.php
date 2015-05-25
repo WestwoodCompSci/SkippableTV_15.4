@@ -88,7 +88,7 @@ function cont($result)
 			}
 			die(json_encode(array("error" => 0, "status" => 200,"errors" => null,"user_hash"=>$hash,"info"=>array(mysqli_fetch_array($returnQuery)))));
 		}
-		else die(json_encode(array("error" => 1, "status" => 500,"errors" => array("Something was wrong in checking the password."))));
+		else die(json_encode(array("error" => 1, "status" => 500,"errors" => array("Something was wrong in checking the password.".mysqli_num_rows($success)))));
 	}
 	else die(json_encode(array("error" => 1, "status" => 500,"errors" => array("Multiple usernames in password database. Contact administrator"))));
 }
