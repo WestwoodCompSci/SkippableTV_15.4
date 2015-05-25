@@ -5,6 +5,8 @@ import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
+
 public class RightButton {
 	private int x;
 	private int y;
@@ -65,17 +67,20 @@ public class RightButton {
 					g.setColor(new Color(45,56,65));
 					g.fillRect(x, y, 25, 60);
 					g.fillRoundRect(x, y, 30, 60, 5, 5);
+					g.drawImage(new ImageIcon("images/right.png").getImage(), x, y, 30, 60, null);
 				}
 				else{
 					g.setColor(new Color(55,66,75));
 					g.fillRect(x, y, 25, 60);
 					g.fillRoundRect(x, y, 30, 60, 5, 5);
+					g.drawImage(new ImageIcon("images/right.png").getImage(), x, y, 30, 60, null);
 				}
 			}
 			else{
 				g.setColor(new Color(65,76,85));
 				g.fillRect(x, y, 25, 60);
 				g.fillRoundRect(x, y, 30, 60, 5, 5);
+				g.drawImage(new ImageIcon("images/right.png").getImage(), x, y, 30, 60, null);
 			}
 		}
 		else{
@@ -86,6 +91,8 @@ public class RightButton {
 			g.setColor(new Color(65,76,85));
 			g.fillRect(x, y, 25, 60);
 			g.fillRoundRect(x, y, 30, 60, 5, 5);
+			
+			g.drawImage(new ImageIcon("images/right.png").getImage(), x, y, 30, 60, null);
 			
 			g.setColor(new Color(255,255,255,50));
 			g.fillRoundRect(x, y, 30, 60, 5, 5);

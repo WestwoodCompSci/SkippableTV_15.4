@@ -42,6 +42,10 @@ public class SeasonList {
 		lB = new LeftButton(this.x + 40, this.y + 15, this);
 	}
 	
+	public Season getSeason(){
+		return seasons.get(selectedIndex - 1); 
+	}
+	
 	public void checkHovered(MouseEvent e){
 		if(rB != null){
 			rB.checkHovered(e);
@@ -49,6 +53,14 @@ public class SeasonList {
 		
 		if(lB != null){
 			lB.checkHovered(e);
+		}
+		
+		if(seasons.size() > 0){
+			Season temp = seasons.get(selectedIndex - 1);
+			temp.getHours().checkHovered(e);
+			for(int i = 0; i < temp.getEpisodes().size(); i++){
+				temp.getEpisodes().get(i).checkHovered(e);
+			}
 		}
 	}
 	
@@ -59,6 +71,14 @@ public class SeasonList {
 		
 		if(lB != null){
 			lB.checkPressed(b);
+		}
+		
+		if(seasons.size() > 0){
+			Season temp = seasons.get(selectedIndex - 1);
+			temp.getHours().checkPressed(b);
+			for(int i = 0; i < temp.getEpisodes().size(); i++){
+				temp.getEpisodes().get(i).checkPressed(b);
+			}
 		}
 	}
 	

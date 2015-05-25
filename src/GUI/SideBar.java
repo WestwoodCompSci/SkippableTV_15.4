@@ -142,7 +142,7 @@ public class SideBar extends JPanel{
 		g.setPaint(verticalUpFade);
 		g.fillRect(this.getX(),480,260,5);
 		
-		g.setColor(new Color(37, 110, 121));
+		g.setColor(new Color(37, 110, 121)); 
 		g.fillRect(this.getX(), 485, 260, 100);
 		
 		if(!starting){

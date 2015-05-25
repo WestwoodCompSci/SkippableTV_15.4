@@ -235,6 +235,20 @@ public class SPanel extends JPanel implements Runnable,MouseListener,MouseInputL
 				}
 			}
 		}
+		if(m.isShowingInfo()){
+			int notches = e.getWheelRotation();
+			if(notches < 0){
+				notches = Math.abs(notches);
+				for(int i = 0; i < notches; i++){
+					m.getInfo().getSeasonList().getSeason().scrollUp(e);
+				}
+			}
+			else{
+				for(int i = 0; i < notches; i++){
+					m.getInfo().getSeasonList().getSeason().scrollDown(e);
+				}
+			}
+		}
 	}
 
 	@Override
