@@ -123,10 +123,10 @@ public class MovieInfo {
 			g.fillRect(x, y, 780, 535);
 			
 			g.setColor(new Color(85,96,105));
-			g.fillOval(x + 40, y + 20, 160,160);
+			g.fillOval(x + 50, y + 20, 160,160);
 			
 			g.setColor(new Color(101,120,134, alpha));
-			g.fillOval(x + 40, y + 20, 160,160);
+			g.fillOval(x + 50, y + 20, 160,160);
 			
 			s.draw(g);
 		}

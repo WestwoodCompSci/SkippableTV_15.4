@@ -258,6 +258,7 @@ public class SPanel extends JPanel implements Runnable,MouseListener,MouseInputL
 	public void keyPressed(KeyEvent e) {
 		SearchBar temp = m.getSearchBar();
 		if(temp != null){
+			char tempChar = e.getKeyChar();
 			if(e.getKeyCode() == KeyEvent.VK_BACK_SPACE){
 				temp.backSpace();
 			}
@@ -267,9 +268,10 @@ public class SPanel extends JPanel implements Runnable,MouseListener,MouseInputL
 			
 			else if(e.getKeyCode() == KeyEvent.VK_LEFT){
 				
-			}
+			}		
 			
-			else if(KeyEvent.getKeyText(e.getKeyCode()).length() == 1){
+			
+			else if(Character.isLetterOrDigit(tempChar) || Character.isSpaceChar(tempChar) || (!Character.isWhitespace(tempChar) && Character.isDefined(tempChar))){
 				temp.appendText(e.getKeyChar());
 			}
 		}
