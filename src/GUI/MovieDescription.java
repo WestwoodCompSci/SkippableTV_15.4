@@ -53,8 +53,8 @@ public class MovieDescription {
 		}
 	}
 	
-	public boolean parseDescription(String description, Graphics2D g){
-		paragraph = new ArrayList<String>();
+	public ArrayList<String> parseDescription(String description, Graphics2D g){
+		ArrayList<String> temp = new ArrayList<String>();
 		
 		int startWord = 0;
 		
@@ -66,29 +66,32 @@ public class MovieDescription {
 			if(Character.isSpaceChar(description.charAt(i))){
 				String tempAdd = description.substring(startWord, i);
 				length += (int)g.getFontMetrics().getStringBounds(tempAdd, g).getWidth();
-				
 				if(length > 220){
-					paragraph.add(tempString);
+					temp.add(tempString);
 					tempString = tempAdd;
 					length = (int)g.getFontMetrics().getStringBounds(tempString, g).getWidth();
-				}
-				else if(i == description.length() - 1){
-					tempString += tempAdd;
-					paragraph.add(tempString);
-				}
-				
+				}				
 				else{
 					tempString += tempAdd;
 				}
 				
 				startWord = i;
 			}
+			else if(i == description.length() - 1){
+				String tempAdd = description.substring(startWord, i + 1); 
+				tempString += tempAdd;
+				temp.add(tempString);
+			}
 		}
 		
-		if(paragraph.size() > 15){
-			return true;
+		if(temp.size() > 15){
+			scroll =  true;
 		}
-		return false;
+		else{
+			scroll  = false;
+		}
+		
+		return temp;
 	}
 	
 	public void update(int x, int y){
@@ -138,18 +141,19 @@ public class MovieDescription {
 		
 		g.drawString(rating + "%", x + 180, y + 30);
 		
-		scroll = parseDescription(description, g);
+		paragraph = parseDescription(description, g);
 		
 		if(scroll){
-			for(int i = startCount; i < startCount + 1; i++){
+			for(int i = startCount; i < startCount + 15; i++){
 				g.drawString(paragraph.get(i), x, y + 80 + 16*(i - startCount));
 			}
 			
 			g.setColor(new Color(0,0,0,100));
-			g.fillRoundRect(x + 220, y + 70 + startCount*(260/paragraph.size()), 5, (260/paragraph.size()), 5, 5);
+			
+			g.fillRoundRect(x + 220, y + 70 + startCount*(240/paragraph.size()), 5, (240/(paragraph.size()/15)), 5, 5);
 			
 			g.setColor(new Color(0,0,0,50));
-			g.fillRoundRect(x + 220, y + 70, 5, 260, 5, 5);
+			g.fillRoundRect(x + 220, y + 70, 5, 240, 5, 5);
 		}
 		else{
 			for(int i = 0; i < paragraph.size(); i++){
