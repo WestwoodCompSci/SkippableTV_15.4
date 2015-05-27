@@ -18,6 +18,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
@@ -33,6 +34,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+
 
 public class ScreenFunc {
 	JFrame frame;
@@ -53,6 +55,7 @@ public class ScreenFunc {
 	JButton button10;
 	JButton button11;
 	ImageIcon image;
+	
 	
 	public ScreenFunc() {
     frame = new JFrame("Login");
@@ -194,6 +197,10 @@ public class ScreenFunc {
 		    JTextField textfieldB = new JTextField(15);
 			JTextField textfieldC = new JTextField(15);
 			JTextField textfieldD = new JTextField(15);
+			String email = "";
+			String username = "";
+			String password = "";
+			String cpassword = "";
 			Font fontA = labelB.getFont();
 		    labelB.setFont(new Font("CenturyGothic", Font.BOLD, 80));
 		    labelB.setFont(fontA.deriveFont(Font.BOLD, 80f));

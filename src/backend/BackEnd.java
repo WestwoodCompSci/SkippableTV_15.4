@@ -36,11 +36,11 @@ public class BackEnd {
 		b.getSeasons(series.get(0).id);
 	}
 	
-	public boolean addUser(String username, String firstname, String lastname, String email, String birthday) {
+	public boolean addUser(String email, String username, String password) {
 		if(username.contains(" ")) {
 			return false;
 		}
-		a.addUser(username, firstname, lastname, email, birthday, null);
+		a.addUser(email, username, password, null);
 		
 		return true;
 	}
