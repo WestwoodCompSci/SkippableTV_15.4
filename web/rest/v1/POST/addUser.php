@@ -33,7 +33,7 @@ $result = mysqli_query($connection,$query)
 	or die(json_encode(array("error" => 1, "status" => 500,"errors" => array("Query error checking if username exists"))));
 if(mysqli_num_rows($result) > 0)
 	die(json_encode(array("error" => 1, "status" => 500,"errors" => array("Username exists"))));
-$query = "INSERT INTO `Users` (`username`, `privileges`, `Profile URI`, `email`, `fname`, `lname`, `birthday`) VALUES (\"{$username}\",0,\"{$picture}\",\"{$email}\",\"{$fname}\",\"{$lname}\",{$bday})";
+$query = "INSERT INTO `Users` (`username`, `privileges`, `Profile-URI`, `email`, `fname`, `lname`, `birthday`) VALUES (\"{$username}\",0,\"{$picture}\",\"{$email}\",\"{$fname}\",\"{$lname}\",{$bday})";
 //print $query;
 $res = mysqli_query($connection,$query)
 	or die(json_encode(array("error" => 1, "status" => 500,"errors" => array("Query error E-3"))));

@@ -35,6 +35,22 @@
 			{
 				font-weight:300
 			}
+			.trans-overlay
+			{
+				background:black;
+				opacity:.6;
+				height:calc(100vh - 65px);
+				width:100vw;
+				position:absolute;
+			}
+			.no-trans
+			{
+				z-index:100;
+			}
+			.full-width
+			{
+				width:100vw;
+			}
 		</style>
 	</head>
 	<body class="teal lighten-2 ">
@@ -47,12 +63,14 @@
 						<li><a  class="teal-text lighten-2" href="about.php">About</a></li>
 						<li><a class="teal-text lighten-2"  href="login">Login</a></li>
 						<li><a  class="teal-text lighten-2" href="download.php">Download</a></li>
+						<li><a  class="teal-text lighten-2" href="manager.php">Manage Account</a></li>
 						<li><a  class="teal-text lighten-2" href="https://github.com/WestwoodCompSci/SkippableTV_15.4" target="_blank">Source</a></li>
 					</ul>
 					<ul class="side-nav teal-text lighten-2" id="mobile-demo">
 						<li><a class="teal-text lighten-2"  href="about.php">About</a></li>
 						<li><a  class="teal-text lighten-2" href="login">Login</a></li>
 						<li><a  class="teal-text lighten-2" href="download.php">Download</a></li>
+						<li><a  class="teal-text lighten-2" href="manager.php">Manage Account</a></li>
 						<li><a  class="teal-text lighten-2" href="https://github.com/WestwoodCompSci/SkippableTV_15.4" target="_blank">Source</a></li>
 					</ul>
 				</div>

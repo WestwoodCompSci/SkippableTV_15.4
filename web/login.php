@@ -2,7 +2,8 @@
 <style>
 </style>
 <div class="page-height login-background valign-wrapper">
-	<div class="page-height-header teal valign center login z-depth-5">
+	<div class="trans-overlay"></div>
+	<div class="no-trans teal valign center login z-depth-5">
 		<h1 class="center white-text darken-3 flow-text font-600">SKiPpaBLe login</h1>
 		<form class="col s12 valign" id="form">
 			<p id="login-error" class="hide red-text center accent-4 font-600">

@@ -46,7 +46,7 @@ else
 		or die(json_encode(array("error" => 1, "status" => 500,"errors" => array("Could not delete Hash E2"))));
 	$data = mysqli_fetch_array($result);
 	$hashes = (unserialize($data['allowed_hashes']));
-	for($i = 0; $i<count($hashes); $i++)
+	for($i = 0; $i<count($hashes)-1; $i++)
 	{
 		$key = $hashes[$i];
 		if($hash == $key)

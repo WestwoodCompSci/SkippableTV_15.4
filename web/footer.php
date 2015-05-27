@@ -2,6 +2,6 @@
 <footer></footer>
 	</body>
 	<script type="text/javascript" defer>
-		$(".button-collapse").sideNav();
+		$(document).ready(function(){$(".button-collapse").sideNav();});
 	</script>
 </html>
