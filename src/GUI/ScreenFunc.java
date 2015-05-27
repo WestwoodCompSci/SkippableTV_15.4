@@ -265,6 +265,7 @@ public class ScreenFunc {
 		    
 		    }
     });
+    
     frame.getContentPane().add(panel);
     frame.pack();
     frame.setSize(899,700);
