@@ -177,7 +177,7 @@ public class SPanel extends JPanel implements Runnable,MouseListener,MouseInputL
 			if(!m.isShowingInfo()){
 				SearchBar temp = m.getSearchBar();
 				if(temp != null){
-					temp.selectText(true);
+					temp.selectText(e, g, true);
 				}
 			}
 		}
@@ -210,7 +210,7 @@ public class SPanel extends JPanel implements Runnable,MouseListener,MouseInputL
 			}
 			SearchBar temp1 = m.getSearchBar();
 			if(temp1 != null){
-				temp1.selectText(false);
+				temp1.selectText(e, g, false);
 			}
 			m.checkPressed(e, false);
 			
@@ -241,11 +241,13 @@ public class SPanel extends JPanel implements Runnable,MouseListener,MouseInputL
 				notches = Math.abs(notches);
 				for(int i = 0; i < notches; i++){
 					m.getInfo().getSeasonList().getSeason().scrollUp(e);
+					m.getInfo().getDescription().scrollUp(e);
 				}
 			}
 			else{
 				for(int i = 0; i < notches; i++){
 					m.getInfo().getSeasonList().getSeason().scrollDown(e);
+					m.getInfo().getDescription().scrollDown(e);
 				}
 			}
 		}

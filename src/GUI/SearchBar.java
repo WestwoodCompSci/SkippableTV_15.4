@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.MouseEvent;
 
+import javax.swing.JTextField;
+
 public class SearchBar {
 	private int x;
 	private int y;
@@ -27,6 +29,8 @@ public class SearchBar {
 	
 	private int blinkIndex;
 	
+	private boolean overBound;
+	
 	public SearchBar(int x, int y, MainContent p){
 		this.x = x;
 		this.y = y;
@@ -45,6 +49,8 @@ public class SearchBar {
 		blink = 255;
 		
 		blinkIndex = 0;
+		
+		overBound = false;
 	}
 	
 	public boolean isStarting(){
@@ -72,10 +78,32 @@ public class SearchBar {
 		}
 	}
 	
-	public void selectText(boolean b){
+	public void selectText(MouseEvent e, Graphics2D g, boolean b){
 		if(textHovered && b == true){
 			textSelected = true;
 			startSelect = System.currentTimeMillis();
+			
+			/*String temp = "";
+			String temp1 = "";
+			int length = 0;
+			int length1 = 0;
+			
+			for(int i = 0; i < typed.length(); i++){
+				temp += typed.charAt(i);
+				length = (int)g.getFontMetrics().getStringBounds("" + temp, g).getWidth();
+				
+				if(i != 0){
+					temp1 += typed.charAt(i - 1);
+					length1 = (int)g.getFontMetrics().getStringBounds("" + temp1, g).getWidth();
+					
+					if(e.getX() < x + 5 + length && e.getX() > x + 5 + length1){
+						blinkIndex = i;
+					}
+				}
+				else{
+					blinkIndex = i;
+				}
+			}*/
 		}
 		else{
 			textSelected = false;
@@ -174,6 +202,7 @@ public class SearchBar {
 			int over = (int)g.getFontMetrics().getStringBounds(typed, g).getWidth() - 187;
 			for(int i = 0; i <= typed.length(); i++){
 				if(typed.length() != 0 && i != typed.length()){
+					g.setColor(new Color(120,126,130, alpha));
 					g.setClip(x + 5, y, 187, 30);
 					char temp = typed.charAt(i);
 					g.drawString("" + temp, x + 5 + length - over, y + 23);
@@ -184,11 +213,14 @@ public class SearchBar {
 					g.setColor(new Color(10,10,10,blink));
 					g.fillRect(x + length + 6 - over, y + 5, 2, 20);
 				}
+				
+				overBound = true;
 			}
 		}
 		else{
 			for(int i = 0; i <= typed.length(); i++){				
 				if(typed.length() != 0 && i < typed.length()){
+					g.setColor(new Color(120,126,130, alpha));
 					char temp = typed.charAt(i);
 					g.drawString("" + temp, x + 5 + length, y + 23);
 					length += (int)g.getFontMetrics().getStringBounds("" + temp, g).getWidth();				
@@ -197,6 +229,8 @@ public class SearchBar {
 					g.setColor(new Color(10,10,10,blink));
 					g.fillRect(x + length + 6, y + 5, 2, 20);
 				}
+				
+				overBound = false;
 			}
 		}
 	}

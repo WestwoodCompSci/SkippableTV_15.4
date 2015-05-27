@@ -25,6 +25,8 @@ public class MovieInfo {
 	
 	private SeasonList s;
 	
+	private MovieDescription d;
+	
 	public MovieInfo(int x, int y, int sX, int sY, int sA){
 		this.x = x;
 		this.y = y;
@@ -51,6 +53,10 @@ public class MovieInfo {
 		return s;
 	}
 	
+	public MovieDescription getDescription(){
+		return d;
+	}
+	
 	public void update(){
 		if(starting1){
 			int angleLeft = 360 - startingAngle  - endingAngle;
@@ -73,6 +79,7 @@ public class MovieInfo {
 				starting2 = false;
 				starting3 = true;
 				s = new SeasonList(x + 240, y);
+				d = new MovieDescription(x + 25, y + 180, 76, "This Emmy-winning original thriller series stars Golden Globe winner Kevin Spacey as ruthless, cunning Congressman Francis Underwood, who will stop at nothing to conquer the halls of power in Washington D.C. His secret weapon: his gorgeous, ambitious, and equally conniving wife Claire (Golden Globe winner Robin Wright).This Emmy-winning original thriller series stars Golden Globe winner Kevin Spacey as ruthless, cunning Congressman Francis Underwood, who will stop at nothing to conquer the halls of power in Washington D.C. His secret weapon: his gorgeous, ambitious, and equally conniving wife Claire (Golden Globe winner Robin Wright).This Emmy-winning original thriller series stars Golden Globe winner Kevin Spacey as ruthless, cunning Congressman Francis Underwood, who will stop at nothing to conquer the halls of power in Washington D.C. His secret weapon: his gorgeous, ambitious, and equally conniving wife Claire (Golden Globe winner Robin Wright).This Emmy-winning original thriller series stars Golden Globe winner Kevin Spacey as ruthless, cunning Congressman Francis Underwood, who will stop at nothing to conquer the halls of power in Washington D.C. His secret weapon: his gorgeous, ambitious, and equally conniving wife Claire (Golden Globe winner Robin Wright).This Emmy-winning original thriller series stars Golden Globe winner Kevin Spacey as ruthless, cunning Congressman Francis Underwood, who will stop at nothing to conquer the halls of power in Washington D.C. His secret weapon: his gorgeous, ambitious, and equally conniving wife Claire (Golden Globe winner Robin Wright).");
 			}
 			else{
 				r += 80;
@@ -102,6 +109,10 @@ public class MovieInfo {
 		if(s != null){
 			s.update(x + 240, y);
 		}
+		
+		if(d != null){
+			d.update(x + 25, y + 180);
+		}
 	}
 	
 	public void draw(Graphics2D g){		
@@ -129,6 +140,7 @@ public class MovieInfo {
 			g.fillOval(x + 50, y + 20, 160,160);
 			
 			s.draw(g);
+			d.draw(g);
 		}
 	}
 	
