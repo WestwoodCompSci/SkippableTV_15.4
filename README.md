@@ -2,7 +2,7 @@
 ---
 Management 				-		Mickel
 
-Frontend GUI Client		-		William, Rohith 
+Frontend GUI Client		-		William Li, Rohith 
 
 Networking				-		Chris, Rohan
 
